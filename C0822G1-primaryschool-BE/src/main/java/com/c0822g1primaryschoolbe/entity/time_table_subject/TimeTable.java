@@ -11,7 +11,6 @@ public class TimeTable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long timeTableId;
-    private Integer lesson;
     @OneToMany(mappedBy = "timeTable")
     @JsonBackReference
     private Set<TimeTableSubject> timeTableSubjectSet;
@@ -22,7 +21,7 @@ public class TimeTable {
     private Day dayOfWeek;
     @ManyToOne
     @JoinColumn(name = "lesson_id", nullable = false,referencedColumnName = "lesson_id")
-    private Lesson lessonTable;
+    private Lesson lesson;
 
     public Long getTimeTableId() {
         return timeTableId;
@@ -31,15 +30,7 @@ public class TimeTable {
     public void setTimeTableId(Long timeTableId) {
         this.timeTableId = timeTableId;
     }
-
-    public Integer getLesson() {
-        return lesson;
-    }
-
-    public void setLesson(Integer lesson) {
-        this.lesson = lesson;
-    }
-
+    
     public Set<TimeTableSubject> getTimeTableSubjectSet() {
         return timeTableSubjectSet;
     }
@@ -64,11 +55,11 @@ public class TimeTable {
         this.dayOfWeek = dayOfWeek;
     }
 
-    public Lesson getLessonTable() {
-        return lessonTable;
+    public Lesson getLesson() {
+        return lesson;
     }
 
-    public void setLessonTable(Lesson lessonTable) {
-        this.lessonTable = lessonTable;
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
     }
 }
