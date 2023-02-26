@@ -17,6 +17,12 @@ public class TimeTable {
     private Set<TimeTableSubject> timeTableSubjectSet;
     @OneToOne(mappedBy = "timeTable")
     private Clazz clazz;
+    @ManyToOne
+    @JoinColumn(name = "day_id",nullable = false,referencedColumnName = "day_id")
+    private Day dayOfWeek;
+    @ManyToOne
+    @JoinColumn(name = "lesson_id", nullable = false,referencedColumnName = "lesson_id")
+    private Lesson lessonTable;
 
     public Long getTimeTableId() {
         return timeTableId;
@@ -48,5 +54,21 @@ public class TimeTable {
 
     public void setClazz(Clazz clazz) {
         this.clazz = clazz;
+    }
+
+    public Day getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    public void setDayOfWeek(Day dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
+    }
+
+    public Lesson getLessonTable() {
+        return lessonTable;
+    }
+
+    public void setLessonTable(Lesson lessonTable) {
+        this.lessonTable = lessonTable;
     }
 }
