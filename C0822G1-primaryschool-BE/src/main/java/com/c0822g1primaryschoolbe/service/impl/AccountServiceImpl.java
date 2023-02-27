@@ -13,6 +13,14 @@ public class AccountServiceImpl implements IAccountService {
     @Autowired
     private IAccountRepository iAccountRepository;
 
+    /**
+     * Created by: SyTV
+     * Date created: 27/02/2023
+     * Function: authenticate account password
+     *
+     * @param username
+     * @return account
+     */
     @Override
     public Optional<Account> findByUsername(String username) {
         return iAccountRepository.findByUsername(username);

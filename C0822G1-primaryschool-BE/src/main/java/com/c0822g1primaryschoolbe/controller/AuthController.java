@@ -31,6 +31,15 @@ public class AuthController {
     @Autowired
     private JWTProvider jwtProvider;
 
+    /**
+     * Created by: SyTV
+     * Date created: 27/02/2023
+     * Function: authenticate account password
+     *
+     * @param signInForm
+     * @return ResponseEntity.ok with jwtResponse(token,name,id,username,email,avatar,roles)
+     */
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody SignInForm signInForm) {
 
