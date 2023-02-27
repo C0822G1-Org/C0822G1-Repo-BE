@@ -1,6 +1,5 @@
 package com.c0822g1primaryschoolbe.entity.teacher;
 
-import com.c0822g1primaryschoolbe.entity.account.Account;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 
 import javax.persistence.*;
@@ -23,14 +22,13 @@ public class Teacher {
     private Boolean flagDelete;
     private String teacherType;
     private Boolean teacherStatus;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "account_id")
-    private Account account;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "account_id")
+//    private Account account;
     @ManyToOne()
     @JoinColumn(name = "degree_id",nullable = false,referencedColumnName = "degree_id")
     private Degree degree;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "clazz_id")
+    @OneToOne(mappedBy = "teacher")
     private Clazz clazz;
 
     public Long getTeacherId() {
@@ -97,13 +95,13 @@ public class Teacher {
         this.teacherStatus = teacherStatus;
     }
 
-    public Account getAccount() {
-        return account;
-    }
+//    public Account getAccount() {
+//        return account;
+//    }
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
+//    public void setAccount(Account account) {
+//        this.account = account;
+//    }
 
     public Degree getDegree() {
         return degree;
@@ -119,5 +117,21 @@ public class Teacher {
 
     public void setClazz(Clazz clazz) {
         this.clazz = clazz;
+    }
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
