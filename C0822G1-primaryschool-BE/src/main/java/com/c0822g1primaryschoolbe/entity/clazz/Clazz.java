@@ -18,13 +18,13 @@ public class Clazz {
     private Boolean flagDelete;
     private Integer year;
     private String schoolYear;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "time_table_id")
+    @OneToOne(mappedBy = "clazz")
     private TimeTable timeTable;
     @ManyToOne
     @JoinColumn(name = "block_id",nullable = false,referencedColumnName = "block_id")
     private Block block;
-    @OneToOne(mappedBy = "clazz")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "teacher_id")
     private Teacher teacher;
     @ManyToMany(mappedBy = "clazzSet")
     private Set<Student> students;

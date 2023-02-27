@@ -27,12 +27,6 @@ public class SecurityRestController {
     @Autowired
     private IAccountService accountService;
 
-//    @Autowired
-//    IRoleService roleService;
-
-//    @Autowired
-//    PasswordEncoder passwordEncoder;
-
     @Autowired
     private AuthenticationManager authenticationManager;
 

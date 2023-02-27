@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtTokenFilter jwtTokenFilter;
 
     @Autowired
-    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+    protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder.userDetailsService(accountDetailService);
     }
 
@@ -51,9 +51,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.cors().and().csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/**")
+                .antMatchers("/api/public/**")
                 .permitAll()
-//                .antMatchers("/api/teacher/**").hasAnyRole("TEACHER","ADMIN")
+                .antMatchers("/api/teacher/**").hasAnyRole("TEACHER","ADMIN")
+                .antMatchers("/api/admin/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()

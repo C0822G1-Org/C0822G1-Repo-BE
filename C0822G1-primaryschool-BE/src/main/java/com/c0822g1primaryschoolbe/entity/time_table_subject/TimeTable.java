@@ -14,7 +14,8 @@ public class TimeTable {
     @OneToMany(mappedBy = "timeTable")
     @JsonBackReference
     private Set<TimeTableSubject> timeTableSubjectSet;
-    @OneToOne(mappedBy = "timeTable")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "clazz_id")
     private Clazz clazz;
     @ManyToOne
     @JoinColumn(name = "day_id",nullable = false,referencedColumnName = "day_id")
@@ -30,7 +31,7 @@ public class TimeTable {
     public void setTimeTableId(Long timeTableId) {
         this.timeTableId = timeTableId;
     }
-    
+
     public Set<TimeTableSubject> getTimeTableSubjectSet() {
         return timeTableSubjectSet;
     }
