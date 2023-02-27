@@ -9,9 +9,11 @@ public class Blog {
     private Long id;
     @Column(columnDefinition = "varchar(45)")
     private String title;
+    @Column(columnDefinition = "longtext")
     private String content;
     private String startDate;
     private String poster;
+    private String img;
 
     public Long getId() {
         return id;
@@ -51,5 +53,13 @@ public class Blog {
 
     public void setPoster(String poster) {
         this.poster = poster;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }
