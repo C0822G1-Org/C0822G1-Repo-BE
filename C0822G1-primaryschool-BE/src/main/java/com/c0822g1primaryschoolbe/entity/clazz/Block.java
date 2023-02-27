@@ -1,5 +1,8 @@
 package com.c0822g1primaryschoolbe.entity.clazz;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,8 +11,18 @@ public class Block {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "block_id")
     private Long blockId;
+
+    @JsonBackReference
     @Column(columnDefinition = "varchar(45)")
     private Integer blockName;
+
+    public Block() {
+    }
+
+    public Block(Long blockId, Integer blockName) {
+        this.blockId = blockId;
+        this.blockName = blockName;
+    }
 
     public Long getBlockId() {
         return blockId;

@@ -2,6 +2,7 @@ package com.c0822g1primaryschoolbe.entity.teacher;
 
 import com.c0822g1primaryschoolbe.entity.account.Account;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -23,14 +24,18 @@ public class Teacher {
     private Boolean flagDelete;
     private String teacherType;
     private Boolean teacherStatus;
+
+    @JsonBackReference
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id")
     private Account account;
+
     @ManyToOne()
     @JoinColumn(name = "degree_id",nullable = false,referencedColumnName = "degree_id")
     private Degree degree;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "clazz_id")
+
+    @JsonBackReference
+    @OneToOne(mappedBy = "teacher")
     private Clazz clazz;
 
     public Long getTeacherId() {
