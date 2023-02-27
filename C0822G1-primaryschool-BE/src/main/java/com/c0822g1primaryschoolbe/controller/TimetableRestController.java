@@ -1,5 +1,6 @@
 package com.c0822g1primaryschoolbe.controller;
 
+import com.c0822g1primaryschoolbe.entity.time_table_subject.ITimetable;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.TimeTable;
 import com.c0822g1primaryschoolbe.repository.ITimetableRepository;
 import com.c0822g1primaryschoolbe.service.timetable.ITimetableService;
@@ -24,14 +25,14 @@ public class TimetableRestController {
      * Date created: 27/02/2023
      * Function: get all timetable where id_clazz*/
 
-//    @GetMapping(value = "/listTimetable")
-//    public ResponseEntity<List<TimeTable>> getAllTimetable() {
-//        List<TimeTable> listTimetable = timetableService.getAllTimetable();
-//        if (listTimetable.isEmpty()) {
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        }
-//        return new ResponseEntity<>(listTimetable, HttpStatus.OK);
-//    }
+    @GetMapping(value = "/listTimetable")
+    public ResponseEntity<List<ITimetable>> getAllTimetable() {
+        List<ITimetable> listTimetable = timetableService.getAllTimetable();
+        if (listTimetable.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(listTimetable, HttpStatus.OK);
+    }
 
 
 }
