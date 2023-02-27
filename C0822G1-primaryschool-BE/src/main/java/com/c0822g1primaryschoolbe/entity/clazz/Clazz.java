@@ -1,11 +1,9 @@
 package com.c0822g1primaryschoolbe.entity.clazz;
 
-import com.c0822g1primaryschoolbe.entity.student.Student;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.TimeTable;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 public class Clazz {
@@ -26,8 +24,7 @@ public class Clazz {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
-    @ManyToMany(mappedBy = "clazzSet")
-    private Set<Student> students;
+
 
     public Long getClazzId() {
         return clazzId;
@@ -83,14 +80,6 @@ public class Clazz {
 
     public void setBlock(Block block) {
         this.block = block;
-    }
-
-    public Set<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(Set<Student> students) {
-        this.students = students;
     }
 
     public Teacher getTeacher() {
