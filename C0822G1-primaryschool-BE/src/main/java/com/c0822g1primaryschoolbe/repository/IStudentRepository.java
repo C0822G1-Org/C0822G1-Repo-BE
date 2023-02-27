@@ -2,12 +2,14 @@ package com.c0822g1primaryschoolbe.repository;
 
 import com.c0822g1primaryschoolbe.dto.student.StudentListViewDto;
 import com.c0822g1primaryschoolbe.entity.student.Student;
+import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface IStudentRepository extends JpaRepository<Student, Long> {
+
     /**
      * Create by : VanNTC
      * Date create: 27/02/2023
