@@ -1,5 +1,6 @@
 package com.c0822g1primaryschoolbe.repository;
 
+import com.c0822g1primaryschoolbe.blogDto.BlogDto;
 import com.c0822g1primaryschoolbe.entity.blog.Blog;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,5 +11,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IBlogRepository extends JpaRepository<Blog, Long> {
     @Query(value = "select * from blog", nativeQuery = true)
-    Page<Blog> allList(Pageable pageable);
+    Page<BlogDto> allList(Pageable pageable);
 }

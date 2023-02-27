@@ -1,6 +1,7 @@
 package com.c0822g1primaryschoolbe.service.impl;
 
-import com.c0822g1primaryschoolbe.entity.blog.Blog;
+import com.c0822g1primaryschoolbe.blogDto.BlogDto;
+
 import com.c0822g1primaryschoolbe.repository.IBlogRepository;
 import com.c0822g1primaryschoolbe.service.IBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class BlogService implements IBlogService {
     private IBlogRepository iBlogRepository;
 
     @Override
-    public Page<Blog> allPageBlog(Pageable pageable) {
+    public Page<BlogDto> allPageBlog(Pageable pageable) {
         return iBlogRepository.allList(pageable);
     }
 }

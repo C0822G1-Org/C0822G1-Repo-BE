@@ -1,9 +1,10 @@
 package com.c0822g1primaryschoolbe.service;
 
-import com.c0822g1primaryschoolbe.entity.blog.Blog;
+import com.c0822g1primaryschoolbe.blogDto.BlogDto;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface IBlogService {
-    Page<Blog> allPageBlog(Pageable pageable);
+    Page<BlogDto> allPageBlog(Pageable pageable);
 }

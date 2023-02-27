@@ -1,6 +1,7 @@
 package com.c0822g1primaryschoolbe.controller;
 
 
+import com.c0822g1primaryschoolbe.blogDto.BlogDto;
 import com.c0822g1primaryschoolbe.entity.blog.Blog;
 import com.c0822g1primaryschoolbe.service.impl.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class BlogController {
     private BlogService blogService;
 
     @GetMapping("")
-    public ResponseEntity<Page<Blog>> getAll(@PageableDefault(page = 0, size = 3) Pageable pageable) {
-        Page<Blog> blogPage = blogService.allPageBlog(pageable);
+    public ResponseEntity<Page<BlogDto>> getAll(@PageableDefault(page = 0, size = 3) Pageable pageable) {
+        Page<BlogDto> blogPage = blogService.allPageBlog(pageable);
         if (blogPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
