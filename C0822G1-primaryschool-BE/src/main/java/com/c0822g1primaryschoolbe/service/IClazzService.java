@@ -9,7 +9,7 @@ import java.util.List;
 public interface IClazzService {
     List<IClazzYear> getListYear();
 
-    List<IClazzName> getListName(int year, String name);
+    List<IClazzName> getListClazzName(int year, String name);
 
     IClazzTeacher getClazzTeacher(int year, int clazzId);
 

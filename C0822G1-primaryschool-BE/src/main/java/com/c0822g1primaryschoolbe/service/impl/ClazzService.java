@@ -20,8 +20,8 @@ public class ClazzService implements IClazzService {
     }
 
     @Override
-    public List<IClazzName> getListName(int year, String name) {
-        return iClazzRepository.getListName(year,name);
+    public List<IClazzName> getListClazzName(int year, String name) {
+        return iClazzRepository.getListClazzName(year,name);
     }
 
     @Override

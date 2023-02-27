@@ -19,7 +19,7 @@ public interface IClazzRepository extends JpaRepository<Clazz, Integer> {
     List<IClazzYear> getListYear();
 
     @Query(value = "select c.clazz_id as id,c.clazz_name as name from clazz c where delete_flag=true and year=:year and clazz_name like concat(:name,'%') ",nativeQuery = true)
-    List<IClazzName> getListName(@Param("year") int year, @Param("name") String name);
+    List<IClazzName> getListClazzName(@Param("year") int year, @Param("name") String name);
 
     @Transactional
     @Query(value = "select c.clazz_id as id,c.clazz_name as name,c.school_year as schoolYear,t.teacher_id as teacherId,t.teacher_name as teacherName from clazz c join teacher t on c.teacher_id=t.teacher_id where (c.year=:year and c.clazz_id=:clazzId and c.delete_flag=true);",

@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,34 +30,106 @@ public class StudentController {
     @Autowired
     private ITeacherService iTeacherService;
 
+
+    /**
+     * Create by:TrungNQ
+     * Date create:27/2/2023
+     * Funciton: get List Student by Param
+     *
+     * @param  year,clazzId
+     * @return HttpStatus.NO_CONTENT if rerult is error or HttpStatus.OK if result is not error
+     */
     @GetMapping("/student-list")
-    public Page<IStudentInfo> getStudentList(@PageableDefault(size = 10) Pageable pageable, @RequestParam String year, @RequestParam String clazzId){
-        return iStudentService.getStudentList(pageable,Integer.parseInt(year),Integer.parseInt(clazzId));
+    public ResponseEntity<Page<IStudentInfo>> getStudentList(@PageableDefault(size = 10) Pageable pageable, @RequestParam String year, @RequestParam String clazzId){
+        Page<IStudentInfo> iStudentInfos=iStudentService.getStudentList(pageable,Integer.parseInt(year),Integer.parseInt(clazzId));
+        if (iStudentInfos.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(iStudentInfos,HttpStatus.OK);
     }
 
+    /**
+     * Create by:TrungNQ
+     * Date create:27/2/2023
+     * Funciton: get List Year
+     *
+     * @return HttpStatus.NO_CONTENT if rerult is error or HttpStatus.OK if result is not error
+     */
     @GetMapping("/year")
-    public List<IClazzYear> getListYear(){
-        return iClazzService.getListYear();
+    public ResponseEntity<List<IClazzYear>> getListYear(){
+        List<IClazzYear> iClazzYears= iClazzService.getListYear();
+        if (iClazzYears.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(iClazzYears,HttpStatus.OK);
     }
 
+    /**
+     * Create by:TrungNQ
+     * Date create:27/2/2023
+     * Funciton: get List Clazz Name by Param
+     *
+     * @param  year,name
+     * @return HttpStatus.NO_CONTENT if rerult is error or HttpStatus.OK if result is not error
+     */
     @GetMapping()
-    public List<IClazzName> getListName(@RequestParam("year") String year, @RequestParam("name") String name){
-        return iClazzService.getListName(Integer.parseInt(year),name);
+    public ResponseEntity<List<IClazzName>> getListClazzName(@RequestParam("year") String year, @RequestParam("name") String name){
+        List<IClazzName> iClazzNames=iClazzService.getListClazzName(Integer.parseInt(year),name);
+        if (iClazzNames.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(iClazzNames,HttpStatus.OK);
     }
 
+    /**
+     * Create by:TrungNQ
+     * Date create:27/2/2023
+     * Funciton: get info Clazz and Teacher by Param
+     *
+     * @param  year,clazzId
+     * @return HttpStatus.NO_CONTENT if rerult is error or HttpStatus.OK if result is not error
+     */
     @GetMapping("/clazz")
-    public IClazzTeacher getClazzTeacher(@RequestParam String year, @RequestParam String clazzId){
-        return iClazzService.getClazzTeacher(Integer.parseInt(year),Integer.parseInt(clazzId));
+    public ResponseEntity<IClazzTeacher> getClazzTeacher(@RequestParam String year, @RequestParam String clazzId){
+        IClazzTeacher iClazzTeacher=iClazzService.getClazzTeacher(Integer.parseInt(year),Integer.parseInt(clazzId));
+        if (iClazzTeacher==null){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(iClazzTeacher,HttpStatus.OK);
     }
 
+    /**
+     * Create by:TrungNQ
+     * Date create:27/2/2023
+     * Funciton: get list teacher name by Param
+     *
+     * @param  year
+     * @return HttpStatus.NO_CONTENT if rerult is error or HttpStatus.OK if result is not error
+     */
     @GetMapping("/teacher-name-list")
-    public List<ITeacherInfo> getListNameTeacher(@RequestParam String year){
-        return iTeacherService.getListNameTeacher(Integer.parseInt(year));
+    public ResponseEntity<List<ITeacherInfo>> getListNameTeacher(@RequestParam String year){
+        List<ITeacherInfo> iTeacherInfos= iTeacherService.getListNameTeacher(Integer.parseInt(year));
+        if (iTeacherInfos.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(iTeacherInfos,HttpStatus.OK);
     }
 
+    /**
+     * Create by:TrungNQ
+     * Date create:27/2/2023
+     * Funciton: get teacher name by Param
+     *
+     * @param  year,name
+     * @return HttpStatus.NO_CONTENT if rerult is error or HttpStatus.OK if result is not error
+     */
     @GetMapping("/teacher-name")
-    public ITeacherInfo getNameTeacher(@RequestParam String name,@RequestParam String year){
-        return iTeacherService.getNameTeacher(name,Integer.parseInt(year));
+    public ResponseEntity<ITeacherInfo> getNameTeacher(@RequestParam String name,@RequestParam String year){
+        ITeacherInfo iTeacherInfo=iTeacherService.getNameTeacher(name,Integer.parseInt(year));
+        if (iTeacherInfo==null){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(iTeacherInfo,HttpStatus.OK);
     }
 
     //    @GetMapping("/edit-teacher")
