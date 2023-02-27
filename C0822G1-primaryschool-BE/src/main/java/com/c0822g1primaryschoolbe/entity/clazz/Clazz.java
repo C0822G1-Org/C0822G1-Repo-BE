@@ -2,6 +2,7 @@ package com.c0822g1primaryschoolbe.entity.clazz;
 
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.TimeTable;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -13,14 +14,16 @@ public class Clazz {
     private Long clazzId;
     @Column(columnDefinition = "varchar(45)")
     private String clazzName;
-    private Boolean flagDelete;
+    private Boolean flagDelete = false;
     private Integer year;
     private String schoolYear;
+    @JsonBackReference
     @OneToOne(mappedBy = "clazz")
     private TimeTable timeTable;
     @ManyToOne
     @JoinColumn(name = "block_id",nullable = false,referencedColumnName = "block_id")
     private Block block;
+    @JsonBackReference
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;

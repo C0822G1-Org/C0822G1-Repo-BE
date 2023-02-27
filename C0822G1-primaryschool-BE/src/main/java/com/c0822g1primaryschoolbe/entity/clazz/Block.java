@@ -1,6 +1,9 @@
 package com.c0822g1primaryschoolbe.entity.clazz;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Block {
@@ -10,6 +13,10 @@ public class Block {
     private Long blockId;
     @Column(columnDefinition = "varchar(45)")
     private Integer blockName;
+    @JsonBackReference
+    @OneToMany(mappedBy = "block")
+    private Set<Clazz> clazz;
+
 
     public Long getBlockId() {
         return blockId;
@@ -25,5 +32,13 @@ public class Block {
 
     public void setBlockName(Integer blockName) {
         this.blockName = blockName;
+    }
+
+    public Set<Clazz> getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(Set<Clazz> clazz) {
+        this.clazz = clazz;
     }
 }
