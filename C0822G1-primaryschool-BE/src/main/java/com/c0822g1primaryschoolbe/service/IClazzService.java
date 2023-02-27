@@ -8,5 +8,6 @@ import org.springframework.data.repository.query.Param;
 public interface IClazzService {
 
     Page<Clazz> findAllClazz(Pageable pageable, @Param("keySearch1") String keySearch1);
-
+    Clazz findByIdClazz(@Param("idClazz") Long idClazz);
+    void updateClazz(Clazz clazz, Long id);
 }

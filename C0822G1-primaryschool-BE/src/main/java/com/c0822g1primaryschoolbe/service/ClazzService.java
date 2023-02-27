@@ -17,4 +17,16 @@ public class ClazzService implements IClazzService {
     public Page<Clazz> findAllClazz(Pageable pageable, String keySearch1) {
         return clazzRepository.findAllClazz(pageable, keySearch1);
     }
+
+    @Override
+    public Clazz findByIdClazz(Long idClazz) {
+        return clazzRepository.findById(idClazz).get();
+    }
+
+    @Override
+    public void updateClazz(Clazz clazz, Long id) {
+        clazzRepository.updateClazz(clazz, id);
+    }
+
+
 }

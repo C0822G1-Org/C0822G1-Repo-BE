@@ -28,7 +28,6 @@ public class Clazz {
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
-
     public Long getClazzId() {
         return clazzId;
     }
