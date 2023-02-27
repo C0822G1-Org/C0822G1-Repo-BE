@@ -29,8 +29,7 @@ public class Teacher {
     @ManyToOne()
     @JoinColumn(name = "degree_id",nullable = false,referencedColumnName = "degree_id")
     private Degree degree;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "clazz_id")
+    @OneToOne(mappedBy = "teacher")
     private Clazz clazz;
 
     public Long getTeacherId() {
