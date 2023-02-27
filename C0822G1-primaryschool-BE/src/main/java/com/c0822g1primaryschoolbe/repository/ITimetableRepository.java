@@ -14,6 +14,6 @@ import java.util.List;
 @Transactional
 public interface ITimetableRepository extends JpaRepository<TimeTable, Long> {
     @Modifying
-    @Query(value = "select * from time_table where time_table_id = 12", nativeQuery = true)
+    @Query(value = "select * from time_table", nativeQuery = true)
     List<TimeTable> getAllTimetable();
 }
