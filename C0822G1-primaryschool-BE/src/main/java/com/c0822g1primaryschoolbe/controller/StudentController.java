@@ -19,7 +19,7 @@ public class StudentController {
     @Autowired
     private IStudentService studentService;
 
-
+    @GetMapping("")
     public ResponseEntity<Page<Student>> findByName(@RequestParam(value = "name", defaultValue = "") String name,
                                                     @RequestParam(value = "status", defaultValue = "") String status,
                                                     @PageableDefault(value = 3) Pageable pageable) {
