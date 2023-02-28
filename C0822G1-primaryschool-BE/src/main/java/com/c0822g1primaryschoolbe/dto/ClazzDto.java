@@ -9,9 +9,7 @@ import org.springframework.validation.Validator;
 public class ClazzDto implements Validator {
     private String clazzName;
     private String schoolYear;
-
     private Block block;
-
 
     private Teacher teacher;
 
