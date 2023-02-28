@@ -26,6 +26,13 @@ public class SecurityController_login {
     @Autowired
     private ObjectMapper objectMapper;
 
+    /** create SyTV
+     *  test method login
+     *
+     * @throws Exception
+     */
+
+    //username = null
     @Test
     public void login_username_13() throws Exception {
         SignInForm signInForm = new SignInForm();
@@ -37,7 +44,7 @@ public class SecurityController_login {
                 .andExpect(status().is4xxClientError())
         ;
     }
-
+    //username = ""
     @Test
     public void login_username_14() throws Exception {
         SignInForm signInForm = new SignInForm();
@@ -50,7 +57,7 @@ public class SecurityController_login {
                 .andExpect(status().is4xxClientError())
         ;
     }
-
+    //username = ký tự đặc biệt
     @Test
     public void login_username_15() throws Exception {
         SignInForm signInForm = new SignInForm();
@@ -63,7 +70,7 @@ public class SecurityController_login {
                 .andExpect(status().is4xxClientError())
         ;
     }
-
+    //username < minlength
     @Test
     public void login_username_16() throws Exception {
         SignInForm signInForm = new SignInForm();
@@ -76,7 +83,7 @@ public class SecurityController_login {
                 .andExpect(status().is4xxClientError())
         ;
     }
-
+    //username > maxlength
     @Test
     public void login_username_17() throws Exception {
         SignInForm signInForm = new SignInForm();
@@ -89,7 +96,7 @@ public class SecurityController_login {
                 .andExpect(status().is4xxClientError())
         ;
     }
-
+    //password = null
     @Test
     public void login_password_13() throws Exception {
         SignInForm signInForm = new SignInForm();
@@ -101,7 +108,7 @@ public class SecurityController_login {
                 .andExpect(status().is4xxClientError())
         ;
     }
-
+    //password = ""
     @Test
     public void login_password_14() throws Exception {
         SignInForm signInForm = new SignInForm();
@@ -114,7 +121,7 @@ public class SecurityController_login {
                 .andExpect(status().is4xxClientError())
         ;
     }
-
+    //password = ký tự đặc biệt
     @Test
     public void login_password_15() throws Exception {
         SignInForm signInForm = new SignInForm();
@@ -127,7 +134,7 @@ public class SecurityController_login {
                 .andExpect(status().is4xxClientError())
         ;
     }
-
+    //password < minlength
     @Test
     public void login_password_16() throws Exception {
         SignInForm signInForm = new SignInForm();
@@ -140,7 +147,7 @@ public class SecurityController_login {
                 .andExpect(status().is4xxClientError())
         ;
     }
-
+    //password > maxlength
     @Test
     public void login_password_17() throws Exception {
         SignInForm signInForm = new SignInForm();
@@ -153,7 +160,9 @@ public class SecurityController_login {
                 .andExpect(status().is4xxClientError())
         ;
     }
-
+    //username = sytv
+    //password = 456
+    // matching
     @Test
     public void login_signInForm_18() throws Exception {
         SignInForm signInForm = new SignInForm();
