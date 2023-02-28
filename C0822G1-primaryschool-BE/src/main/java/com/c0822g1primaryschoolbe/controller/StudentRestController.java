@@ -130,13 +130,8 @@ public class StudentRestController {
      * @return HttpStatus.NO_CONTENT if rerult is error or HttpStatus.OK if result is not error
      */
     @GetMapping("/teacher-name")
-<<<<<<< HEAD
     public ResponseEntity<ITeacherInfo> getNameTeacher(@RequestParam String idCard, @RequestParam String year) {
         ITeacherInfo iTeacherInfo = iTeacherService.getNameTeacher(idCard, Integer.parseInt(year));
-=======
-    public ResponseEntity<ITeacherInfo> getNameTeacher(@RequestParam String name, @RequestParam String year) {
-        ITeacherInfo iTeacherInfo = iTeacherService.getNameTeacher(name, Integer.parseInt(year));
->>>>>>> 47b9c4e720c2d316b8ea035cf4a1373a2eca0315
         if (iTeacherInfo == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
