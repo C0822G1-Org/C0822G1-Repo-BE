@@ -1,4 +1,4 @@
-package com.c0822g1primaryschoolbe.dto.request;
+package com.c0822g1primaryschoolbe.dto.student;
 
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 import com.c0822g1primaryschoolbe.entity.student.PointManagement;

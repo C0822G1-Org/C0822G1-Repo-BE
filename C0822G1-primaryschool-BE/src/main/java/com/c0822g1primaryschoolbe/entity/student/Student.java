@@ -1,6 +1,7 @@
 package com.c0822g1primaryschoolbe.entity.student;
 
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -33,8 +34,10 @@ public class Student {
     private Boolean studentStatus;
     private Boolean flagDelete;
     @OneToOne(mappedBy = "student")
+    @JsonBackReference
     private PointManagement pointManagement;
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "clazz_id",nullable = false,referencedColumnName = "clazz_id")
     private Clazz clazz;
 
