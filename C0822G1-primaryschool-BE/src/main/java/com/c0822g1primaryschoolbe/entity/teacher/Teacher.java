@@ -119,4 +119,20 @@ public class Teacher {
     public void setClazz(Clazz clazz) {
         this.clazz = clazz;
     }
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
