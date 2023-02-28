@@ -17,6 +17,7 @@ public class Clazz {
     private Boolean flagDelete;
     private Integer year;
     private String schoolYear;
+
     @OneToOne(mappedBy = "clazz")
     private TimeTable timeTable;
 
@@ -24,9 +25,11 @@ public class Clazz {
     @JoinColumn(name = "block_id",nullable = false,referencedColumnName = "block_id")
     private Block block;
 
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
+
 
     public Long getClazzId() {
         return clazzId;

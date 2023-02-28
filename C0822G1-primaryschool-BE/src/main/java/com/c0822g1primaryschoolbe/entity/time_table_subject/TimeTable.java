@@ -12,15 +12,19 @@ public class TimeTable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "time_table_id")
     private Long timeTableId;
+    @JsonBackReference
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "clazz_id")
     private Clazz clazz;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "subject_id",nullable = false,referencedColumnName = "subject_id")
     private Subject subject;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "lesson_id", nullable = false,referencedColumnName = "lesson_id")
     private Lesson lesson;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "day_id", nullable = false,referencedColumnName = "day_id")
     private Day day;

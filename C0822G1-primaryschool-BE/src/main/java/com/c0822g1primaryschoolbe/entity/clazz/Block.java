@@ -11,8 +11,6 @@ public class Block {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "block_id")
     private Long blockId;
-
-    @JsonBackReference
     @Column(columnDefinition = "varchar(45)")
     private Integer blockName;
 

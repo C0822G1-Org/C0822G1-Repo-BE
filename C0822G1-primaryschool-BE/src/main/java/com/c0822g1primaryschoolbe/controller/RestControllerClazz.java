@@ -26,7 +26,7 @@ public class RestControllerClazz {
 
     @GetMapping("")
     public ResponseEntity<Page<Clazz>> searchByContent(@PageableDefault(value = 5) Pageable pageable,
-                                                       @RequestParam (defaultValue = "") String keySearch1) {
+                                                       @RequestParam(defaultValue = "") String keySearch1) {
 //        String nameClazzSearch = keySearch1.orElse("");
         Page<Clazz> clazz = clazzService.findAllClazz(pageable, keySearch1);
         clazz.hasNext();
@@ -37,20 +37,44 @@ public class RestControllerClazz {
     }
 
 
-    @GetMapping( "/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Clazz> findById(@PathVariable("id") Long id) {
         Clazz clazz = clazzService.findByIdClazz(id);
-        if (clazz==null){
+        if (clazz == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(clazz, HttpStatus.OK);
     }
 
-    @PutMapping(path = "/update/{id}")
-    public ResponseEntity<Clazz> update(@PathVariable("id") Long id,
-                                           @Valid @RequestBody ClassStudentDto classStudentDto,
-                                           BindingResult bindingResult) {
-        Clazz clazz = clazzService.findByIdClazz(id);
+//    @PutMapping("/update/{id}")
+////    @PutMapping(value = "/", consumes = {"update/{id}"})
+//
+//    public ResponseEntity<Clazz> update(@PathVariable("id") Long id,
+//                                        @Valid @RequestBody ClassStudentDto classStudentDto,
+//                                        BindingResult bindingResult) {
+//        Clazz clazz = clazzService.findByIdClazz(id);
+//        new ClassStudentDto().validate(classStudentDto, bindingResult);
+//        if (bindingResult.hasErrors()) {
+//            return new ResponseEntity(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
+//        }
+//
+//        if (clazz == null) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        } else {
+//            BeanUtils.copyProperties(classStudentDto, clazz);
+//            clazzService.updateClazz(clazz, id);
+//            return new ResponseEntity<>(clazz, HttpStatus.OK);
+//
+//        }
+//    }
+
+        @PutMapping("/update/{clazzId}")
+//    @PutMapping(value = "/", consumes = {"update/{id}"})
+
+    public ResponseEntity<Clazz> update(@PathVariable("clazzId") Long clazzId,
+                                        @Valid @RequestBody ClassStudentDto classStudentDto,
+                                        BindingResult bindingResult) {
+        Clazz clazz = clazzService.findByIdClazz(clazzId);
         new ClassStudentDto().validate(classStudentDto, bindingResult);
         if (bindingResult.hasErrors()) {
             return new ResponseEntity(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
@@ -60,10 +84,11 @@ public class RestControllerClazz {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             BeanUtils.copyProperties(classStudentDto, clazz);
-            clazzService.updateClazz(clazz,id);
+            clazzService.updateClazz(clazz);
             return new ResponseEntity<>(clazz, HttpStatus.OK);
 
         }
     }
+
 
 }

@@ -19,14 +19,37 @@ public class ClazzService implements IClazzService {
     }
 
     @Override
-    public Clazz findByIdClazz(Long idClazz) {
-        return clazzRepository.findById(idClazz).get();
+    public Clazz findByIdClazz(Long clazzId) {
+        return clazzRepository.findByIdClazz(clazzId);
     }
 
     @Override
-    public void updateClazz(Clazz clazz, Long id) {
-        clazzRepository.updateClazz(clazz, id);
+    public void updateClazz(Clazz clazz) {
+        clazzRepository.updateClazz(
+                clazz.getClazzId(),
+                clazz.getTeacher().getTeacherId(),
+                clazz.getClazzName(),
+                clazz.getFlagDelete(),
+                clazz.getSchoolYear(),
+                clazz.getYear(),
+                clazz.getBlock().getBlockId());
     }
+
+
+//    @Override
+//    public void updateClazz(Clazz clazz, Long clazzId) {
+//        clazzRepository.updateClazz(clazz, clazzId);
+//    }
+
+//    @Override
+//    public Clazz findByIdClazz(Long idClazz) {
+//        return clazzRepository.findByIdClazz(idClazz);
+//    }
+//
+//    @Override
+//    public void updateClazz(Clazz clazz, Long id) {
+//        clazzRepository.updateClazz(clazz, id);
+//    }
 
 
 }
