@@ -25,12 +25,14 @@ public class ClazzService implements IClazzService {
     }
 
     @Override
-    public IClazzTeacher getClazzTeacher(int year, int clazzId) {
+    public IClazzTeacher getClazzTeacher(int year, Long clazzId) {
         return iClazzRepository.getClazzTeacher(year,clazzId);
     }
 
     @Override
-    public void editTeacher(int teacherId, int clazzId) {
-//        iClazzRepository.editTeacher(teacherId,clazzId);
+    public void editTeacher(Long teacherId, Long clazzId) {
+        iClazzRepository.editTeacher(teacherId,clazzId);
     }
+
+
 }

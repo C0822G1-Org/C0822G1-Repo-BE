@@ -11,7 +11,8 @@ public interface IClazzService {
 
     List<IClazzName> getListClazzName(int year, String name);
 
-    IClazzTeacher getClazzTeacher(int year, int clazzId);
+    IClazzTeacher getClazzTeacher(int year, Long clazzId);
 
-    void editTeacher(int teacherId, int clazzId);
+    void editTeacher(Long teacherId, Long clazzId);
+
 }

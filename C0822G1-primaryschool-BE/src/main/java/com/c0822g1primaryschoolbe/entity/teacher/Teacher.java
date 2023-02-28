@@ -1,5 +1,6 @@
 package com.c0822g1primaryschoolbe.entity.teacher;
 
+import com.c0822g1primaryschoolbe.entity.account.Account;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 
 import javax.persistence.*;
@@ -22,9 +23,9 @@ public class Teacher {
     private Boolean flagDelete;
     private String teacherType;
     private Boolean teacherStatus;
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "account_id")
-//    private Account account;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id")
+    private Account account;
     @ManyToOne()
     @JoinColumn(name = "degree_id",nullable = false,referencedColumnName = "degree_id")
     private Degree degree;
@@ -95,13 +96,13 @@ public class Teacher {
         this.teacherStatus = teacherStatus;
     }
 
-//    public Account getAccount() {
-//        return account;
-//    }
+    public Account getAccount() {
+        return account;
+    }
 
-//    public void setAccount(Account account) {
-//        this.account = account;
-//    }
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 
     public Degree getDegree() {
         return degree;
