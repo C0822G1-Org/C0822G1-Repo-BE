@@ -21,6 +21,12 @@ public class AuthController_changePassword {
     @Autowired
     private ObjectMapper objectMapper;
 
+    /**
+     * this function check new pass null
+     *
+     * @author NuongHT
+     * @Time 15:00 28/2/2023
+     */
     @Test
     public void updatePassword_newPass_19() throws Exception {
 
@@ -36,6 +42,12 @@ public class AuthController_changePassword {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * this function check new pass blank
+     *
+     * @author NuongHT
+     * @Time 15:00 28/2/2023
+     */
     @Test
     public void updatePassword_newPass_20() throws Exception {
 
@@ -51,9 +63,14 @@ public class AuthController_changePassword {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * this function check new pass use format vaidation (uppercase, lowercase, numbers or special characters);
+     *
+     * @author NuongHT
+     * @Time 15:00 28/2/2023
+     */
     @Test
     public void updatePassword_newPass_21() throws Exception {
-        //ex: NguyenNhann123! (uppercase, lowercase, numbers or special characters);
         ChangePasswordDto changePasswordDto = new ChangePasswordDto();
         changePasswordDto.setAccountId(1L);
         changePasswordDto.setNewPass("nguyenhann");
@@ -67,9 +84,14 @@ public class AuthController_changePassword {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * this function check new pass format validator (minlength = 9)
+     *
+     * @author NuongHT
+     * @Time 15:00 28/2/2023
+     */
     @Test
     public void updatePassword_newPass_22() throws Exception {
-        //new Pass minlength = 9;
         ChangePasswordDto changePasswordDto = new ChangePasswordDto();
         changePasswordDto.setAccountId(1L);
         changePasswordDto.setNewPass("s");
@@ -83,12 +105,18 @@ public class AuthController_changePassword {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * this function check new pass use maxlength (maxlength = 30)
+     *
+     * @author NuongHT
+     * @Time 15:00 28/2/2023
+     */
+
     @Test
     public void updatePassword_newPass_23() throws Exception {
-    //new Pass maxleng = 30;
         ChangePasswordDto changePasswordDto = new ChangePasswordDto();
         changePasswordDto.setAccountId(1L);
-        changePasswordDto.setNewPass("Njsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+        changePasswordDto.setNewPass("Njsssssssssggggggggggggggggggggggggggggggggggggggggggggggggggggggggssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
@@ -99,6 +127,12 @@ public class AuthController_changePassword {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * this function check new pass correct
+     *
+     * @author NuongHT
+     * @Time 15:00 28/2/2023
+     */
 
     @Test
     public void updatePassword_newPass_24() throws Exception {

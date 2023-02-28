@@ -17,6 +17,12 @@ public class StudentRestController_getInfoStudent {
     @Autowired
     private MockMvc mockMvc;
 
+    /**
+     * this function check get id is Empty.
+     *
+     * @author NuongHT
+     * @Time 15:00 28/2/2023
+     */
     @Test
     public void getInfoStudent_id_1() throws Exception {
 
@@ -27,6 +33,12 @@ public class StudentRestController_getInfoStudent {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * this function check get id blank
+     *
+     * @author NuongHT
+     * @Time 15:00 28/2/2023
+     */
     @Test
     public void getInfoStudent_id_2() throws Exception {
 
@@ -36,6 +48,13 @@ public class StudentRestController_getInfoStudent {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * this function check get id not exist
+     *
+     * @author NuongHT
+     * @Time 15:00 28/2/2023
+     */
     @Test
     public void getInfoStudent_id_3() throws Exception {
 
@@ -46,6 +65,12 @@ public class StudentRestController_getInfoStudent {
                 .andExpect(status().is2xxSuccessful());
     }
 
+    /**
+     * this function check get id successful
+     *
+     * @author NuongHT
+     * @Time 15:00 28/2/2023
+     */
     @Test
     public void getInfoStudent_id_4() throws Exception {
 
