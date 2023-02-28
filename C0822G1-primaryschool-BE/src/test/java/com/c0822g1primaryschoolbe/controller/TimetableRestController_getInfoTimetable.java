@@ -1,4 +1,4 @@
-package com.c0822g1primaryschoolbe;
+package com.c0822g1primaryschoolbe.controller;
 
 
 import org.junit.jupiter.api.Test;
