@@ -12,14 +12,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
-*Created by: LinhPT,
-*Date created: 27/02/2023,
+ * Created by: LinhPT,
+ * Date created: 27/02/2023,
  * Function: allPageBlog,
  * return: HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result blogPage
-*/
+ */
 
 @Controller
 @RequestMapping("/blog")
@@ -37,5 +38,24 @@ public class BlogController {
         return new ResponseEntity<>(blogPage, HttpStatus.OK);
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<BlogDto> findByIdBlog(@PathVariable long id) {
+        BlogDto blogDto = blogService.findById(id);
+        if (blogDto == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(blogDto, HttpStatus.OK);
+    }
+
+//
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<BlogDto> detail(@PathVariable long id) {
+        BlogDto blogDto = blogService.findById(id);
+        if (blogDto == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(blogDto, HttpStatus.OK);
+    }
 
 }
