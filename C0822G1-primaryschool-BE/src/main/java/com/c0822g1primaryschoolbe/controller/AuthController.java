@@ -57,6 +57,12 @@ public class AuthController {
 
     }
 
+    /**
+     * Create by : NuongHT
+     * Date create: 28/02/2023
+     * Description: api change password
+     *
+     */
     @PostMapping("/change-password")
     public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDto changePasswordDto) throws Exception {
         iAccountService.changePassword(changePasswordDto);
