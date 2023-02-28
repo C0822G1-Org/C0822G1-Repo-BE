@@ -28,6 +28,7 @@ public class BlogRestController_detail {
 
     @Test
     public void getDetailBlog_id_1() throws Exception {
+//Check url does not exist:
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders
@@ -38,10 +39,11 @@ public class BlogRestController_detail {
 
     @Test
     public void getDetailBlog_id_3() throws Exception {
+//Check detail id exists in database:
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/blog/detail/3" ))
+                                .get("/blog/detail/3"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpectAll(jsonPath("id").value(3),
@@ -50,5 +52,16 @@ public class BlogRestController_detail {
                         jsonPath("content").value("Hôm nay là kỉ niệm ngày nhà giáo Việt Nam, hòa chung không khí đó thầy và trò tổ chức buổi tọa đàm nhằm giao lưu văn nghệ"),
                         jsonPath("poster").value("Thanh Hà"),
                         jsonPath("start_date").value("2021-11-20"));
+    }
+
+    @Test
+    public void getDetailBlog_id() throws Exception {
+// Check detail id does not exist database:
+
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders
+                                .get("/blog/detail/10"))
+                .andDo(print())
+                .andExpect(status().isNotFound());
     }
 }

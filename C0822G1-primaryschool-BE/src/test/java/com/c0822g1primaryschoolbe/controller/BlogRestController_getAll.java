@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Created by: LinhPT,
  * Date created: 28/02/2023,
- * JUnit 5: Check url listBlog and function getAll()
+ * JUnit 5: Check url listBlog, page and function getAll()
  */
 
 @SpringBootTest
@@ -58,4 +58,24 @@ public class BlogRestController_getAll {
                 .andExpect(jsonPath("content[2].img").value("https://phutho.gov.vn/sites/default/files/users/user231/image001_51.jpg"));
     }
 
+    @Test
+    public void getCheckTotalPage() throws Exception {
+//Check total page bigger than present:
+
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders
+                                .get("/blog/?page=10"))
+                .andDo(print())
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
+    public void getCheckPageIsEmpty() throws Exception {
+//Check page value 0:
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders
+                                .get("/blog/?page=0"))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
+    }
 }
