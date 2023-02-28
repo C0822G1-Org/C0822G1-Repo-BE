@@ -54,7 +54,7 @@ public class SecurityController_login {
     @Test
     public void login_username_15() throws Exception {
         SignInForm signInForm = new SignInForm();
-        signInForm.setUsername("áhdkjashkdjsahkj");
+        signInForm.setUsername("^^&%^&%&");
         signInForm.setPassword("456");
         this.mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/sign-in").
                         content(this.objectMapper.writeValueAsString(signInForm))
@@ -67,7 +67,7 @@ public class SecurityController_login {
     @Test
     public void login_username_16() throws Exception {
         SignInForm signInForm = new SignInForm();
-        signInForm.setUsername("a");
+        signInForm.setUsername("qw");
         signInForm.setPassword("456");
         this.mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/sign-in").
                         content(this.objectMapper.writeValueAsString(signInForm))
@@ -129,6 +129,32 @@ public class SecurityController_login {
     }
 
     @Test
+    public void login_password_16() throws Exception {
+        SignInForm signInForm = new SignInForm();
+        signInForm.setUsername("sytv");
+        signInForm.setPassword("as");
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/sign-in").
+                        content(this.objectMapper.writeValueAsString(signInForm))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError())
+        ;
+    }
+
+    @Test
+    public void login_password_17() throws Exception {
+        SignInForm signInForm = new SignInForm();
+        signInForm.setUsername("sytv");
+        signInForm.setPassword("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/sign-in").
+                        content(this.objectMapper.writeValueAsString(signInForm))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError())
+        ;
+    }
+
+    @Test
     public void login_signInForm_18() throws Exception {
         SignInForm signInForm = new SignInForm();
         signInForm.setUsername("sytv");
@@ -141,4 +167,5 @@ public class SecurityController_login {
         ;
     }
 
+    //logout xử lý trên fornt end nên không có phương thức
 }
