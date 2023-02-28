@@ -1,6 +1,7 @@
 package com.c0822g1primaryschoolbe.controller;
 
 
+import com.c0822g1primaryschoolbe.dto.IStudentDto;
 import com.c0822g1primaryschoolbe.entity.student.Student;
 import com.c0822g1primaryschoolbe.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class StudentController {
     @Autowired
     private IStudentService studentService;
 
-    @GetMapping("")
+    @GetMapping("/abc")
     public ResponseEntity<Page<Student>> findByName(@RequestParam(value = "name", defaultValue = "") String name,
                                                     @RequestParam(value = "status", defaultValue = "") String status,
                                                     @PageableDefault(value = 3) Pageable pageable) {
@@ -42,5 +43,17 @@ public class StudentController {
         }
         return new ResponseEntity<>(students, HttpStatus.OK);
 
+    }
+
+    @GetMapping("")
+    public ResponseEntity<Page<IStudentDto>> findByStatus(@RequestParam(value = "name", defaultValue = "") String name,
+                                                          @RequestParam(value = "status", defaultValue = "") String status,
+                                                          @PageableDefault(value = 3) Pageable pageable) {
+
+        Page<IStudentDto> studentPage = studentService.findByNameAndStatus(name, status, pageable);
+        if (studentPage.isEmpty()) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(studentPage, HttpStatus.OK);
     }
 }

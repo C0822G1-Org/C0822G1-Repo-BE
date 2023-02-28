@@ -2,11 +2,11 @@ package com.c0822g1primaryschoolbe.dto;
 
 public interface IStudentDto {
 
-Long getIdStudent();
-String getStudentName();
-String getDateOfBirthStudent();
+    Long getIdStudent();
+    String getNameStudent();
+    String getDateOfBirthStudent();
 
-String getStudentClass();
-double getStudentPoint();
+    String getStudentClass();
+    double getStudentPoint();
 
 }
