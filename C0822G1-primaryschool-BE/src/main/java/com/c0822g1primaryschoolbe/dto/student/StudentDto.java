@@ -1,46 +1,67 @@
-package com.c0822g1primaryschoolbe.entity.student;
+package com.c0822g1primaryschoolbe.dto.student;
 
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.c0822g1primaryschoolbe.entity.student.PointManagement;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
-import javax.persistence.*;
-
-@Entity
-public class Student {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "student_id")
+public class StudentDto implements Validator {
+    @NotBlank(message = "Không được để trống!")
     private Long studentId;
+    @NotBlank(message = "Không được để trống!")
     private String img;
-    @Column(columnDefinition = "varchar(45)")
+    @NotBlank(message = "Không được để trống!")
     private String studentName;
+    @NotBlank(message = "Không được để trống!")
     private String dateOfBirth;
+    @NotBlank(message = "Không được để trống!")
     private Boolean gender;
-    @Column(columnDefinition = "varchar(45)")
+    @NotBlank(message = "Không được để trống!")
     private String fatherName;
-    @Column(columnDefinition = "varchar(45)")
+    @NotBlank(message = "Không được để trống!")
     private String phoneNumberFather;
-    @Column(columnDefinition = "varchar(45)")
+    @NotBlank(message = "Không được để trống!")
     private String fatherJob;
-    @Column(columnDefinition = "varchar(45)")
+    @NotBlank(message = "Không được để trống!")
     private String motherName;
-    @Column(columnDefinition = "varchar(45)")
+    @NotBlank(message = "Không được để trống!")
     private String phoneNumberMother;
-    @Column(columnDefinition = "varchar(45)")
+    @NotBlank(message = "Không được để trống!")
     private String motherJob;
-    @Column(columnDefinition = "varchar(45)")
+    @NotBlank(message = "Không được để trống!")
     private String religion;
-    private String address;
+    @NotBlank(message = "Không được để trống!")
+    private String address;  @NotBlank(message = "Không được để trống!")
+    @NotBlank(message = "Không được để trống!")
     private Boolean studentStatus;
     private Boolean flagDelete;
-    @OneToOne(mappedBy = "student")
-    @JsonBackReference
     private PointManagement pointManagement;
-    @ManyToOne
-    @JsonBackReference
-    @JoinColumn(name = "clazz_id",nullable = false,referencedColumnName = "clazz_id")
     private Clazz clazz;
 
+    public StudentDto() {
+    }
+
+    public StudentDto(Long studentId, String img, String studentName, String dateOfBirth, Boolean gender, String fatherName, String phoneNumberFather, String fatherJob, String motherName, String phoneNumberMother, String motherJob, String religion, String address, Boolean studentStatus, Boolean flagDelete, PointManagement pointManagement, Clazz clazz) {
+        this.studentId = studentId;
+        this.img = img;
+        this.studentName = studentName;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.fatherName = fatherName;
+        this.phoneNumberFather = phoneNumberFather;
+        this.fatherJob = fatherJob;
+        this.motherName = motherName;
+        this.phoneNumberMother = phoneNumberMother;
+        this.motherJob = motherJob;
+        this.religion = religion;
+        this.address = address;
+        this.studentStatus = studentStatus;
+        this.flagDelete = flagDelete;
+        this.pointManagement = pointManagement;
+        this.clazz = clazz;
+    }
 
     public Long getStudentId() {
         return studentId;
@@ -162,6 +183,14 @@ public class Student {
         this.flagDelete = flagDelete;
     }
 
+    public PointManagement getPointManagement() {
+        return pointManagement;
+    }
+
+    public void setPointManagement(PointManagement pointManagement) {
+        this.pointManagement = pointManagement;
+    }
+
     public Clazz getClazz() {
         return clazz;
     }
@@ -170,11 +199,13 @@ public class Student {
         this.clazz = clazz;
     }
 
-    public PointManagement getPointManagement() {
-        return pointManagement;
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
     }
 
-    public void setPointManagement(PointManagement pointManagement) {
-        this.pointManagement = pointManagement;
+    @Override
+    public void validate(Object target, Errors errors) {
+
     }
 }
