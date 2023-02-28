@@ -2,10 +2,8 @@ package com.c0822g1primaryschoolbe.repository;
 
 import com.c0822g1primaryschoolbe.dto.time_table.TimeTableView;
 import com.c0822g1primaryschoolbe.entity.student.Student;
-import com.c0822g1primaryschoolbe.entity.time_table_subject.TimeTable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -35,5 +33,5 @@ public interface ITimeTableRepository extends JpaRepository<Student, Long> {
             "join teacher t on t.teacher_id = clazz.teacher_id\n" +
             "where   t.teacher_id= :teacherId\n" +
             "order by day.day_name, lesson.lesson_name")
-    List<TimeTableView> getAllByIdTeacher();
+    List<TimeTableView> getAllByIdTeacher(String teacherId);
 }

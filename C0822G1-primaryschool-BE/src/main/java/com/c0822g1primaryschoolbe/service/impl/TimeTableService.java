@@ -19,7 +19,7 @@ public class TimeTableService implements ITimeTableService {
      *  * Description: get time table of the class by id
      */
     @Override
-    public List<TimeTableView> getTimeTableByIdTeacher() {
-        return timeTableRepository.getAllByIdTeacher();
+    public List<TimeTableView> getTimeTableByIdTeacher(String teacherId) {
+        return timeTableRepository.getAllByIdTeacher(teacherId);
     }
 }

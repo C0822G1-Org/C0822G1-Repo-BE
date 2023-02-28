@@ -11,5 +11,5 @@ public interface ITimeTableService {
      * Date Created: 27/02/2023
      *  * Description: get time table of the class by id
      */
-    List<TimeTableView> getTimeTableByIdTeacher();
+    List<TimeTableView> getTimeTableByIdTeacher(String teacherId);
 }
