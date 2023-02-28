@@ -12,6 +12,13 @@ import java.util.Optional;
 @Repository
 @Transactional
 public interface IStudentRepository extends JpaRepository<Student,Long> {
+    /**
+     * Create by : NuongHT
+     * Date create: 28/02/2023
+     * Description: create query get student by ID
+     * @param 'id'
+     * @return student
+     */
     @Query(value = "select s.* from student as s where s.student_id= :id and s.flag_delete = false",nativeQuery = true)
     Optional<Student> findById(@Param("id") Long id);
 }

@@ -12,6 +12,12 @@ import java.util.Optional;
 public class StudentService implements IStudentService {
     @Autowired
     IStudentRepository iStudentRepository;
+    /**
+     * Create by : NuongHT
+     * Date create: 28/02/2023
+     * Description: repository call database
+     *
+     */
     @Override
     public Optional<Student> findById(Long id) {
         return iStudentRepository.findById(id);
