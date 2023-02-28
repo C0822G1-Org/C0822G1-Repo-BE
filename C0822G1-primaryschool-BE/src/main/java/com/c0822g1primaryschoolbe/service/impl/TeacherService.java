@@ -18,7 +18,12 @@ public class TeacherService implements ITeacherService {
     }
 
     @Override
+<<<<<<< HEAD
     public ITeacherInfo getNameTeacher(String idCard, int year) {
         return iTeacherRepository.getNameTeacher(idCard,year);
+=======
+    public ITeacherInfo getNameTeacher(String name, int year) {
+        return iTeacherRepository.getNameTeacher(name,year);
+>>>>>>> 47b9c4e720c2d316b8ea035cf4a1373a2eca0315
     }
 }

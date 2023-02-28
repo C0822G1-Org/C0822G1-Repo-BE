@@ -28,6 +28,7 @@ public class StudentRestController_getStudentList {
     }
 
     @Test
+<<<<<<< HEAD
     public void getStudentList_6() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
@@ -37,6 +38,22 @@ public class StudentRestController_getStudentList {
                 .andExpect(jsonPath("$[0].name").value("Huỳnh Hoài Nam"))
                 .andExpect(jsonPath("$[0].dateOfBirth").value("12/12/2012"))
                 .andExpect(jsonPath("$[0].address").value("Đà Nẵng"));
+=======
+    public void getListStudent_6() throws Exception {
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders
+                                .get("/student/list?year=2023&clazzId=1&page=1"))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(jsonPath("totalPages").value(7))
+                .andExpect(jsonPath("totalElements").value(33))
+                .andExpect(jsonPath("content[0].name").value("Xyz"))
+                .andExpect(jsonPath("content[0].dateOfBirth").value("2022-08-19"))
+                .andExpect(jsonPath("content[0].classStudent.id").value(2))
+                .andExpect(jsonPath("content[4].name").value("Nhan"))
+                .andExpect(jsonPath("content[4].dateOfBirth").value("2022-08-26"))
+                .andExpect(jsonPath("content[4].classStudent.id").value(2));
+>>>>>>> 47b9c4e720c2d316b8ea035cf4a1373a2eca0315
     }
 
 
