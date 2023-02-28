@@ -14,7 +14,7 @@ public class StudentService implements IStudentService {
     private IStudentRepository studentRepository;
 
     @Override
-    public Page<StudentListViewDto> showAllStudent(Pageable pageable) {
-        return studentRepository.showAllStudent(pageable);
+    public Page<StudentListViewDto> showAllStudent(Long teacherId, Pageable pageable) {
+        return studentRepository.showAllStudent(teacherId, pageable);
     }
 }

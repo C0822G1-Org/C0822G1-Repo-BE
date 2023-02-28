@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface IStudentRepository extends JpaRepository<Student, Long> {
 
@@ -19,16 +20,16 @@ public interface IStudentRepository extends JpaRepository<Student, Long> {
      * @return Page<StudentListViewDto>
      */
 
-    @Query(value = "select student.student_id, student.student_name, student.gender, student.date_of_birth\n" +
+    @Query(value = "select student.student_id as studentId, student.student_name as studentName, student.gender as gender, student.date_of_birth as dateOfBirth\n" +
             "from student \n" +
             "join clazz on student.clazz_id = clazz.clazz_id\n" +
             "join teacher on clazz.teacher_id = teacher.teacher_id\n" +
             "where teacher.teacher_id= :teacherId and student.flag_delete = false\n" +
-            "order by student.student_name", nativeQuery = true, countQuery = "select student.student_id, student.student_name, student.gender, student.date_of_birth\n" +
+            "order by student.student_name", nativeQuery = true, countQuery = "select select student.student_id as studentId, student.student_name as studentName, student.gender as gender, student.date_of_birth as dateOfBirth\n" +
             "from student \n" +
             "join clazz on student.clazz_id = clazz.clazz_id\n" +
             "join teacher on clazz.teacher_id = teacher.teacher_id\n" +
             "where teacher.teacher_id=:teacherId and student.flag_delete = false\n" +
             "order by student.student_name")
-    Page<StudentListViewDto> showAllStudent(Pageable pageable);
+    Page<StudentListViewDto> showAllStudent(@Param("teacherId") Long teacherId, Pageable pageable);
 }

@@ -31,9 +31,9 @@ public class StudentRestController {
      * @return
      */
 
-    @GetMapping("/list-student")
-    public ResponseEntity<Page<StudentListViewDto>> getAllStudentByIdTeacher(@PageableDefault(size = 5) Pageable pageable) {
-        Page<StudentListViewDto> studentListViewDtoPage = studentService.showAllStudent(pageable);
+    @GetMapping("/list-student/{teacherId}")
+    public ResponseEntity<Page<StudentListViewDto>> getAllStudentByIdTeacher(@PageableDefault(size = 5) Pageable pageable, @PathVariable Long teacherId) {
+        Page<StudentListViewDto> studentListViewDtoPage = studentService.showAllStudent(teacherId, pageable);
         if (studentListViewDtoPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

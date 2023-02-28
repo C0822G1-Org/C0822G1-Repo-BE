@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/teacher/time-table")
+@RequestMapping("/api/time-table")
 @CrossOrigin("*")
 public class TimeTableRestController {
     @Autowired
@@ -21,9 +21,9 @@ public class TimeTableRestController {
      * Date Created: 27/02/2023
      *  * Description: get time table of the class by id
      */
-    @GetMapping("")
-    public ResponseEntity<List<TimeTableView>> showTimeTable() {
-        List<TimeTableView> timeTable = timeTableService.getTimeTableByIdTeacher();
+    @GetMapping("/{teacherId}")
+    public ResponseEntity<List<TimeTableView>> showTimeTable(@PathVariable String teacherId) {
+        List<TimeTableView> timeTable = timeTableService.getTimeTableByIdTeacher(teacherId);
         if (timeTable.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

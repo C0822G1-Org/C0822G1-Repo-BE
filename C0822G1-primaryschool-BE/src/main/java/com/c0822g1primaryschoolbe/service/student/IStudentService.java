@@ -10,5 +10,5 @@ public interface IStudentService {
      * Date Created: 27/02/2023
      *  * Description: get student list of the class
      */
-    Page<StudentListViewDto> showAllStudent(Pageable pageable);
+    Page<StudentListViewDto> showAllStudent(Long teacherId, Pageable pageable);
 }
