@@ -34,4 +34,7 @@ public interface StudentRepository extends JpaRepository<Student,Long> {
                              @Param("status") String status,
                              Pageable pageable);
 
+
+
+
 }
