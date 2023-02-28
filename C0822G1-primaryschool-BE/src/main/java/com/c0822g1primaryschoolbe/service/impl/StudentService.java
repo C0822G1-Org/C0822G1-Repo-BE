@@ -12,17 +12,17 @@ public class StudentService implements IStudentService {
     private IStudentRepository studentRepository;
 
     @Override
-    public void create(String img, String studentName, String dateOfBirth, Boolean gender, String fatherName, String phoneNumberFather, String fatherJob, String motherName, String phoneNumberMother, String motherJob, String religion, String address, long clazzId) {
-        studentRepository.createStudent(img, studentName, dateOfBirth, gender, fatherName, phoneNumberFather, fatherJob, motherName, phoneNumberMother, motherJob, religion, address, clazzId);
+    public void create(Student student) {
+        studentRepository.createStudent(student);
     }
 
     @Override
-    public Student findId(long id) {
-        return studentRepository.findId(id);
+    public Student findId(long studentId) {
+        return studentRepository.findId(studentId);
     }
 
     @Override
-    public void update(String img, String studentName, String dateOfBirth, Boolean gender, String fatherName, String phoneNumberFather, String fatherJob, String motherName, String phoneNumberMother, String motherJob, String religion, String address, long clazzId) {
-        studentRepository.updateStudent(img, studentName, dateOfBirth, gender, fatherName, phoneNumberFather, fatherJob, motherName, phoneNumberMother, motherJob, religion, address, clazzId);
+    public void update(Student student) {
+        studentRepository.updateStudent(student);
     }
 }
