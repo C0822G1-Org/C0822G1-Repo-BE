@@ -15,8 +15,10 @@ public class TimetableService implements ITimetableService {
     private ITimetableRepository timetableRepository;
 
     @Override
-    public List<ITimetable> getAllTimetable() {
-        return timetableRepository.getAllTimetable();
+    public List<ITimetable> getAllTimetable(Long idClazz) {
+        return timetableRepository.getAllTimetable(idClazz);
     }
+
+
 
 }

@@ -15,20 +15,32 @@ import java.util.List;
 @Transactional
 public interface ITimetableRepository extends JpaRepository<TimeTable, Long> {
     @Modifying
-    @Query(value = "select clazz.clazz_name as nameClazz, lesson.lesson_name as nameLesson, day.day_name as nameDay, subject.subject_name as nameSubject from time_table tt\n" +
-            "            join day on day.day_id = tt.day_id\n" +
-            "            join lesson on lesson.lesson_id = tt.lesson_id\n" +
-            "            join time_table_subject tts on tts.time_table_id = tt.time_table_id\n" +
-            "            join subject on tts.subject_id = subject.subject_id\n" +
-            "            join clazz on tt.clazz_id = clazz.clazz_id\n" +
-            "            where  clazz.clazz_id=1\n" +
-            "            order by day.day_name, lesson.lesson_name", countQuery = "select clazz.clazz_name as nameClazz, lesson.lesson_name as nameLesson, day.day_name as nameDay, subject.subject_name as nameSubject from time_table tt\n" +
-            "            join day on day.day_id = tt.day_id\n" +
-            "            join lesson on lesson.lesson_id = tt.lesson_id\n" +
-            "            join time_table_subject tts on tts.time_table_id = tt.time_table_id\n" +
-            "            join subject on tts.subject_id = subject.subject_id\n" +
-            "            join clazz on tt.clazz_id = clazz.clazz_id\n" +
-            "            where  clazz.clazz_id=1\n" +
-            "            order by day.day_name, lesson.lesson_name", nativeQuery = true)
-    List<ITimetable> getAllTimetable();
+    @Query(value = "select tts.id               as timeSubId,\n" +
+            "       subject.subject_id   as subId,\n" +
+            "       clazz.clazz_name     as nameClazz,\n" +
+            "       lesson.lesson_name   as nameLesson,\n" +
+            "       day.day_name         as nameDay,\n" +
+            "       subject.subject_name as nameSubject\n" +
+            "from time_table tt\n" +
+            "         join day on day.day_id = tt.day_id\n" +
+            "         join lesson on lesson.lesson_id = tt.lesson_id\n" +
+            "         join time_table_subject tts on tts.time_table_id = tt.time_table_id\n" +
+            "         join subject on tts.subject_id = subject.subject_id\n" +
+            "         join clazz on tt.clazz_id = clazz.clazz_id\n" +
+            "where clazz.clazz_id = :idClazz\n" +
+            "order by day.day_name, lesson.lesson_name", countQuery = "select tts.id               as timeSubId,\n" +
+            "       subject.subject_id   as subId,\n" +
+            "       clazz.clazz_name     as nameClazz,\n" +
+            "       lesson.lesson_name   as nameLesson,\n" +
+            "       day.day_name         as nameDay,\n" +
+            "       subject.subject_name as nameSubject\n" +
+            "from time_table tt\n" +
+            "         join day on day.day_id = tt.day_id\n" +
+            "         join lesson on lesson.lesson_id = tt.lesson_id\n" +
+            "         join time_table_subject tts on tts.time_table_id = tt.time_table_id\n" +
+            "         join subject on tts.subject_id = subject.subject_id\n" +
+            "         join clazz on tt.clazz_id = clazz.clazz_id\n" +
+            "where clazz.clazz_id = :idClazz\n" +
+            "order by day.day_name, lesson.lesson_name", nativeQuery = true)
+    List<ITimetable> getAllTimetable(@Param("idClazz")Long idClazz);
 }

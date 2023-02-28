@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ITimetableService {
 
-    List<ITimetable>getAllTimetable();
+    List<ITimetable>getAllTimetable(Long idClazz);
 }
