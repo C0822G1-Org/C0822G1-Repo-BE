@@ -11,6 +11,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+/**
+ * create by :VinhLD
+ * date create 27/02/2023
+ *
+ * funtion : search student by name and status
+ * @param "name, status"
+ *
+ * @return httpStatus.Notfound if result is error or HttpStatus.Ok if result is not error
+ */
+
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/students")

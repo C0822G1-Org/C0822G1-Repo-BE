@@ -15,6 +15,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
+
+/**
+ * create by :VinhLD
+ * date create 27/02/2023
+ *
+ * funtion : search techer by name and status
+ * @param "name, status"
+ *
+ * @return httpStatus.Notfound if result is error or HttpStatus.Ok if result is not error
+ */
+
+
 @RestController
 
 @RequestMapping("/teachers")

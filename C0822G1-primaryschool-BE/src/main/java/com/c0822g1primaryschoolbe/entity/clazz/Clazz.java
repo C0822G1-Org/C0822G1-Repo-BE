@@ -26,6 +26,12 @@ public class Clazz {
     private Teacher teacher;
 
 
+
+
+
+
+
+
     public Long getClazzId() {
         return clazzId;
     }
