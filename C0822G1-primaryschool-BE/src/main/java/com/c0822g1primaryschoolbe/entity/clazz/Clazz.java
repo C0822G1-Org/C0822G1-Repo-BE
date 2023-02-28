@@ -1,9 +1,12 @@
 package com.c0822g1primaryschoolbe.entity.clazz;
 
+import com.c0822g1primaryschoolbe.entity.student.Student;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.TimeTable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Clazz {
@@ -26,11 +29,83 @@ public class Clazz {
     private Teacher teacher;
 
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "clazz")
+    private Set<Student> students;
 
 
 
 
 
+
+
+
+//    public Long getClazzId() {
+//        return clazzId;
+//    }
+//
+//    public void setClazzId(Long clazzId) {
+//        this.clazzId = clazzId;
+//    }
+//
+//    public String getClazzName() {
+//        return clazzName;
+//    }
+//
+//    public void setClazzName(String clazzName) {
+//        this.clazzName = clazzName;
+//    }
+//
+//    public Boolean getFlagDelete() {
+//        return flagDelete;
+//    }
+//
+//    public void setFlagDelete(Boolean flagDelete) {
+//        this.flagDelete = flagDelete;
+//    }
+//
+//    public Integer getYear() {
+//        return year;
+//    }
+//
+//    public void setYear(Integer year) {
+//        this.year = year;
+//    }
+//
+//    public String getSchoolYear() {
+//        return schoolYear;
+//    }
+//
+//    public void setSchoolYear(String schoolYear) {
+//        this.schoolYear = schoolYear;
+//    }
+//
+//    public TimeTable getTimeTable() {
+//        return timeTable;
+//    }
+//
+//    public void setTimeTable(TimeTable timeTable) {
+//        this.timeTable = timeTable;
+//    }
+//
+//    public Block getBlock() {
+//        return block;
+//    }
+//
+//    public void setBlock(Block block) {
+//        this.block = block;
+//    }
+//
+//    public Teacher getTeacher() {
+//        return teacher;
+//    }
+//
+//    public void setTeacher(Teacher teacher) {
+//        this.teacher = teacher;
+//    }
+
+    public Clazz() {
+    }
 
     public Long getClazzId() {
         return clazzId;
@@ -94,5 +169,13 @@ public class Clazz {
 
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
+    }
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
     }
 }
