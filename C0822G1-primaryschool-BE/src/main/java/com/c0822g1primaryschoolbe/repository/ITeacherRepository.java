@@ -23,4 +23,6 @@ public interface ITeacherRepository extends JpaRepository<Teacher, Long> {
                          @Param("email") String email,
                          @Param("phoneNumber") String phoneNumber,
                          @Param("teacherId") Long teacherId);
+
+
 }

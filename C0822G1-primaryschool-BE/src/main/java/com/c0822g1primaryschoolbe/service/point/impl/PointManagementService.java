@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class PointManagementService implements IPointManagementService {
-@Autowired
+    @Autowired
     private IPointManagementRepository iPointManagementRepository;
 
 
@@ -18,4 +19,11 @@ public class PointManagementService implements IPointManagementService {
     public List<PointManagementDto> showListPoint(Long teacherId) {
         return iPointManagementRepository.showListPoint(teacherId);
     }
+
+    @Override
+    public void editPoint(Double semesterOne, Double semesterTwo, Long id) {
+        iPointManagementRepository.editPoint(semesterOne, semesterTwo, id);
+    }
+
+
 }

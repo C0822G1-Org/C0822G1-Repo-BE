@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface IPointManagementService {
     List<PointManagementDto> showListPoint(Long teacherId);
+
+    void editPoint(Double semesterOne, Double semesterTwo, Long id);
 }
