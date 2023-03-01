@@ -18,7 +18,7 @@ public class ClassRestController_showListClassStudentById {
     private MockMvc mockMvc;
 
     @Test
-    public void showListClassStudentById_id_1() throws Exception {
+    public void showListClassStudentById_id_5() throws Exception {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders.get("/api/class/{id}", "null"))
@@ -26,7 +26,7 @@ public class ClassRestController_showListClassStudentById {
                 .andExpect(status().is4xxClientError());
     }
     @Test
-    public void getCustomerById_idCustomer_4() throws Exception {
+    public void getCustomerById_idCustomer_6() throws Exception {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders.get("/api/class/{id}", "1"))

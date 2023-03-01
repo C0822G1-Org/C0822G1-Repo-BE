@@ -20,10 +20,6 @@ public class Clazz {
     @OneToOne(mappedBy = "clazz")
     private TimeTable timeTable;
 
-    public void MapFromDTO(ClazzDto dto) {
-        this.clazzName=dto.getClazzName();
-    }
-
     @ManyToOne
     @JoinColumn(name = "block_id",nullable = false,referencedColumnName = "block_id")
     private Block block;

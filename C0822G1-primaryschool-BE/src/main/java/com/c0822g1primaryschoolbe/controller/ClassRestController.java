@@ -4,6 +4,7 @@ import com.c0822g1primaryschoolbe.dto.ClazzStudentDto;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import com.c0822g1primaryschoolbe.service.IClassService;
+import com.c0822g1primaryschoolbe.service.ITeacherService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,13 +14,23 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
 @RestController
 @CrossOrigin("*")
 @RequestMapping("api/class")
 public class ClassRestController {
     @Autowired
     private IClassService iClassService;
+    @Autowired
+    private ITeacherService iTeacherService;
+    @GetMapping("teacher")
+    public ResponseEntity<List<Teacher>> showListTeacher() {
+        List<Teacher> teachers = iTeacherService.showListTeacher();
+        if (teachers.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity(teachers, HttpStatus.OK);
+    }
+
     /**
      * create by : DungND
      * Data create: 31/01/2023

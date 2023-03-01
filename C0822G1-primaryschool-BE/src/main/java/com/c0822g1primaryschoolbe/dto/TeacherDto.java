@@ -4,6 +4,15 @@ import org.springframework.validation.Validator;
 
 public class TeacherDto implements Validator {
     private Long teacherId;
+    private String teacherName;
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
 
     public Long getTeacherId() {
         return teacherId;

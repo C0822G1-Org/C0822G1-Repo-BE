@@ -3,14 +3,21 @@ import com.sun.istack.NotNull;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class ClazzDto implements Validator {
     @NotBlank
     @NotNull
+    @Pattern(regexp = "^[1][2][3][4][5][A-Za-z]{4}$", message = "Tên lớp học chưa đúng định dạng")
+    @Size(min = 2)
+    @Size(max = 15)
     private String clazzName;
     @NotBlank
     @NotNull
+    @Pattern(regexp = "^[0-9]{4}[-][0-9]{4}$", message = "Niên khóa chưa đúng định dạng")
     private String schoolYear;
     private TeacherDto teacherDto;
     public TeacherDto getTeacherDto() {

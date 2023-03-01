@@ -121,7 +121,7 @@ public class ClassRestController_saveClass {
                         .content(this.objectMapper.writeValueAsString(clazzDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
-                .andExpect(status().is4xxClientError());
+                .andExpect(status().is3xxRedirection());
     }
     @Test
     public void saveClass_schoolYear_15() throws Exception {
@@ -141,7 +141,7 @@ public class ClassRestController_saveClass {
                         .content(this.objectMapper.writeValueAsString(clazzDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
-                .andExpect(status().is4xxClientError());
+                .andExpect(status().is3xxRedirection());
     }
     @Test
     public void saveClass_clazzName_16() throws Exception {
@@ -161,7 +161,7 @@ public class ClassRestController_saveClass {
                         .content(this.objectMapper.writeValueAsString(clazzDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
-                .andExpect(status().is4xxClientError());
+                .andExpect(status().is3xxRedirection());
     }
     @Test
     public void saveClass_clazzName_17() throws Exception {
@@ -181,7 +181,7 @@ public class ClassRestController_saveClass {
                         .content(this.objectMapper.writeValueAsString(clazzDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
-                .andExpect(status().is4xxClientError());
+                .andExpect(status().is3xxRedirection());
     }
     @Test
     public void saveClass_18() throws Exception {

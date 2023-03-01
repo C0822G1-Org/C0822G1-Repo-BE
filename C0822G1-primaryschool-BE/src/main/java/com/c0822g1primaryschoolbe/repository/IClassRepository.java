@@ -31,7 +31,7 @@ public interface IClassRepository extends JpaRepository<Clazz,Long> {
     /**
      * create by : DungND
      * Data create: 27/02/2023
-     * funcion: findByIdClass()
+     * funcion: showListClassStudentById()
      * @param 'id'
      */
     @Query(value = "SELECT clazz.clazz_id as clazzId,clazz.clazz_name as clazzName,teacher.teacher_id as teacherId,teacher.teacher_name as teacherName,student.student_id as studentId," +
