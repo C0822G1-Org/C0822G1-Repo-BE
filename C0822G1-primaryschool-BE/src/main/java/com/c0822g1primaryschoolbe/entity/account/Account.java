@@ -37,6 +37,17 @@ public class Account {
     @Lob
     private String avatar;
 
+    public Account(String username, String password, String name, String email) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.email = email;
+    }
+
+    public Account() {
+
+    }
+
     public Long getAccountId() {
         return accountId;
     }
