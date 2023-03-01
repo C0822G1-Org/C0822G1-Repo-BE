@@ -35,6 +35,7 @@ public class AccountServiceImpl implements IAccountService {
     public Boolean existsAccountByEmail(String email) {
         return iAccountRepository.existsAccountByEmail(email);
     }
+
     @Override
     public void save(Account account) {
         iAccountRepository.save(account);
