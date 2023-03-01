@@ -1,6 +1,4 @@
 package com.c0822g1primaryschoolbe.entity.clazz;
-import com.c0822g1primaryschoolbe.dto.BlockDto;
-
 import javax.persistence.*;
 @Entity
 public class Block {
@@ -21,12 +19,6 @@ public class Block {
     public Block() {
 
     }
-
-    public Block(Long blockId, Integer blockName) {
-        this.blockId = blockId;
-        this.blockName = blockName;
-    }
-
     public Long getBlockId() {
         return blockId;
     }

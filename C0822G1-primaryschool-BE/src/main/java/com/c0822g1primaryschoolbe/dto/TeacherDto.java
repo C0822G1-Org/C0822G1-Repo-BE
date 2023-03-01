@@ -1,5 +1,4 @@
 package com.c0822g1primaryschoolbe.dto;
-
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 

@@ -1,6 +1,5 @@
 package com.c0822g1primaryschoolbe.controller;
 
-import com.c0822g1primaryschoolbe.dto.BlockDto;
 import com.c0822g1primaryschoolbe.dto.ClazzDto;
 import com.c0822g1primaryschoolbe.dto.TeacherDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,9 +29,6 @@ public class ClassRestController_saveClass {
         ClazzDto clazzDto = new ClazzDto();
         clazzDto.setClazzName(null);
         clazzDto.setSchoolYear("2023");
-        BlockDto blockDto = new BlockDto();
-        blockDto.setBlockId(1L);
-        clazzDto.setBlockDto(blockDto);
         TeacherDto teacherDto = new TeacherDto();
         teacherDto.setTeacherId(1L);
         clazzDto.setTeacherDto(teacherDto);
@@ -53,9 +49,6 @@ public class ClassRestController_saveClass {
         ClazzDto clazzDto = new ClazzDto();
         clazzDto.setClazzName("1A1");
         clazzDto.setSchoolYear(null);
-        BlockDto blockDto = new BlockDto();
-        blockDto.setBlockId(1L);
-        clazzDto.setBlockDto(blockDto);
         TeacherDto teacherDto = new TeacherDto();
         teacherDto.setTeacherId(1L);
         clazzDto.setTeacherDto(teacherDto);
@@ -76,9 +69,6 @@ public class ClassRestController_saveClass {
         ClazzDto clazzDto = new ClazzDto();
         clazzDto.setClazzName("");
         clazzDto.setSchoolYear("2023");
-        BlockDto blockDto = new BlockDto();
-        blockDto.setBlockId(1L);
-        clazzDto.setBlockDto(blockDto);
         TeacherDto teacherDto = new TeacherDto();
         teacherDto.setTeacherId(1L);
         clazzDto.setTeacherDto(teacherDto);
@@ -99,9 +89,6 @@ public class ClassRestController_saveClass {
         ClazzDto clazzDto = new ClazzDto();
         clazzDto.setClazzName("1A1");
         clazzDto.setSchoolYear("");
-        BlockDto blockDto = new BlockDto();
-        blockDto.setBlockId(1L);
-        clazzDto.setBlockDto(blockDto);
         TeacherDto teacherDto = new TeacherDto();
         teacherDto.setTeacherId(1L);
         clazzDto.setTeacherDto(teacherDto);
@@ -122,9 +109,6 @@ public class ClassRestController_saveClass {
         ClazzDto clazzDto = new ClazzDto();
         clazzDto.setClazzName("!@$$!");
         clazzDto.setSchoolYear("2023");
-        BlockDto blockDto = new BlockDto();
-        blockDto.setBlockId(1L);
-        clazzDto.setBlockDto(blockDto);
         TeacherDto teacherDto = new TeacherDto();
         teacherDto.setTeacherId(1L);
         clazzDto.setTeacherDto(teacherDto);
@@ -145,9 +129,6 @@ public class ClassRestController_saveClass {
         ClazzDto clazzDto = new ClazzDto();
         clazzDto.setClazzName("1A1");
         clazzDto.setSchoolYear("ádasdasd");
-        BlockDto blockDto = new BlockDto();
-        blockDto.setBlockId(1L);
-        clazzDto.setBlockDto(blockDto);
         TeacherDto teacherDto = new TeacherDto();
         teacherDto.setTeacherId(1L);
         clazzDto.setTeacherDto(teacherDto);
@@ -168,9 +149,6 @@ public class ClassRestController_saveClass {
         ClazzDto clazzDto = new ClazzDto();
         clazzDto.setClazzName("a");
         clazzDto.setSchoolYear("2023");
-        BlockDto blockDto = new BlockDto();
-        blockDto.setBlockId(1L);
-        clazzDto.setBlockDto(blockDto);
         TeacherDto teacherDto = new TeacherDto();
         teacherDto.setTeacherId(1L);
         clazzDto.setTeacherDto(teacherDto);
@@ -191,9 +169,6 @@ public class ClassRestController_saveClass {
         ClazzDto clazzDto = new ClazzDto();
         clazzDto.setClazzName("aaaaaaaaaaaaaaaaaaa");
         clazzDto.setSchoolYear("2023");
-        BlockDto blockDto = new BlockDto();
-        blockDto.setBlockId(1L);
-        clazzDto.setBlockDto(blockDto);
         TeacherDto teacherDto = new TeacherDto();
         teacherDto.setTeacherId(1L);
         clazzDto.setTeacherDto(teacherDto);
@@ -214,9 +189,6 @@ public class ClassRestController_saveClass {
         ClazzDto clazzDto = new ClazzDto();
         clazzDto.setClazzName("1A1");
         clazzDto.setSchoolYear("2023");
-        BlockDto blockDto = new BlockDto();
-        blockDto.setBlockId(1L);
-        clazzDto.setBlockDto(blockDto);
         TeacherDto teacherDto = new TeacherDto();
         teacherDto.setTeacherId(1L);
         clazzDto.setTeacherDto(teacherDto);

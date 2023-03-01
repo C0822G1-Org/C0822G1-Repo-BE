@@ -1,7 +1,5 @@
 package com.c0822g1primaryschoolbe.entity.teacher;
 
-import com.c0822g1primaryschoolbe.dto.BlockDto;
-import com.c0822g1primaryschoolbe.dto.TeacherDto;
 import com.c0822g1primaryschoolbe.entity.account.Account;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

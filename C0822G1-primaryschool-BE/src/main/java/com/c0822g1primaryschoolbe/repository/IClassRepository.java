@@ -1,4 +1,6 @@
 package com.c0822g1primaryschoolbe.repository;
+
+import com.c0822g1primaryschoolbe.dto.ClazzStudentDto;
 import com.c0822g1primaryschoolbe.entity.clazz.Block;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
@@ -32,17 +34,11 @@ public interface IClassRepository extends JpaRepository<Clazz,Long> {
      * funcion: findByIdClass()
      * @param 'id'
      */
-    @Query(value = "SELECT * FROM `primary-school-management`.clazz  where clazz_id = :id"
-            ,countQuery = "SELECT * FROM `primary-school-management`.clazz  where clazz_id = :id"
+    @Query(value = "SELECT clazz.clazz_id as clazzId,clazz.clazz_name as clazzName,teacher.teacher_id as teacherId,teacher.teacher_name as teacherName,student.student_id as studentId," +
+            "student.student_name as studentName FROM  clazz  join student  on clazz.clazz_id= student.clazz_id  join teacher on clazz.teacher_id = teacher.teacher_id  where clazz.clazz_id= :id"
+            ,countQuery = "SELECT clazz.clazz_id as clazzId,clazz.clazz_name as clazzName,teacher.teacher_id as teacherId,teacher.teacher_name as teacherName,student.student_id as studentId," +
+            "student.student_name as studentName FROM  clazz  join student  on clazz.clazz_id= student.clazz_id  join teacher on clazz.teacher_id = teacher.teacher_id  where clazz.clazz_id= :id"
             ,nativeQuery = true)
-    List<Clazz> showListClassStudentById(@Param("id") long id);
-//    @Query(value = " SELECT clazz.clazz_id,clazz.clazz_name, teacher.teacher_id,teacher.teacher_name,student.student_id," +
-//            "student.student_name FROM  clazz   join student  on clazz.clazz_id= student.clazz_id " +
-//            "join teacher on clazz.teacher_id = teacher.teacher_id where clazz.clazz_id= :id"
-//            ,countQuery = "SELECT clazz.clazz_id,clazz.clazz_name, teacher.teacher_id,teacher.teacher_name,student.student_id," +
-//            "student.student_name FROM  clazz   join student  on clazz.clazz_id= student.clazz_id " +
-//            "join teacher on clazz.teacher_id = teacher.teacher_id where clazz.clazz_id= :id"
-//            ,nativeQuery = true)
-//    List<ClazzStudentDto> showListClassStudentById(@Param("id") long id);
+    List<ClazzStudentDto> showListClassStudentById(@Param("id") long id);
 
 }

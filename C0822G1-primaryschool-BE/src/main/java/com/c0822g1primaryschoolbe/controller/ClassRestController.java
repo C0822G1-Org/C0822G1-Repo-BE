@@ -1,8 +1,6 @@
 package com.c0822g1primaryschoolbe.controller;
-import com.c0822g1primaryschoolbe.dto.BlockDto;
 import com.c0822g1primaryschoolbe.dto.ClazzDto;
 import com.c0822g1primaryschoolbe.dto.ClazzStudentDto;
-import com.c0822g1primaryschoolbe.entity.clazz.Block;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import com.c0822g1primaryschoolbe.service.IClassService;
@@ -30,8 +28,8 @@ public class ClassRestController {
      * @return HttpStatus.NOT_FOUND if result is not found or HttpStatus.OK is find
      */
     @GetMapping("/{id}")
-    public ResponseEntity<List<Clazz>> showListClassStudentById(@PathVariable("id") long id) {
-        List<Clazz> listClass = iClassService.showListClassStudentById(id);
+    public ResponseEntity<List<ClazzStudentDto>> showListClassStudentById(@PathVariable("id") long id) {
+        List<ClazzStudentDto> listClass = iClassService.showListClassStudentById(id);
         if (listClass.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -53,9 +51,6 @@ public class ClassRestController {
 
         Clazz clazz = new Clazz();
         BeanUtils.copyProperties(classDto,clazz);
-        Block block = new Block();
-        block.setBlockId(classDto.getBlockDto().getBlockId());
-        clazz.setBlock(block);
         Teacher teacher = new Teacher();
         teacher.setTeacherId(classDto.getTeacherDto().getTeacherId());
         clazz.setTeacher(teacher);

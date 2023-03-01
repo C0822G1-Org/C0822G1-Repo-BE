@@ -12,30 +12,7 @@ public class ClazzDto implements Validator {
     @NotBlank
     @NotNull
     private String schoolYear;
-    private BlockDto blockDto;
     private TeacherDto teacherDto;
-
-
-
-
-    public ClazzDto() {
-    }
-
-    public ClazzDto(String clazzName, String schoolYear, BlockDto blockDto, TeacherDto teacherDto) {
-        this.clazzName = clazzName;
-        this.schoolYear = schoolYear;
-        this.blockDto = blockDto;
-        this.teacherDto = teacherDto;
-    }
-
-    public BlockDto getBlockDto() {
-        return blockDto;
-    }
-
-    public void setBlockDto(BlockDto blockDto) {
-        this.blockDto = blockDto;
-    }
-
     public TeacherDto getTeacherDto() {
         return teacherDto;
     }
