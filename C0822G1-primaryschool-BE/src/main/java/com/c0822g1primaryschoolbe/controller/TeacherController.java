@@ -17,15 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 
-/**
- * create by :VinhLD
- * date create 27/02/2023
- *
- * funtion : search techer by name and status
- * @param "name, status"
- *
- * @return httpStatus.Notfound if result is error or HttpStatus.Ok if result is not error
- */
+
 
 
 @RestController
@@ -35,11 +27,19 @@ public class TeacherController {
     @Autowired
     private ITeacherService teacherService;
 
-
+    /**
+     * create by :VinhLD
+     * date create 27/02/2023
+     *
+     * funtion : search techer by name and status
+     * @param "name, status"
+     *
+     * @return httpStatus.Notfound if result is error or HttpStatus.Ok if result is not error
+     */
     @GetMapping("")
     public ResponseEntity<Page<Teacher>> findByName(
             @RequestParam(value = "name", defaultValue = "") String name,
-            @RequestParam(value = "status", defaultValue = "") String status,
+            @RequestParam( defaultValue = "false") Boolean status,
             @PageableDefault(value = 3) Pageable pageable) {
         Page<Teacher> teachers = teacherService.findByName(name, status, pageable);
         if (teachers.isEmpty()) {

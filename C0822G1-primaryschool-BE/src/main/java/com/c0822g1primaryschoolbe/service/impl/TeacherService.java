@@ -18,7 +18,7 @@ public class TeacherService implements ITeacherService {
 
 
     @Override
-    public Page<Teacher> findByName(String name, String status, Pageable pageable) {
+    public Page<Teacher> findByName(String name, Boolean status, Pageable pageable) {
         return teacherRepository.findByName(name,status, pageable);
 
     }

@@ -12,6 +12,6 @@ public interface IStudentService {
 
 
 
-    Page<IStudentDto> findByNameAndStatus(String name, String status, Pageable pageable);
+    Page<IStudentDto> findByNameAndStatus(String name, Boolean status, Pageable pageable);
 
 }

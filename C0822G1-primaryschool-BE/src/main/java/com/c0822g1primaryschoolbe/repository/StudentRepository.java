@@ -35,11 +35,16 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
                              Pageable pageable);
 
 
-    @Query(value = "select student.student_name as nameStudent, student.student_id as idStudent, student.date_of_birth as dateOfBirthStudent, clazz.clazz_name as studentClazz, ((point_management.semester_one+point_management.semester_two*2)/3) as studentPoint from student left join clazz" +
-            " on student.clazz_id = clazz.clazz_id left join point_management on student.student_id= point_management.student_id where student.student_name like %:name% and student.student_status = :status order by student.student_name asc", nativeQuery = true)
+    @Query(value = "select `student`.student_name as nameStudent, " +
+            "`student`.student_id as idStudent, " +
+            "`student`.date_of_birth as dateOfBirthStudent, " +
+            "clazz.clazz_name as nameClazz, " +
+            "((point_management.semester_one+point_management.semester_two*2)/3) as studentPoint " +
+            "from student left join clazz on `student`.clazz_id = clazz.clazz_id " +
+            "left join point_management on student.student_id= point_management.student_id " +
+            "where student.student_name like %:name% and student.student_status = :status " +
+            "order by student.student_name asc", nativeQuery = true)
     Page<IStudentDto> findByNameAndStatus(@Param("name") String name,
-                                          @Param("status") String status,
+                                          @Param("status") Boolean status,
                                           Pageable pageable);
-
-
 }

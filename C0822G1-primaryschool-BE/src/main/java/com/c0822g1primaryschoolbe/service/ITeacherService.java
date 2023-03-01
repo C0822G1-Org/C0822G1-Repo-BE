@@ -6,6 +6,6 @@ import org.springframework.data.domain.Pageable;
 
 public interface ITeacherService {
 
-    Page<Teacher>findByName(String name, String status, Pageable pageable);
+    Page<Teacher>findByName(String name, Boolean status, Pageable pageable);
 
 }

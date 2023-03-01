@@ -22,7 +22,7 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public Page<IStudentDto> findByNameAndStatus(String name, String status, Pageable pageable) {
+    public Page<IStudentDto> findByNameAndStatus(String name, Boolean status, Pageable pageable) {
         return studentRepository.findByNameAndStatus(name, status, pageable);
     }
 }

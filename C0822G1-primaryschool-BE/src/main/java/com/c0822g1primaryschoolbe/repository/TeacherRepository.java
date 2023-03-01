@@ -11,10 +11,8 @@ import java.util.List;
 
 public interface TeacherRepository extends JpaRepository<Teacher,Long> {
 @Query(value = "select teacher.* from teacher where teacher.teacher_name like %:name% and teacher.teacher_status = :status order by teacher.teacher_name asc ",nativeQuery = true)
-
-
 Page<Teacher> findByName(@Param("name") String name,
-                         @Param("status") String status,
+                         @Param("status") Boolean status,
                          Pageable pageable);
 
 

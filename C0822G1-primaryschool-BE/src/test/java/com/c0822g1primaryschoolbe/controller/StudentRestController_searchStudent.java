@@ -126,6 +126,8 @@ public void getAllStudent_7() throws Exception {
                 .andExpect(jsonPath("content[0].studentName").value("le duc vinh"))
                 .andExpect(jsonPath("content[0].dateOfBirth").value("111111"));
 
+
+
     }
 
 
