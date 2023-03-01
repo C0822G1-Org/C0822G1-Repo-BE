@@ -1,11 +1,8 @@
 package com.c0822g1primaryschoolbe.entity.student;
 
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 public class Student {
@@ -35,16 +32,11 @@ public class Student {
     private String address;
     private Boolean studentStatus;
     private Boolean flagDelete;
-    @OneToOne(mappedBy = "student")
-    private PointManagement pointManagement;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "student_clazz",
-            joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "clazz_id")
-    )
-    @JsonBackReference
-    private Set<Clazz> clazzSet;
+//    @OneToOne(mappedBy = "student")
+//    private PointManagement pointManagement;
+    @ManyToOne
+    @JoinColumn(name = "clazz_id",nullable = false,referencedColumnName = "clazz_id")
+    private Clazz clazz;
 
 
     public Long getStudentId() {
@@ -167,19 +159,19 @@ public class Student {
         this.flagDelete = flagDelete;
     }
 
-    public Set<Clazz> getClazzSet() {
-        return clazzSet;
+    public Clazz getClazz() {
+        return clazz;
     }
 
-    public void setClazzSet(Set<Clazz> clazzSet) {
-        this.clazzSet = clazzSet;
+    public void setClazz(Clazz clazz) {
+        this.clazz = clazz;
     }
 
-    public PointManagement getPointManagement() {
-        return pointManagement;
-    }
-
-    public void setPointManagement(PointManagement pointManagement) {
-        this.pointManagement = pointManagement;
-    }
+//    public PointManagement getPointManagement() {
+//        return pointManagement;
+//    }
+//
+//    public void setPointManagement(PointManagement pointManagement) {
+//        this.pointManagement = pointManagement;
+//    }
 }

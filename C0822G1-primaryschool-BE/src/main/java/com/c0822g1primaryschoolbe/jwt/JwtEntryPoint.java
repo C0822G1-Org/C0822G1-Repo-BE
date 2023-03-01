@@ -12,12 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-public class JwtEntryPoint implements AuthenticationEntryPoint {
-    private static final Logger logger = LoggerFactory.getLogger(JwtEntryPoint.class);
-
+public class JWTEntryPoint implements AuthenticationEntryPoint {
+    private static final Logger logger = LoggerFactory.getLogger(JWTEntryPoint.class);
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        logger.error("Unauthorized error Message: {}",authException.getMessage());
-        response.sendError(HttpServletResponse.SC_BAD_REQUEST,"Error -> Trần Văn Sỹ Unauthorized");
+        logger.error("Unauthorized error Message: {}", authException.getMessage());
+        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Unauthorized");
     }
 }

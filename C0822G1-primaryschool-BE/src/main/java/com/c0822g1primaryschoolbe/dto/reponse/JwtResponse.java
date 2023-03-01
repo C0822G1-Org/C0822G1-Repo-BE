@@ -1,20 +1,31 @@
-package com.c0822g1primaryschoolbe.dto.payload;
+package com.c0822g1primaryschoolbe.dto.response;
 
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
 public class JwtResponse {
-    private Long accountId;
-    private String token;
+    String token;
     private String type = "Bearer";
     private String name;
+    private Long id;
     private String username;
+
     private String email;
     private String avatar;
     private Collection<? extends GrantedAuthority> roles;
 
     public JwtResponse() {
+    }
+
+    public JwtResponse(String token, String name, Long id, String username, String email, String avatar, Collection<? extends GrantedAuthority> roles) {
+        this.token = token;
+        this.name = name;
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.roles = roles;
+        this.avatar = avatar;
     }
 
     public JwtResponse(String token, String type, String name, Collection<? extends GrantedAuthority> roles) {
@@ -30,23 +41,16 @@ public class JwtResponse {
         this.roles = authorities;
     }
 
-    public JwtResponse(String token, String name, Collection<? extends GrantedAuthority> authorities, String username, Long accountId, String email,String avatar) {
-        this.token = token;
-        this.name = name;
-        this.roles = authorities;
-        this.username = username;
-        this.accountId = accountId;
-        this.email = email;
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 
-
-    public Long getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
+    public Long getId() {
+        return id;
     }
 
     public String getUsername() {
@@ -65,12 +69,8 @@ public class JwtResponse {
         this.email = email;
     }
 
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getToken() {
