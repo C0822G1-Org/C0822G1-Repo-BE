@@ -1,6 +1,5 @@
 package com.c0822g1primaryschoolbe;
 
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -14,29 +13,29 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class RestControllerClazz_searchByContent {
+public class RestControllerClass_findById {
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void getListStudent_5() throws Exception {
+    public void getInfoStudent_id_1() throws Exception {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/api/clazz/v1?keySearch1=1G"))
+                                .get("/{2}", "null"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
 
     @Test
-    public void searchStudent_6() throws Exception {
+    public void getInfoStudent_id_4() throws Exception {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/api/clazz/v1?keySearch1=1SS"))
+                                .get("/{1}", "3"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
-
     }
+
 
 }

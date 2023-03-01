@@ -1,6 +1,7 @@
 package com.c0822g1primaryschoolbe.repository;
 
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
+import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -35,6 +36,9 @@ public interface IClazzRepository extends JpaRepository<Clazz, Long> {
             countQuery = "SELECT * from clazz where clazz_id = :clazzId and flag_delete = false",
             nativeQuery = true)
     Clazz findByIdClazz(@Param("clazzId") Long clazzId);
+
+
+
 
     @Transactional
     @Modifying

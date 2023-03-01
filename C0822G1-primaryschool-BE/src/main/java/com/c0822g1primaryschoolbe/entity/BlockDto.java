@@ -6,11 +6,14 @@ import com.c0822g1primaryschoolbe.entity.time_table_subject.TimeTable;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-public class BlockDto implements Validator {
+public class BlockDto  {
     private Long blockId;
     private String blockName;
 //    private TeacherDto teacher;
 
+
+    public BlockDto() {
+    }
 
     public Long getBlockId() {
         return blockId;
@@ -28,13 +31,5 @@ public class BlockDto implements Validator {
         this.blockName = blockName;
     }
 
-    @Override
-    public boolean supports(Class<?> clazz) {
-        return false;
-    }
 
-    @Override
-    public void validate(Object target, Errors errors) {
-
-    }
 }

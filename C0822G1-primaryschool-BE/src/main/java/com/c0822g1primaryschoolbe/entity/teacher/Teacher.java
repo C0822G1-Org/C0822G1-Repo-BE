@@ -41,6 +41,11 @@ public class Teacher {
 //    @OneToOne(mappedBy = "teacher")
 //    private Clazz clazz;
 
+
+//    public Teacher(Long teacherId) {
+//        this.teacherId = teacherId;
+//    }
+
     public Long getTeacherId() {
         return teacherId;
     }
