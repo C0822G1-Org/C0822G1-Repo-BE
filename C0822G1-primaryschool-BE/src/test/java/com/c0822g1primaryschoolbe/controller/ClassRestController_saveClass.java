@@ -187,14 +187,14 @@ public class ClassRestController_saveClass {
     public void saveClass_18() throws Exception {
 
         ClazzDto clazzDto = new ClazzDto();
-        clazzDto.setClazzName("1A1");
-        clazzDto.setSchoolYear("2023");
+        clazzDto.setClazzName("1I");
+        clazzDto.setSchoolYear("2002");
         TeacherDto teacherDto = new TeacherDto();
         teacherDto.setTeacherId(1L);
         clazzDto.setTeacherDto(teacherDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/data-form/save")
+                        .post("/api/class/save")
                         .content(this.objectMapper.writeValueAsString(clazzDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
