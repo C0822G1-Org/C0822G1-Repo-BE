@@ -1,4 +1,4 @@
-package com.codegym.dto.response;
+package com.c0822g1primaryschoolbe.dto.response;
 
 public class ResponseMessage {
     private String message;

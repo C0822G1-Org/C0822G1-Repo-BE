@@ -16,7 +16,7 @@ public class AccountServiceImpl implements IAccountService {
     /**
      * Created by: SyTV
      * Date created: 27/02/2023
-     * Function: authenticate account password
+     * Function: findByUserName
      *
      * @param username
      * @return account
@@ -25,4 +25,19 @@ public class AccountServiceImpl implements IAccountService {
     public Optional<Account> findByUsername(String username) {
         return iAccountRepository.findByUsername(username);
     }
+
+    @Override
+    public Boolean existsAccountByUsername(String username) {
+        return iAccountRepository.existsAccountByUsername(username);
+    }
+
+    @Override
+    public Boolean existsAccountByEmail(String email) {
+        return iAccountRepository.existsAccountByEmail(email);
+    }
+    @Override
+    public void save(Account account) {
+        iAccountRepository.save(account);
+    }
+
 }

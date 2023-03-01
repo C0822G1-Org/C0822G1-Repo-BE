@@ -16,9 +16,6 @@ public class TimeTable {
     @JoinColumn(name = "clazz_id")
     private Clazz clazz;
     @ManyToOne
-    @JoinColumn(name = "subject_id",nullable = false,referencedColumnName = "subject_id")
-    private Subject subject;
-    @ManyToOne
     @JoinColumn(name = "lesson_id", nullable = false,referencedColumnName = "lesson_id")
     private Lesson lesson;
     @ManyToOne
@@ -36,7 +33,6 @@ public class TimeTable {
         this.timeTableId = timeTableId;
     }
 
-
     public Clazz getClazz() {
         return clazz;
     }
@@ -52,14 +48,6 @@ public class TimeTable {
 
     public void setLesson(Lesson lesson) {
         this.lesson = lesson;
-    }
-
-    public Subject getSubject() {
-        return subject;
-    }
-
-    public void setSubject(Subject subject) {
-        this.subject = subject;
     }
 
     public Day getDay() {
