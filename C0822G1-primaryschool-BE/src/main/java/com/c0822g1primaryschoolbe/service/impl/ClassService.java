@@ -1,6 +1,7 @@
 package com.c0822g1primaryschoolbe.service.impl;
 
 
+import com.c0822g1primaryschoolbe.dto.ClazzStudentDto;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 
 import com.c0822g1primaryschoolbe.repository.IClassRepository;
@@ -21,8 +22,8 @@ public class ClassService implements IClassService {
     }
 
     @Override
-    public List<Clazz> findByIdClass(long id) {
-        return iClassRepository.findByIdClass(id);
+    public List<Clazz> showListClassStudentById(long id) {
+        return iClassRepository.showListClassStudentById(id);
     }
 
 }

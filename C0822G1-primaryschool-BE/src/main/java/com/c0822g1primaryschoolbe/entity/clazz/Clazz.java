@@ -1,4 +1,5 @@
 package com.c0822g1primaryschoolbe.entity.clazz;
+import com.c0822g1primaryschoolbe.dto.ClazzDto;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.TimeTable;
 
@@ -19,6 +20,10 @@ public class Clazz {
     @OneToOne(mappedBy = "clazz")
     private TimeTable timeTable;
 
+    public void MapFromDTO(ClazzDto dto) {
+        this.clazzName=dto.getClazzName();
+    }
+
     @ManyToOne
     @JoinColumn(name = "block_id",nullable = false,referencedColumnName = "block_id")
     private Block block;
@@ -27,6 +32,7 @@ public class Clazz {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
+
 
 
     public Long getClazzId() {
@@ -92,4 +98,5 @@ public class Clazz {
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
+
 }
