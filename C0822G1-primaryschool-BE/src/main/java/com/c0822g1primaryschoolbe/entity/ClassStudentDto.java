@@ -1,37 +1,27 @@
-package com.c0822g1primaryschoolbe.entity.clazz;
+package com.c0822g1primaryschoolbe.entity;
 
-import com.c0822g1primaryschoolbe.entity.student.Student;
+import com.c0822g1primaryschoolbe.entity.clazz.Block;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.TimeTable;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
-import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
-
-@Entity
-public class Clazz {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "clazz_id")
+public class ClassStudentDto implements Validator {
+    /**
+     * Create by : TuanNDN
+     * @return
+     */
     private Long clazzId;
-    @Column(columnDefinition = "varchar(45)")
     private String clazzName;
     private Boolean flagDelete;
     private Integer year;
     private String schoolYear;
-    @OneToOne(mappedBy = "clazz")
-    private TimeTable timeTable;
+//    private TimeTable timeTable;
+    private BlockDto block;
+    private TeacherDto teacher;
 
-    @ManyToOne
-    @JoinColumn(name = "block_id",nullable = false,referencedColumnName = "block_id")
-    private Block block;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "teacher_id")
-    private Teacher teacher;
-    @JsonBackReference
-    @OneToMany(mappedBy = "clazz")
-    private Set<Student> students;
+    public ClassStudentDto() {
+    }
 
     public Long getClazzId() {
         return clazzId;
@@ -73,27 +63,37 @@ public class Clazz {
         this.schoolYear = schoolYear;
     }
 
-    public TimeTable getTimeTable() {
-        return timeTable;
-    }
+//    public TimeTable getTimeTable() {
+//        return timeTable;
+//    }
+//
+//    public void setTimeTable(TimeTable timeTable) {
+//        this.timeTable = timeTable;
+//    }
 
-    public void setTimeTable(TimeTable timeTable) {
-        this.timeTable = timeTable;
-    }
-
-    public Block getBlock() {
+    public BlockDto getBlock() {
         return block;
     }
 
-    public void setBlock(Block block) {
+    public void setBlock(BlockDto block) {
         this.block = block;
     }
 
-    public Teacher getTeacher() {
+    public TeacherDto getTeacher() {
         return teacher;
     }
 
-    public void setTeacher(Teacher teacher) {
+    public void setTeacher(TeacherDto teacher) {
         this.teacher = teacher;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+
     }
 }

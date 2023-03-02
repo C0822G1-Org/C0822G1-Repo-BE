@@ -2,8 +2,7 @@ package com.c0822g1primaryschoolbe.controller;
 
 import com.c0822g1primaryschoolbe.entity.time_table_subject.ITimetable;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.Subject;
-import com.c0822g1primaryschoolbe.entity.time_table_subject.TimeTable;
-import com.c0822g1primaryschoolbe.service.class_service.IClazzService;
+import com.c0822g1primaryschoolbe.service.IClazzService;
 import com.c0822g1primaryschoolbe.service.subject.ISubjectService;
 import com.c0822g1primaryschoolbe.service.timetable.ITimetableService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,8 @@ import java.util.List;
 public class TimetableRestController {
     @Autowired
     private ITimetableService timetableService;
-    @Autowired
-    private IClazzService clazzService;
+//    @Autowired
+//    private IClazzService clazzService;
     @Autowired
     private ISubjectService subjectService;
 

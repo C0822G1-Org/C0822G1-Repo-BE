@@ -1,8 +1,6 @@
 package com.c0822g1primaryschoolbe.entity.time_table_subject;
 
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 
 @Entity
