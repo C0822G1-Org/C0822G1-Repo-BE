@@ -1,9 +1,9 @@
 package com.c0822g1primaryschoolbe.entity.clazz;
 
 public interface IClazzTeacher {
-    int getId();
+    Long getId();
     String getName();
     String getSchoolYear();
-    int getTeacherId();
+    Long getTeacherId();
     String getTeacherName();
 }
