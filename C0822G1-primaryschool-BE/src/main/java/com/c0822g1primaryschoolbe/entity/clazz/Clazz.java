@@ -6,6 +6,7 @@ import com.c0822g1primaryschoolbe.entity.time_table_subject.TimeTable;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -19,19 +20,15 @@ public class Clazz {
     private Boolean flagDelete;
     private Integer year;
     private String schoolYear;
-
     @OneToOne(mappedBy = "clazz")
     private TimeTable timeTable;
 
     @ManyToOne
     @JoinColumn(name = "block_id",nullable = false,referencedColumnName = "block_id")
     private Block block;
-
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
-
     @JsonBackReference
     @OneToMany(mappedBy = "clazz")
     private Set<Student> students;

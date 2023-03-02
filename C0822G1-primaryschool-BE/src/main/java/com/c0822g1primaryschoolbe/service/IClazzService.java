@@ -52,4 +52,10 @@ public interface IClazzService {
      * @param 'id'
      */
     List<ClazzStudentDto> showListClassStudentById(@Param("id") long id);
+
+    /**
+     * Create by: NamHH
+     * @return
+     */
+    List<Clazz> findAllClazz();
 }

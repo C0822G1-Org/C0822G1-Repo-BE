@@ -92,6 +92,13 @@ public class ClazzService implements IClazzService {
         return clazzRepository.showListClassStudentById(id);
     }
 
-
+    /**
+     * Create by NamHH
+     * @return
+     */
+    @Override
+    public List<Clazz> findAllClazz() {
+        return clazzRepository.findAllClazz();
+    }
 
 }

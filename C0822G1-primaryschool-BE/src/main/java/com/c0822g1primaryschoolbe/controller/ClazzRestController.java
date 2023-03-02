@@ -186,11 +186,4 @@ public class ClazzRestController {
         clazzService.createChooseClass(clazz);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-
-
-
-
-
-
-
 }
