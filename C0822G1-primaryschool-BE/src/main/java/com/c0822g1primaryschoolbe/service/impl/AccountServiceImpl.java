@@ -27,8 +27,10 @@ public class AccountServiceImpl implements IAccountService {
     public Optional<Account> findByUsername(String username) {
         return iAccountRepository.findByUsername(username);
     }
+
     @Autowired
     private PasswordEncoder passwordEncoder;
+
     /**
      * Create by : NuongHT
      * Date create: 28/02/2023
@@ -51,3 +53,4 @@ public class AccountServiceImpl implements IAccountService {
 
     }
 }
+

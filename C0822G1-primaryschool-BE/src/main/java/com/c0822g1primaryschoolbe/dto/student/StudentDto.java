@@ -1,46 +1,65 @@
-package com.c0822g1primaryschoolbe.entity.student;
+package com.c0822g1primaryschoolbe.dto.student;
 
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.c0822g1primaryschoolbe.entity.student.PointManagement;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
-import javax.persistence.*;
-
-@Entity
-public class Student {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "student_id")
+public class StudentDto  {
     private Long studentId;
+    @NotBlank(message = "Không được để trống!")
     private String img;
-    @Column(columnDefinition = "varchar(45)")
+    @NotBlank(message = "Không được để trống!")
     private String studentName;
+    @NotBlank(message = "Không được để trống!")
     private String dateOfBirth;
-    private Boolean gender;
-    @Column(columnDefinition = "varchar(45)")
+
+    private boolean gender;
+    @NotBlank(message = "Không được để trống!")
     private String fatherName;
-    @Column(columnDefinition = "varchar(45)")
+    @NotBlank(message = "Không được để trống!")
     private String phoneNumberFather;
-    @Column(columnDefinition = "varchar(45)")
+    @NotBlank(message = "Không được để trống!")
     private String fatherJob;
-    @Column(columnDefinition = "varchar(45)")
+    @NotBlank(message = "Không được để trống!")
     private String motherName;
-    @Column(columnDefinition = "varchar(45)")
+    @NotBlank(message = "Không được để trống!")
     private String phoneNumberMother;
-    @Column(columnDefinition = "varchar(45)")
+    @NotBlank(message = "Không được để trống!")
     private String motherJob;
-    @Column(columnDefinition = "varchar(45)")
+    @NotBlank(message = "Không được để trống!")
     private String religion;
+    @NotBlank(message = "Không được để trống!")
     private String address;
-    private Boolean studentStatus;
-    private Boolean flagDelete;
-    @OneToOne(mappedBy = "student")
-    @JsonBackReference
+    private boolean studentStatus;
+    private boolean flagDelete;
     private PointManagement pointManagement;
-    @ManyToOne
-    @JsonBackReference
-    @JoinColumn(name = "clazz_id",nullable = false,referencedColumnName = "clazz_id")
     private Clazz clazz;
 
+    public StudentDto() {
+    }
+
+    public StudentDto(Long studentId, String img, String studentName, String dateOfBirth, boolean gender, String fatherName, String phoneNumberFather, String fatherJob, String motherName, String phoneNumberMother, String motherJob, String religion, String address, boolean studentStatus, boolean flagDelete, PointManagement pointManagement, Clazz clazz) {
+        this.studentId = studentId;
+        this.img = img;
+        this.studentName = studentName;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.fatherName = fatherName;
+        this.phoneNumberFather = phoneNumberFather;
+        this.fatherJob = fatherJob;
+        this.motherName = motherName;
+        this.phoneNumberMother = phoneNumberMother;
+        this.motherJob = motherJob;
+        this.religion = religion;
+        this.address = address;
+        this.studentStatus = studentStatus;
+        this.flagDelete = flagDelete;
+        this.pointManagement = pointManagement;
+        this.clazz = clazz;
+    }
 
     public Long getStudentId() {
         return studentId;
@@ -74,11 +93,11 @@ public class Student {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Boolean getGender() {
+    public boolean isGender() {
         return gender;
     }
 
-    public void setGender(Boolean gender) {
+    public void setGender(boolean gender) {
         this.gender = gender;
     }
 
@@ -146,28 +165,20 @@ public class Student {
         this.address = address;
     }
 
-    public Boolean getStudentStatus() {
+    public boolean isStudentStatus() {
         return studentStatus;
     }
 
-    public void setStudentStatus(Boolean studentStatus) {
+    public void setStudentStatus(boolean studentStatus) {
         this.studentStatus = studentStatus;
     }
 
-    public Boolean getFlagDelete() {
+    public boolean isFlagDelete() {
         return flagDelete;
     }
 
-    public void setFlagDelete(Boolean flagDelete) {
+    public void setFlagDelete(boolean flagDelete) {
         this.flagDelete = flagDelete;
-    }
-
-    public Clazz getClazz() {
-        return clazz;
-    }
-
-    public void setClazz(Clazz clazz) {
-        this.clazz = clazz;
     }
 
     public PointManagement getPointManagement() {
@@ -176,5 +187,13 @@ public class Student {
 
     public void setPointManagement(PointManagement pointManagement) {
         this.pointManagement = pointManagement;
+    }
+
+    public Clazz getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(Clazz clazz) {
+        this.clazz = clazz;
     }
 }

@@ -20,6 +20,7 @@ public class JWTProvider {
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }
+
     public boolean validateToken(String token) {
         try {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
@@ -37,6 +38,7 @@ public class JWTProvider {
         }
         return false;
     }
+
     public String getUsernameFromToken(String token) {
         String username = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
         return username;
