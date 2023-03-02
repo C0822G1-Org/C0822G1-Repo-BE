@@ -7,6 +7,10 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 public class ClassStudentDto implements Validator {
+    /**
+     * Create by : TuanNDN
+     * @return
+     */
     private Long clazzId;
     private String clazzName;
     private Boolean flagDelete;

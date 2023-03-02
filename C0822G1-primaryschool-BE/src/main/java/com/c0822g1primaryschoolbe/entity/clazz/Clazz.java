@@ -1,10 +1,12 @@
 package com.c0822g1primaryschoolbe.entity.clazz;
 
+import com.c0822g1primaryschoolbe.entity.student.Student;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.TimeTable;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Clazz {
@@ -30,6 +32,9 @@ public class Clazz {
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
+    @JsonBackReference
+    @OneToMany(mappedBy = "clazz")
+    private Set<Student> students;
 
     public Long getClazzId() {
         return clazzId;

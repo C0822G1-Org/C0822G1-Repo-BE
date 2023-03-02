@@ -9,12 +9,18 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ITeacherRepository extends JpaRepository<Teacher, Long> {
-
+    /**
+     * Create by : TuanNDN
+     * @return
+     */
     @Query(value ="SELECT * from teacher where teacher_id = :teacherId and flag_delete = false",
             nativeQuery = true)
     Optional<Teacher> findByIdTeacher(@Param("teacherId") Long teacherId);
 
-
+    /**
+     * Create by : TuanNDN
+     * @return
+     */
     @Query(value = "SELECT * FROM `primary-school-management`.teacher"
             ,countQuery = "SELECT * FROM `primary-school-management`.teacher"
             ,nativeQuery = true)

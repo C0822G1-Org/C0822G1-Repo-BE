@@ -1,8 +1,6 @@
 package com.c0822g1primaryschoolbe.entity.teacher;
 
 import com.c0822g1primaryschoolbe.entity.account.Account;
-import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -27,24 +25,34 @@ public class Teacher {
     private Boolean teacherStatus;
 
     @JsonIgnore
-    @JsonBackReference
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id")
     private Account account;
 
-    @JsonBackReference
+
     @ManyToOne()
     @JoinColumn(name = "degree_id",nullable = false,referencedColumnName = "degree_id")
     private Degree degree;
 
-//    @JsonBackReference
-//    @OneToOne(mappedBy = "teacher")
-//    private Clazz clazz;
 
 
-//    public Teacher(Long teacherId) {
-//        this.teacherId = teacherId;
-//    }
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
 
     public Long getTeacherId() {
         return teacherId;
@@ -125,12 +133,4 @@ public class Teacher {
     public void setDegree(Degree degree) {
         this.degree = degree;
     }
-
-//    public Clazz getClazz() {
-//        return clazz;
-//    }
-//
-//    public void setClazz(Clazz clazz) {
-//        this.clazz = clazz;
-//    }
 }
