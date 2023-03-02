@@ -1,8 +1,6 @@
 package com.c0822g1primaryschoolbe.service;
 
-import com.c0822g1primaryschoolbe.entity.clazz.IClazzName;
-import com.c0822g1primaryschoolbe.entity.clazz.IClazzTeacher;
-import com.c0822g1primaryschoolbe.entity.clazz.IClazzYear;
+import com.c0822g1primaryschoolbe.entity.clazz.*;
 
 import java.util.List;
 
@@ -15,4 +13,5 @@ public interface IClazzService {
 
     void editTeacher(Long teacherId, Long clazzId);
 
+    Clazz getClazzById(Long clazzId);
 }

@@ -1,8 +1,6 @@
 package com.c0822g1primaryschoolbe.controller;
 
-import com.c0822g1primaryschoolbe.entity.clazz.IClazzName;
-import com.c0822g1primaryschoolbe.entity.clazz.IClazzTeacher;
-import com.c0822g1primaryschoolbe.entity.clazz.IClazzYear;
+import com.c0822g1primaryschoolbe.entity.clazz.*;
 import com.c0822g1primaryschoolbe.entity.student.IStudentInfo;
 import com.c0822g1primaryschoolbe.entity.student.Student;
 import com.c0822g1primaryschoolbe.entity.teacher.ITeacherInfo;
@@ -10,6 +8,9 @@ import com.c0822g1primaryschoolbe.service.IClazzService;
 import com.c0822g1primaryschoolbe.service.IStudentService;
 import com.c0822g1primaryschoolbe.service.ITeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,17 +38,9 @@ public class StudentRestController {
      * @param year,clazzId
      * @return HttpStatus.NO_CONTENT if rerult is error or HttpStatus.OK if result is not error
      */
-//    @GetMapping("/student-list")
-//    public ResponseEntity<Page<IStudentInfo>> getStudentList(@PageableDefault(size =10) Pageable pageable, @RequestParam String year, @RequestParam String clazzId){
-//        Page<IStudentInfo> iStudentInfos=iStudentService.getStudentList(pageable,Integer.parseInt(year),Integer.parseInt(clazzId));
-//        if (iStudentInfos.isEmpty()){
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        }
-//        return new ResponseEntity<>(iStudentInfos,HttpStatus.OK);
-//    }
     @GetMapping("/list")
-    public ResponseEntity<List<IStudentInfo>> getStudentList(@RequestParam String year, @RequestParam String clazzId) {
-        List<IStudentInfo> iStudentInfos = iStudentService.getStudentList(Integer.parseInt(year), Long.parseLong(clazzId));
+    public ResponseEntity<Page<IStudentInfo>> getStudentList(@PageableDefault(size = 2) Pageable pageable, @RequestParam String year, @RequestParam String clazzId) {
+        Page<IStudentInfo> iStudentInfos = iStudentService.getStudentList(pageable, Integer.parseInt(year), Long.parseLong(clazzId));
         if (iStudentInfos.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -138,19 +131,40 @@ public class StudentRestController {
         return new ResponseEntity<>(iTeacherInfo, HttpStatus.OK);
     }
 
-    @GetMapping("/edit-teacher")
-    public void editTeacher(@RequestParam String teacherId, @RequestParam String clazzId) {
-        iClazzService.editTeacher(Long.parseLong(teacherId), Long.parseLong(clazzId));
+
+    /**
+     * Create by:TrungNQ
+     * Date create:27/2/2023
+     * Funciton: edit teacherId by idClazz
+     *
+     * @param clazzId,clazzTeacher
+     * @return HttpStatus.NO_CONTENT if rerult is error or HttpStatus.OK if result is not error
+     */
+    @PutMapping("/edit-teacher/{id}")
+    public ResponseEntity<ClazzTeacherDto> editTeacher(@RequestBody ClazzTeacherDto clazzTeacherDto, @PathVariable("id") Long clazzId) {
+        Clazz clazz = iClazzService.getClazzById(clazzId);
+        if (clazz == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        iClazzService.editTeacher(clazzTeacherDto.getTeacherId(), clazzId);
+        return new ResponseEntity<>(clazzTeacherDto, HttpStatus.OK);
     }
 
+    /**
+     * Create by:TrungNQ
+     * Date create:27/2/2023
+     * Funciton: delete student by id
+     *
+     * @return HttpStatus.NO_CONTENT if rerult is error or HttpStatus.OK if result is not error
+     */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Student> deleteStudent(@PathVariable("id") Long id){
-        Student student=iStudentService.findStudentById(id);
-        if (student==null){
+    public ResponseEntity<Student> deleteStudent(@PathVariable("id") Long id) {
+        Student student = iStudentService.getStudentById(id);
+        if (student == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        iStudentService.deleteStudent(id);
-        return new ResponseEntity<>(student,HttpStatus.OK);
+        iStudentService.removeStudent(id);
+        return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
 }

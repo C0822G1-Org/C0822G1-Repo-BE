@@ -5,6 +5,8 @@ import com.c0822g1primaryschoolbe.entity.student.Student;
 import com.c0822g1primaryschoolbe.repository.IStudentRepository;
 import com.c0822g1primaryschoolbe.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,24 +15,18 @@ import java.util.List;
 public class StudentService implements IStudentService {
     @Autowired
     private IStudentRepository iStudentRepository;
-//    @Override
-//    public Page<IStudentInfo> getStudentList(Pageable pageable,int year, int clazzId) {
-//        return iStudentRepository.getStudentList(pageable,year,clazzId);
-//    }
-//
     @Override
-    public List<IStudentInfo> getStudentList(int year, Long clazzId) {
-        return iStudentRepository.getStudentList(year,clazzId);
+    public Page<IStudentInfo> getStudentList(Pageable pageable, int year, Long clazzId) {
+        return iStudentRepository.getStudentList(pageable,year,clazzId);
     }
 
     @Override
-    public void deleteStudent(Long id) {
-        iStudentRepository.removeStudentCus(id);
+    public void removeStudent(Long id) {
+        iStudentRepository.removeStudent(id);
     }
 
     @Override
-    public Student findStudentById(Long id) {
-        return iStudentRepository.getStudentByID(id);
-//        return null;
+    public Student getStudentById(Long id) {
+        return iStudentRepository.getStudentById(id);
     }
 }

@@ -1,8 +1,6 @@
 package com.c0822g1primaryschoolbe.service.impl;
 
-import com.c0822g1primaryschoolbe.entity.clazz.IClazzName;
-import com.c0822g1primaryschoolbe.entity.clazz.IClazzTeacher;
-import com.c0822g1primaryschoolbe.entity.clazz.IClazzYear;
+import com.c0822g1primaryschoolbe.entity.clazz.*;
 import com.c0822g1primaryschoolbe.repository.IClazzRepository;
 import com.c0822g1primaryschoolbe.service.IClazzService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +30,11 @@ public class ClazzService implements IClazzService {
     @Override
     public void editTeacher(Long teacherId, Long clazzId) {
         iClazzRepository.editTeacher(teacherId,clazzId);
+    }
+
+    @Override
+    public Clazz getClazzById(Long clazzId) {
+        return iClazzRepository.getClazzById(clazzId);
     }
 
 
