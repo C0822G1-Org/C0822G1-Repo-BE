@@ -1,6 +1,7 @@
 package com.c0822g1primaryschoolbe.service.impl;
 
 import com.c0822g1primaryschoolbe.entity.clazz.*;
+import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 import com.c0822g1primaryschoolbe.repository.IClazzRepository;
 import com.c0822g1primaryschoolbe.service.IClazzService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,31 +12,64 @@ import java.util.List;
 @Service
 public class ClazzService implements IClazzService {
     @Autowired
-    private IClazzRepository iClazzRepository;
+    private IClazzRepository clazzRepository;
+
+    /**
+     * Create by : TrungNQ
+     * Date create: 27/02/2023
+     */
     @Override
     public List<IClazzYear> getListYear() {
-        return iClazzRepository.getListYear();
+        return clazzRepository.getListYear();
     }
 
+
+    /**
+     * Create by : TrungNQ
+     * Date create: 27/02/2023
+     */
     @Override
     public List<IClazzName> getListClazzName(int year, String name) {
-        return iClazzRepository.getListClazzName(year,name);
+        return clazzRepository.getListClazzName(year,name);
     }
 
+
+    /**
+     * Create by : TrungNQ
+     * Date create: 27/02/2023
+     */
     @Override
     public IClazzTeacher getClazzTeacher(int year, Long clazzId) {
-        return iClazzRepository.getClazzTeacher(year,clazzId);
+        return clazzRepository.getClazzTeacher(year,clazzId);
     }
 
+
+    /**
+     * Create by : TrungNQ
+     * Date create: 27/02/2023
+     */
     @Override
     public void editTeacher(Long teacherId, Long clazzId) {
-        iClazzRepository.editTeacher(teacherId,clazzId);
+        clazzRepository.editTeacher(teacherId,clazzId);
     }
 
+
+    /**
+     * Create by:TrungNQ
+     * Date create:27/2/2023
+     */
     @Override
     public Clazz getClazzById(Long clazzId) {
-        return iClazzRepository.getClazzById(clazzId);
+        return clazzRepository.getClazzById(clazzId);
     }
 
 
+    /**
+     * Create by : HoangNM
+     * Date create: 27/02/2023
+     */
+    @Override
+    public List<Clazz> getAll() {
+        return clazzRepository.getAll();
+    }
 }

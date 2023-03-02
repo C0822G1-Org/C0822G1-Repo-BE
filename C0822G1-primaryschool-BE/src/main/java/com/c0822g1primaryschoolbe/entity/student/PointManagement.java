@@ -1,5 +1,7 @@
 package com.c0822g1primaryschoolbe.entity.student;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 @Entity
 public class PointManagement {
