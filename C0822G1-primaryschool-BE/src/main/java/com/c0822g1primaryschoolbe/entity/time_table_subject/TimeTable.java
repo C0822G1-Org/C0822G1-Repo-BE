@@ -36,7 +36,6 @@ public class TimeTable {
         this.timeTableId = timeTableId;
     }
 
-
     public Clazz getClazz() {
         return clazz;
     }
@@ -44,7 +43,6 @@ public class TimeTable {
     public void setClazz(Clazz clazz) {
         this.clazz = clazz;
     }
-
 
     public Lesson getLesson() {
         return lesson;

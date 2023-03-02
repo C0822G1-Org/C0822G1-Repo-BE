@@ -51,9 +51,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
-                .authorizeRequests().antMatchers("/**").permitAll()
-//                .antMatchers("/api/teacher/**").access("hasRole('TEACHER')")
-//                .antMatchers("/api/admin/**").access("hasRole('ADMIN')")
+
+                .authorizeRequests().antMatchers("/api/auth/**", "/blog/**").permitAll()
+                .antMatchers("/api/teacher/**").access("hasRole('TEACHER')")
+                .antMatchers("/api/admin/**").access("hasRole('ADMIN')")
                 .anyRequest().authenticated()
                 .and().exceptionHandling()
                 .authenticationEntryPoint(jwtEntryPoint)
@@ -62,3 +63,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }
+

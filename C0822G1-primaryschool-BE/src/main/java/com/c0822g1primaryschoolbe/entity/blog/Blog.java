@@ -16,6 +16,18 @@ public class Blog {
     private String poster;
     private String img;
 
+    public Blog() {
+    }
+
+    public Blog(Long id, String title, String content, String startDate, String poster, String img) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.startDate = startDate;
+        this.poster = poster;
+        this.img = img;
+    }
+
     public Long getId() {
         return id;
     }

@@ -14,6 +14,10 @@ import java.util.Optional;
 @Transactional
 public interface IAccountRepository extends JpaRepository<Account,Long> {
 
+    Boolean existsAccountByUsername(String username);
+
+    Boolean existsAccountByEmail(String email);
+
 
     @Query(value = "select * from account where username = :username", nativeQuery = true)
     Optional<Account> findByUsername(@Param("username") String username);
