@@ -27,6 +27,16 @@ public class StudentService implements IStudentService {
         return studentRepository.findByNameAndStatus(name, status, pageable);
     }
 
+
+
+
+    /**
+     * create by :VinhLD
+     * date create 27/02/2023
+     *funtion : search student by name and status
+     * @param "name, status"
+     * @return
+     */
     @Override
     public Page<IStudentDto> searchStudent(StudentDtoToSearch studentDtoToSearch, Pageable pageable) {
         return studentRepository.searchStudent(studentDtoToSearch, pageable);

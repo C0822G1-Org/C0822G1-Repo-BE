@@ -9,6 +9,16 @@ public interface ITeacherService {
 
     Page<Teacher>findByName(String name, Boolean status, Pageable pageable);
 
+
+
+
+    /**
+     * create by :VinhLD
+     * date create 27/02/2023
+     *funtion : search teacher by name and status
+     * @param "name, status"
+     * @return
+     */
     Page<Teacher>searchTeacher(TeacherDtoToSearch teacherDtoToSearch, Pageable pageable);
 
 

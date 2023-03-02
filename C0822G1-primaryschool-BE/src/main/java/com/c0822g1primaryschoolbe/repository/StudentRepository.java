@@ -21,7 +21,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     /**
      * create by :VinhLD
      * date create 27/02/2023
-     * <p>
+     *
      * funtion : search student by name and status
      *
      * @param "name"
@@ -69,6 +69,15 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 //    Page<NotificationAllPropertyDto> searchNotifications(@Param("notificationSearchDto") NotificationSearchDto notificationSearchDto,
 //                                                         Pageable pageable);
 
+
+
+    /**
+     * create by :VinhLD
+     * date create 27/02/2023
+     *funtion : search student by name and status
+     * @param "name, status"
+     * @return
+     */
     @Query(value = "select `student`.student_name as nameStudent, " +
             " `student`.student_id as idStudent, " +
             " `student`.date_of_birth as dateOfBirthStudent, " +

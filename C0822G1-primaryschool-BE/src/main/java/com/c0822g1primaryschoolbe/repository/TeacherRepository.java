@@ -17,6 +17,14 @@ Page<Teacher> findByName(@Param("name") String name,
                          Pageable pageable);
 
 
+
+    /**
+     * create by :VinhLD
+     * date create 27/02/2023
+     * funtion : search teacher by name and status
+     * @param "name"
+     * @return
+     */
 @Query(value = " select teacher.* from teacher where teacher.teacher_name like %:#{#teacherDtoToSearch.nameTeacher}%" +
         " and teacher.teacher_status = :#{#teacherDtoToSearch.teachStatus} order by teacher.teacher_name asc", nativeQuery = true )
     Page<Teacher> searchTeacher(@Param("teacherDtoToSearch")TeacherDtoToSearch teacherDtoToSearch, Pageable pageable);

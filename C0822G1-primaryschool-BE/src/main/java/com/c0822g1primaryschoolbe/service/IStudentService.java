@@ -15,5 +15,14 @@ public interface IStudentService {
 
     Page<IStudentDto> findByNameAndStatus(String name, Boolean status, Pageable pageable);
 
+
+    /**
+     * create by :VinhLD
+     * date create 27/02/2023
+     *funtion : search student by name and status
+     * @param "name, status"
+     * @return
+     */
+
     Page<IStudentDto> searchStudent(StudentDtoToSearch studentDtoToSearch, Pageable pageable);
 }

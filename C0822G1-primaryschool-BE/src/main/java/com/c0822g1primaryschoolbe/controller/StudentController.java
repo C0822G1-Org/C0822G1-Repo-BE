@@ -47,6 +47,15 @@ public class StudentController {
 //
 //    }
 
+
+
+    /**
+     * create by :VinhLD
+     * date create 27/02/2023
+     *funtion : search student by name and status
+     * @param "name, status"
+     * @return
+     */
     @PostMapping("/search")
     public ResponseEntity<Page<IStudentDto>> searchStudent(@RequestBody StudentDtoToSearch studentDtoToSearch,
                                                              @PageableDefault(value = 5) Pageable pageable) {
