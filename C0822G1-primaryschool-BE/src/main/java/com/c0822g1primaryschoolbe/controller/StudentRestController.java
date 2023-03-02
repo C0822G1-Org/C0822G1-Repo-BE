@@ -10,13 +10,14 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/students")
@@ -60,6 +61,30 @@ public class StudentRestController {
         TeacherViewDto teacherViewDto = this.teacherService.findIdTeacher(accountId);
         return new ResponseEntity<>(teacherViewDto, HttpStatus.OK);
     }
+
+
+    /**
+     * Create by : NuongHT
+     * Date create: 27/02/2023
+     * Description: get student by studentID
+     *
+     * @param 'studentID'
+     * @return student
+     */
+
+    @Autowired
+    private IStudentService iStudentService;
+
+
+    @GetMapping("/info/{id}")
+    public ResponseEntity<Student> getInfoStudent(@PathVariable Long id) {
+        Student student = iStudentService.findById(id).orElse(null);
+        if(student == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(student, HttpStatus.OK);
+    }
+
     /**
      * Create by: HoangNM
      * Date created: 27/02/2023
@@ -83,8 +108,9 @@ public class StudentRestController {
      * @param bindingResult
      * @return HttpStatus.OK
      */
-    @PostMapping("/create-student")
-    public ResponseEntity<?> createStudent(@RequestBody @Validated StudentDto studentDto, BindingResult bindingResult) {
+    @PostMapping(value = "/create-student")
+    public ResponseEntity<?> createStudent(@RequestBody @Valid StudentDto studentDto, BindingResult bindingResult) {
+        System.out.println(studentDto);
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
@@ -103,7 +129,7 @@ public class StudentRestController {
      * @param bindingResult
      * @return HttpStatus.OK
      */
-    @PutMapping("/update-student/{student-id}")
+    @PutMapping("/update-student")
     public ResponseEntity<?> updateStudent(@RequestBody @Validated StudentDto studentDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
@@ -113,5 +139,4 @@ public class StudentRestController {
         studentService.update(student);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }

@@ -16,10 +16,13 @@ public class TimeTable {
     @JoinColumn(name = "clazz_id")
     private Clazz clazz;
     @ManyToOne
-    @JoinColumn(name = "lesson_id", nullable = false,referencedColumnName = "lesson_id")
+    @JoinColumn(name = "subject_id", nullable = false, referencedColumnName = "subject_id")
+    private Subject subject;
+    @ManyToOne
+    @JoinColumn(name = "lesson_id", nullable = false, referencedColumnName = "lesson_id")
     private Lesson lesson;
     @ManyToOne
-    @JoinColumn(name = "day_id", nullable = false,referencedColumnName = "day_id")
+    @JoinColumn(name = "day_id", nullable = false, referencedColumnName = "day_id")
     private Day day;
     @OneToMany(mappedBy = "timeTable")
     @JsonBackReference
@@ -49,6 +52,14 @@ public class TimeTable {
 
     public void setLesson(Lesson lesson) {
         this.lesson = lesson;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 
     public Day getDay() {

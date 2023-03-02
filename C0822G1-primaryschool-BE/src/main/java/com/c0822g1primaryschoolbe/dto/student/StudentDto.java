@@ -7,8 +7,7 @@ import org.springframework.validation.Validator;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-public class StudentDto implements Validator {
-    @NotBlank(message = "Không được để trống!")
+public class StudentDto  {
     private Long studentId;
     @NotBlank(message = "Không được để trống!")
     private String img;
@@ -16,8 +15,8 @@ public class StudentDto implements Validator {
     private String studentName;
     @NotBlank(message = "Không được để trống!")
     private String dateOfBirth;
-    @NotBlank(message = "Không được để trống!")
-    private Boolean gender;
+
+    private boolean gender;
     @NotBlank(message = "Không được để trống!")
     private String fatherName;
     @NotBlank(message = "Không được để trống!")
@@ -33,17 +32,16 @@ public class StudentDto implements Validator {
     @NotBlank(message = "Không được để trống!")
     private String religion;
     @NotBlank(message = "Không được để trống!")
-    private String address;  @NotBlank(message = "Không được để trống!")
-    @NotBlank(message = "Không được để trống!")
-    private Boolean studentStatus;
-    private Boolean flagDelete;
+    private String address;
+    private boolean studentStatus;
+    private boolean flagDelete;
     private PointManagement pointManagement;
     private Clazz clazz;
 
     public StudentDto() {
     }
 
-    public StudentDto(Long studentId, String img, String studentName, String dateOfBirth, Boolean gender, String fatherName, String phoneNumberFather, String fatherJob, String motherName, String phoneNumberMother, String motherJob, String religion, String address, Boolean studentStatus, Boolean flagDelete, PointManagement pointManagement, Clazz clazz) {
+    public StudentDto(Long studentId, String img, String studentName, String dateOfBirth, boolean gender, String fatherName, String phoneNumberFather, String fatherJob, String motherName, String phoneNumberMother, String motherJob, String religion, String address, boolean studentStatus, boolean flagDelete, PointManagement pointManagement, Clazz clazz) {
         this.studentId = studentId;
         this.img = img;
         this.studentName = studentName;
@@ -95,11 +93,11 @@ public class StudentDto implements Validator {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Boolean getGender() {
+    public boolean isGender() {
         return gender;
     }
 
-    public void setGender(Boolean gender) {
+    public void setGender(boolean gender) {
         this.gender = gender;
     }
 
@@ -167,19 +165,19 @@ public class StudentDto implements Validator {
         this.address = address;
     }
 
-    public Boolean getStudentStatus() {
+    public boolean isStudentStatus() {
         return studentStatus;
     }
 
-    public void setStudentStatus(Boolean studentStatus) {
+    public void setStudentStatus(boolean studentStatus) {
         this.studentStatus = studentStatus;
     }
 
-    public Boolean getFlagDelete() {
+    public boolean isFlagDelete() {
         return flagDelete;
     }
 
-    public void setFlagDelete(Boolean flagDelete) {
+    public void setFlagDelete(boolean flagDelete) {
         this.flagDelete = flagDelete;
     }
 
@@ -197,15 +195,5 @@ public class StudentDto implements Validator {
 
     public void setClazz(Clazz clazz) {
         this.clazz = clazz;
-    }
-
-    @Override
-    public boolean supports(Class<?> clazz) {
-        return false;
-    }
-
-    @Override
-    public void validate(Object target, Errors errors) {
-
     }
 }
