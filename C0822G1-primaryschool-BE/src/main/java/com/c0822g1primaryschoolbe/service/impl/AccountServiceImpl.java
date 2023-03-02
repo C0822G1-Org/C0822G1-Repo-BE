@@ -26,16 +26,40 @@ public class AccountServiceImpl implements IAccountService {
         return iAccountRepository.findByUsername(username);
     }
 
+    /**
+     * Created by: SyTV
+     * Date created: 27/02/2023
+     * Function: findByUserName
+     *
+     * @param username
+     * @return true false
+     */
     @Override
     public Boolean existsAccountByUsername(String username) {
         return iAccountRepository.existsAccountByUsername(username);
     }
 
+    /**
+     * Created by: SyTV
+     * Date created: 27/02/2023
+     * Function: findByUserName
+     *
+     * @param email
+     * @return true false
+     */
     @Override
     public Boolean existsAccountByEmail(String email) {
         return iAccountRepository.existsAccountByEmail(email);
     }
 
+    /**
+     * Created by: SyTV
+     * Date created: 27/02/2023
+     * Function: findByUserName
+     *
+     * @param account
+     *
+     */
     @Override
     public void save(Account account) {
         iAccountRepository.save(account);
