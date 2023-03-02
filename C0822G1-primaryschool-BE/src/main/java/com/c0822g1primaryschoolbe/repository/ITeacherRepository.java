@@ -12,6 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public interface ITeacherRepository extends JpaRepository<Teacher, Long> {
+
+    /**
+     * Created by: MinhCDK
+     * Date created: 28/02/2023
+     * Function: editInfoTeacher
+     */
+
     @Modifying
     @Query(value = "update teacher set teacher_name = :teacherName, date_of_birth = :dateOfBirth, gender = :gender, degree_id = :degreeId, teacher_type = :teacherType, id_card= :idCard, email = :email, phone_number = :phoneNumber where teacher_id= :teacherId", nativeQuery = true)
     void editInfoTeacher(@Param("teacherName") String teacherName,

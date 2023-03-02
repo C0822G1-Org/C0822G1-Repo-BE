@@ -29,6 +29,7 @@ public class PointRestController {
      *
      * @Param: teacherID
      */
+
     @GetMapping("/{teacherId}")
     public ResponseEntity<List<PointManagementDto>> showListPoint(@PathVariable Long teacherId) {
         List<PointManagementDto> pointManagementDtos = iPointManagementService.showListPoint(teacherId);
@@ -37,6 +38,14 @@ public class PointRestController {
         }
         return new ResponseEntity<>(pointManagementDtos, HttpStatus.OK);
     }
+
+    /**
+     * Created by: MinhCDK
+     * Date created: 22/03/2023
+     * Function: editListPoint
+     *
+     * @Param: teacherID
+     */
 
     @PutMapping("/editPoint")
     public ResponseEntity<?> editPoint(@Validated @RequestBody EditPointDto editPointDto, BindingResult bindingResult) {
@@ -48,6 +57,14 @@ public class PointRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * Created by: MinhCDK
+     * Date created: 28/02/2023
+     * Function: searchStudentName
+     *
+     * @Param: teacherID
+     */
+
     @GetMapping("/search")
     public ResponseEntity<List<PointManagementDto>> findByStudentName(@RequestParam Long teacherId,
                                                                       @RequestParam String studentName) {
@@ -56,6 +73,5 @@ public class PointRestController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(pointManagementDtos, HttpStatus.OK);
-
     }
 }
