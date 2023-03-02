@@ -2,9 +2,9 @@ package com.c0822g1primaryschoolbe.service.impl;
 
 import com.c0822g1primaryschoolbe.dto.request.ChangePasswordDto;
 import com.c0822g1primaryschoolbe.entity.account.Account;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.c0822g1primaryschoolbe.repository.IAccountRepository;
 import com.c0822g1primaryschoolbe.service.IAccountService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -50,7 +50,6 @@ public class AccountServiceImpl implements IAccountService {
         }
         account.setPassword(passwordEncoder.encode(changePasswordDto.getNewPass()));
         iAccountRepository.save(account);
-
     }
 }
 

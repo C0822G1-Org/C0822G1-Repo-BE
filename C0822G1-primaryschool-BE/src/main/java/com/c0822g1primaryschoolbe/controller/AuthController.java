@@ -1,5 +1,6 @@
 package com.c0822g1primaryschoolbe.controller;
 
+
 import com.c0822g1primaryschoolbe.dto.request.ChangePasswordDto;
 import com.c0822g1primaryschoolbe.dto.request.SignInForm;
 import com.c0822g1primaryschoolbe.dto.response.JwtResponse;
@@ -63,10 +64,11 @@ public class AuthController {
      * Description: api change password
      *
      */
-    @PostMapping("/change-password")
+    @PatchMapping("/change-password")
     public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDto changePasswordDto) throws Exception {
         iAccountService.changePassword(changePasswordDto);
         return ResponseEntity.ok().build();
     }
+
 }
 

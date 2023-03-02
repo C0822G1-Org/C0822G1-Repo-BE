@@ -34,7 +34,6 @@ public class Student {
     private Boolean studentStatus;
     private Boolean flagDelete;
     @OneToOne(mappedBy = "student")
-    @JsonBackReference
     private PointManagement pointManagement;
     @ManyToOne
     @JsonBackReference
