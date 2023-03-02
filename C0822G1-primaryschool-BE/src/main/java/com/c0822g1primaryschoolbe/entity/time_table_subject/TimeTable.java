@@ -10,13 +10,27 @@ import java.util.Set;
 public class TimeTable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "time_table_id")
     private Long timeTableId;
-    private Integer lesson;
+    @JsonBackReference
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "clazz_id")
+    private Clazz clazz;
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "subject_id",nullable = false,referencedColumnName = "subject_id")
+    private Subject subject;
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "lesson_id", nullable = false,referencedColumnName = "lesson_id")
+    private Lesson lesson;
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "day_id", nullable = false,referencedColumnName = "day_id")
+    private Day day;
     @OneToMany(mappedBy = "timeTable")
     @JsonBackReference
     private Set<TimeTableSubject> timeTableSubjectSet;
-    @OneToOne(mappedBy = "timeTable")
-    private Clazz clazz;
 
     public Long getTimeTableId() {
         return timeTableId;
@@ -26,12 +40,38 @@ public class TimeTable {
         this.timeTableId = timeTableId;
     }
 
-    public Integer getLesson() {
+
+    public Clazz getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(Clazz clazz) {
+        this.clazz = clazz;
+    }
+
+
+    public Lesson getLesson() {
         return lesson;
     }
 
-    public void setLesson(Integer lesson) {
+    public void setLesson(Lesson lesson) {
         this.lesson = lesson;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
+
+    public Day getDay() {
+        return day;
+    }
+
+    public void setDay(Day day) {
+        this.day = day;
     }
 
     public Set<TimeTableSubject> getTimeTableSubjectSet() {
@@ -40,13 +80,5 @@ public class TimeTable {
 
     public void setTimeTableSubjectSet(Set<TimeTableSubject> timeTableSubjectSet) {
         this.timeTableSubjectSet = timeTableSubjectSet;
-    }
-
-    public Clazz getClazz() {
-        return clazz;
-    }
-
-    public void setClazz(Clazz clazz) {
-        this.clazz = clazz;
     }
 }
