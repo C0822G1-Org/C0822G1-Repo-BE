@@ -25,5 +25,10 @@ public class PointManagementService implements IPointManagementService {
         iPointManagementRepository.editPoint(semesterOne, semesterTwo, id);
     }
 
+    @Override
+    public List<PointManagementDto> findByStudentName(Long teacherId, String studentName) {
+        return iPointManagementRepository.findByStudentName(teacherId, studentName);
+    }
+
 
 }
