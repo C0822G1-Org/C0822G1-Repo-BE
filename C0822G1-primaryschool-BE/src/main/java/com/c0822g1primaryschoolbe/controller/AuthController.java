@@ -63,7 +63,6 @@ public class AuthController {
                 accountPrinciple.getId(), accountPrinciple.getUsername(),
                 accountPrinciple.getEmail(), accountPrinciple.getAvatar(),
                 accountPrinciple.getAuthorities()));
-
     }
 
     /**
