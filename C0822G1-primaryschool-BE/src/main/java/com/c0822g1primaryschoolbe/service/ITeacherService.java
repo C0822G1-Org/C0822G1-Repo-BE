@@ -7,6 +7,14 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ITeacherService {
+    /**
+     * Create by : TuanNDN
+     * @return
+     */
     Optional<Teacher> findByIdTeacher(@Param("teacherId") Long teacherId);
+    /**
+     * Create by : TuanNDN
+     * @return
+     */
     List<Teacher> showListTeacher();
 }

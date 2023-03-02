@@ -1,5 +1,6 @@
 package com.c0822g1primaryschoolbe.service;
 
+import com.c0822g1primaryschoolbe.entity.ClazzStudentDto;
 import com.c0822g1primaryschoolbe.entity.clazz.Block;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
@@ -24,17 +25,26 @@ public class ClazzService implements IClazzService {
 
     @Autowired
     private IBlockRepository blockRepository;
-
+    /**
+     * Create by : TuanNDN
+     * @return
+     */
     @Override
     public Page<Clazz> findAllClazz(Pageable pageable, String keySearch1) {
         return clazzRepository.findAllClazz(pageable, keySearch1);
     }
-
+    /**
+     * Create by : TuanNDN
+     * @return
+     */
     @Override
     public Clazz findByIdClazz(Long clazzId) {
         return clazzRepository.findByIdClazz(clazzId);
     }
-
+    /**
+     * Create by : TuanNDN
+     * @return
+     */
     @Override
     public void updateClazz(Clazz clazz) {
         clazzRepository.updateClazz(
@@ -47,23 +57,41 @@ public class ClazzService implements IClazzService {
                 clazz.getBlock().getBlockId());
     }
 
+    /** Method use: createChooseClass()
+     * Created date: 27/02/2023
+     * Function:showListAll
+     * Parameter: contentClass
+     * Author: DungND
+     * */
+    @Override
+    public List<Clazz> showListAll() {
+        return clazzRepository.showListAll();
+    }
 
+    /** Method use: createChooseClass()
+     * Created date: 27/02/2023
+     * Function:createChooseClass
+     * Parameter: contentClass
+     * Author: DungND
+     * */
+    @Override
+    public void createChooseClass(Clazz clazz) {
+        Long a = Long.parseLong(String.valueOf(clazz.getClazzName().trim().charAt(0)));
+        Block block = new Block(a);
+        clazz.setBlock(block);
+        clazzRepository.createChooseClass(clazz.getClazzName(),clazz.getSchoolYear(),clazz.getBlock(),clazz.getTeacher());
+    }
+    /**
+     * create by : DungND
+     * Data create: 27/02/2023
+     * funcion: showListClassStudentById()
+     * @param 'id'
+     */
+    @Override
+    public List<ClazzStudentDto> showListClassStudentById(long id) {
+        return clazzRepository.showListClassStudentById(id);
+    }
 
-
-//    @Override
-//    public void updateClazz(Clazz clazz, Long clazzId) {
-//        clazzRepository.updateClazz(clazz, clazzId);
-//    }
-
-//    @Override
-//    public Clazz findByIdClazz(Long idClazz) {
-//        return clazzRepository.findByIdClazz(idClazz);
-//    }
-//
-//    @Override
-//    public void updateClazz(Clazz clazz, Long id) {
-//        clazzRepository.updateClazz(clazz, id);
-//    }
 
 
 }

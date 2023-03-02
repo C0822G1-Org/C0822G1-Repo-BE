@@ -7,6 +7,10 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 public class BlockDto  {
+    /**
+     * Create by : TuanNDN
+     * @return
+     */
     private Long blockId;
     private String blockName;
 //    private TeacherDto teacher;

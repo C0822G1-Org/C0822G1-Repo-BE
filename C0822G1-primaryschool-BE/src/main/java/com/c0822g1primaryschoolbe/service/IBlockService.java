@@ -7,6 +7,14 @@ import java.util.List;
 
 public interface IBlockService{
 
+    /**
+     * Create by : TuanNDN
+     * @return
+     */
     Block findByIdBlock(@Param("blockId") Long blockId);
+    /**
+     * Create by : TuanNDN
+     * @return
+     */
     List<Block> showListBlock();
 }
