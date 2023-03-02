@@ -14,11 +14,25 @@ public class TimetableService implements ITimetableService {
     @Autowired
     private ITimetableRepository timetableRepository;
 
+    /**
+     * Create by : NamHH
+     * Date created: 27/02/2023
+     * Function: get all timetable where id_clazz
+     *
+     * @Param idClazz
+     */
     @Override
     public List<ITimetable> getAllTimetable(Long idClazz) {
         return timetableRepository.getAllTimetable(idClazz);
     }
+//    public List<List<ITimetable>> getAllTimetable(Long idClazz) {
+//        return timetableRepository.getAllTimetable(idClazz);
+//    }
 
+    @Override
+    public void updateTimetable(Long idTimetable, Long idSubject) {
+        timetableRepository.updateTimetable(idTimetable, idSubject);
+    }
 
 
 }

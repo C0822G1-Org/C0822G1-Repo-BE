@@ -4,6 +4,7 @@ import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.TimeTable;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Clazz {

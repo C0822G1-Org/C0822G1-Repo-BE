@@ -14,33 +14,43 @@ import java.util.List;
 @Repository
 @Transactional
 public interface ITimetableRepository extends JpaRepository<TimeTable, Long> {
+
+    /**
+     * Create by : NamHH
+     * Date created: 27/02/2023
+     * Function: get all timetable where id_clazz
+     *
+     * @Param idClazz
+     */
     @Modifying
-    @Query(value = "select tts.id               as timeSubId,\n" +
-            "       subject.subject_id   as subId,\n" +
-            "       clazz.clazz_name     as nameClazz,\n" +
-            "       lesson.lesson_name   as nameLesson,\n" +
-            "       day.day_name         as nameDay,\n" +
-            "       subject.subject_name as nameSubject\n" +
-            "from time_table tt\n" +
-            "         join day on day.day_id = tt.day_id\n" +
-            "         join lesson on lesson.lesson_id = tt.lesson_id\n" +
-            "         join time_table_subject tts on tts.time_table_id = tt.time_table_id\n" +
-            "         join subject on tts.subject_id = subject.subject_id\n" +
-            "         join clazz on tt.clazz_id = clazz.clazz_id\n" +
-            "where clazz.clazz_id = :idClazz\n" +
-            "order by day.day_name, lesson.lesson_name", countQuery = "select tts.id               as timeSubId,\n" +
-            "       subject.subject_id   as subId,\n" +
-            "       clazz.clazz_name     as nameClazz,\n" +
-            "       lesson.lesson_name   as nameLesson,\n" +
-            "       day.day_name         as nameDay,\n" +
-            "       subject.subject_name as nameSubject\n" +
-            "from time_table tt\n" +
-            "         join day on day.day_id = tt.day_id\n" +
-            "         join lesson on lesson.lesson_id = tt.lesson_id\n" +
-            "         join time_table_subject tts on tts.time_table_id = tt.time_table_id\n" +
-            "         join subject on tts.subject_id = subject.subject_id\n" +
-            "         join clazz on tt.clazz_id = clazz.clazz_id\n" +
-            "where clazz.clazz_id = :idClazz\n" +
-            "order by day.day_name, lesson.lesson_name", nativeQuery = true)
-    List<ITimetable> getAllTimetable(@Param("idClazz")Long idClazz);
+    @Query(value = "select time_table.time_table_id as timetableId,\n" +
+            "       c.clazz_id               as clazzId,\n" +
+            "       c.clazz_name             as clazzName,\n" +
+            "       s.subject_id             as subjectId,\n" +
+            "       s.subject_name           as subjectName\n" +
+            "from `primary-school-management`.time_table\n" +
+            "         join `primary-school-management`.clazz c on c.clazz_id = time_table.clazz_id\n" +
+            "         join `primary-school-management`.subject s on s.subject_id = time_table.subject_id\n" +
+            "where time_table.clazz_id = :idClazz",
+            countQuery = "select time_table.time_table_id as timetableId,\n" +
+            "       c.clazz_id               as clazzId,\n" +
+            "       c.clazz_name             as clazzName,\n" +
+            "       s.subject_id             as subjectId,\n" +
+            "       s.subject_name           as subjectName\n" +
+            "from `primary-school-management`.time_table\n" +
+            "         join `primary-school-management`.clazz c on c.clazz_id = time_table.clazz_id\n" +
+            "         join `primary-school-management`.subject s on s.subject_id = time_table.subject_id\n" +
+            "where time_table.clazz_id = :idClazz", nativeQuery = true)
+    List<ITimetable> getAllTimetable(@Param("idClazz") Long idClazz);
+//    List<List<ITimetable>> getAllTimetable(@Param("idClazz") Long idClazz);
+
+
+    /**
+     * Create by : NamHH
+     * Date created: 27/02/2023
+     * Function: update timetable where id_timetable
+     */
+    @Modifying
+    @Query(value = "update `time_table` tt set tt.subject_id = :idSubject where time_table_id=:idTimetable", countQuery = "update `time_table` set tt.subject_id = :idSubject where time_table_id=:idTimetable", nativeQuery = true)
+    void updateTimetable(Long idTimetable, Long idSubject);
 }

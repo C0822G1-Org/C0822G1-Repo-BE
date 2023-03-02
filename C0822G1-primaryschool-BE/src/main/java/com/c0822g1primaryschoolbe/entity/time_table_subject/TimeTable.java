@@ -13,6 +13,7 @@ public class TimeTable {
     @Column(name = "time_table_id")
     private Long timeTableId;
     @OneToOne(cascade = CascadeType.ALL)
+    @JsonBackReference
     @JoinColumn(name = "clazz_id")
     private Clazz clazz;
     @ManyToOne

@@ -11,7 +11,11 @@ import java.util.List;
 
 @Repository
 public interface ISubjectRepository extends JpaRepository<Subject,Long> {
-
-    @Query(value = "select * from subject",countQuery = "select * from subject", nativeQuery = true)
+    /**
+     * Create by : NamHH
+     * Date created: 28/02/2023
+     * Function: get all subject
+     **/
+    @Query(value = "select* from subject",countQuery = "select* from subject", nativeQuery = true)
     List<Subject> findAllSubject();
 }

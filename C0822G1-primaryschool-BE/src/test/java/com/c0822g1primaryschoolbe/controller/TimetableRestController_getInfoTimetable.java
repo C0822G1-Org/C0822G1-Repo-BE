@@ -1,6 +1,7 @@
 package com.c0822g1primaryschoolbe.controller;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -19,6 +20,9 @@ public class TimetableRestController_getInfoTimetable {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @Test
     public void getInfoTimetable_id_1() throws Exception {
@@ -56,4 +60,61 @@ public class TimetableRestController_getInfoTimetable {
                         jsonPath("$[0].nameDay").value("Thứ 2"),
                         jsonPath("$[0].nameSubject").value("Anh"));
     }
+
+    ////    @Test
+//    public void updateTimetableSubject_list_19() throws Exception {
+//        List<TimeTableSubject> timeTableSubjectList = new ArrayList<>();
+//        TimeTableSubject timeTableSubject = new TimeTableSubject();
+//
+//        Subject subject = new Subject();
+//        subject.setSubjectId(null);
+//        subject.setSubjectId(1L);
+//        timeTableSubject.setSubject(subject);
+//
+//        TimeTable timeTable = new TimeTable();
+//        timeTable.setTimeTableId(1L);
+//        timeTable.setTimeTableId(2L);
+//        timeTableSubject.setTimeTable(timeTable);
+//
+//        timeTableSubject.setId(1L);
+//        timeTableSubject.setId(2L);
+//        timeTableSubjectList.add(timeTableSubject);
+//
+//        this.mockMvc
+//                .perform(MockMvcRequestBuilders
+//                        .patch("/updateTimetableSubject")
+//                        .content(this.objectMapper.writeValueAsString(timeTableSubjectList))
+//                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+//                .andDo(print())
+//                .andExpect(status().is4xxClientError());
+//    }
+//
+//
+////    @Test
+//    public void updateTimetableSubject_list_24() throws Exception {
+//        List<TimeTableSubject> timeTableSubjectList = new ArrayList<>();
+//        TimeTableSubject timeTableSubject = new TimeTableSubject();
+//
+//        Subject subject = new Subject();
+//        subject.setSubjectId(1L);
+//        subject.setSubjectId(1L);
+//        timeTableSubject.setSubject(subject);
+//
+//        TimeTable timeTable = new TimeTable();
+//        timeTable.setTimeTableId(1L);
+//        timeTable.setTimeTableId(2L);
+//        timeTableSubject.setTimeTable(timeTable);
+//
+//        timeTableSubject.setId(1L);
+//        timeTableSubject.setId(2L);
+//        timeTableSubjectList.add(timeTableSubject);
+//
+//        this.mockMvc
+//                .perform(MockMvcRequestBuilders
+//                        .patch("/updateTimetableSubject")
+//                        .content(this.objectMapper.writeValueAsString(timeTableSubjectList))
+//                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+//                .andDo(print())
+//                .andExpect(status().is4xxClientError());
+//    }
 }

@@ -1,32 +1,26 @@
 package com.c0822g1primaryschoolbe.controller;
 
-import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.ITimetable;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.Subject;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.TimeTable;
-import com.c0822g1primaryschoolbe.entity.time_table_subject.TimeTableSubject;
-import com.c0822g1primaryschoolbe.repository.ITimetableRepository;
 import com.c0822g1primaryschoolbe.service.class_service.IClazzService;
 import com.c0822g1primaryschoolbe.service.subject.ISubjectService;
 import com.c0822g1primaryschoolbe.service.timetable.ITimetableService;
-import com.c0822g1primaryschoolbe.service.timetable_subject_service.ITimetableSubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/timetable")
 @CrossOrigin("*")
 public class TimetableRestController {
     @Autowired
     private ITimetableService timetableService;
     @Autowired
     private IClazzService clazzService;
-    @Autowired
-    private ITimetableSubjectService timetableSubjectService;
     @Autowired
     private ISubjectService subjectService;
 
@@ -40,7 +34,7 @@ public class TimetableRestController {
      * @Return HttpStatus.NO_CONTENT if result is error or HttpStatus.OK if result is not error
      */
 
-    @GetMapping(value = "/listTimetable/{idClazz}")
+    @GetMapping(value = "/list-timetable/{idClazz}")
     public ResponseEntity<List<ITimetable>> getAllTimetable(@PathVariable("idClazz") Long idClazz) {
         List<ITimetable> listTimetable = timetableService.getAllTimetable(idClazz);
         if (listTimetable.isEmpty()) {
@@ -53,17 +47,17 @@ public class TimetableRestController {
     /**
      * Create by : NamHH
      * Date created: 27/02/2023
-     * Function: update timetableSubject where id_timetable_subject
+     * Function: update subject_id in timetable where id_timetable
      *
      * @Return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
-    @PatchMapping(value = "/updateTimetableSubject")
-    public ResponseEntity<List<TimeTableSubject>> updateTimetableSubject(@RequestBody List<TimeTableSubject> timeTableSubjectList) {
-        for (TimeTableSubject timeTableSubject : timeTableSubjectList) {
-            if (timeTableSubject == null) {
+    @PutMapping(value = "/update-timetable-subject")
+    public ResponseEntity<List<ITimetable>> updateTimetableSubject(@RequestBody List<ITimetable> iTimetableList) {
+        for (ITimetable iTimetable : iTimetableList) {
+            if (iTimetable == null) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
-            timetableSubjectService.updateTimetableSubject(timeTableSubject.getSubject().getSubjectId(), timeTableSubject.getId());
+            timetableService.updateTimetable(iTimetable.getSubjectId(), iTimetable.getTimetableId());
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -76,7 +70,7 @@ public class TimetableRestController {
      *
      * @Return HttpStatus.NO_CONTENT if result is error or HttpStatus.OK if result is not error
      */
-    @GetMapping(value = "/listSubject")
+    @GetMapping(value = "/list-subject")
     public ResponseEntity<List<Subject>> findAllSubject() {
         List<Subject> subjectList = subjectService.findAllSubject();
         if (subjectList.isEmpty()) {

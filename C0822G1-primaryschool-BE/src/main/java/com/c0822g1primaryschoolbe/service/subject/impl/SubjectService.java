@@ -13,6 +13,11 @@ public class SubjectService implements ISubjectService {
     @Autowired
     private ISubjectRepository subjectRepository;
 
+    /**
+     * Create by : NamHH
+     * Date created: 28/02/2023
+     * Function: get all subject
+     **/
     @Override
     public List<Subject> findAllSubject() {
         return subjectRepository.findAllSubject();

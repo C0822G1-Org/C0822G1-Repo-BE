@@ -1,15 +1,14 @@
 package com.c0822g1primaryschoolbe.entity.time_table_subject;
 
 public interface ITimetable {
-    Integer getTimeSubId();
+    Long getTimetableId();
 
-    Integer getSubId();
+        Long getSubjectId();
 
-    String getNameClazz();
+        String getSubjectName();
 
-    String getNameLesson();
+        Long getClazzId();
 
-    String getNameDay();
+        String getClazzName();
 
-    String getNameSubject();
 }
