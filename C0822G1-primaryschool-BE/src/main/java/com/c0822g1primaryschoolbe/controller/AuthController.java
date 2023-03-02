@@ -1,5 +1,6 @@
 package com.c0822g1primaryschoolbe.controller;
 
+import com.c0822g1primaryschoolbe.dto.request.ChangePasswordDto;
 import com.c0822g1primaryschoolbe.dto.request.SignInForm;
 import com.c0822g1primaryschoolbe.dto.request.SignUpForm;
 import com.c0822g1primaryschoolbe.dto.response.JwtResponse;
@@ -22,6 +23,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,6 +35,7 @@ public class AuthController {
     private IAccountService iAccountService;
     @Autowired
     private IRoleService iRoleService;
+
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
@@ -49,6 +52,7 @@ public class AuthController {
      * @return ResponseEntity.ok with jwtResponse(token,name,id,username,email,avatar,roles)
      */
 
+
     @PostMapping("/sign-in")
     public ResponseEntity<?> login(@Valid @RequestBody SignInForm signInForm) {
 
@@ -56,6 +60,7 @@ public class AuthController {
                 new UsernamePasswordAuthenticationToken(signInForm.getUsername(), signInForm.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtProvider.createToken(authentication);
+
         AccountPrinciple accountPrinciple = (AccountPrinciple) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         return ResponseEntity.ok(new JwtResponse(token,
@@ -63,6 +68,19 @@ public class AuthController {
                 accountPrinciple.getId(), accountPrinciple.getUsername(),
                 accountPrinciple.getEmail(), accountPrinciple.getAvatar(),
                 accountPrinciple.getAuthorities()));
+
+    }
+
+    /**
+     * Create by : NuongHT
+     * Date create: 28/02/2023
+     * Description: api change password
+     *
+     */
+    @PatchMapping("/change-password")
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDto changePasswordDto) throws Exception {
+        iAccountService.changePassword(changePasswordDto);
+        return ResponseEntity.ok().build();
     }
 
     /**
@@ -91,3 +109,4 @@ public class AuthController {
         return new ResponseEntity<>(new ResponseMessage("Đăng kí thành công"), HttpStatus.OK);
     }
 }
+
