@@ -6,7 +6,6 @@ import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import com.c0822g1primaryschoolbe.service.ClazzService;
 import com.c0822g1primaryschoolbe.service.ITeacherService;
-import com.c0822g1primaryschoolbe.service.TeacherService;
 import com.c0822g1primaryschoolbe.service.BlockService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +18,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/clazz/v1")
+@RequestMapping("/api/clazz")
 public class RestControllerClazz {
 
     @Autowired
@@ -37,10 +37,9 @@ public class RestControllerClazz {
 
     @GetMapping("")
     public ResponseEntity<Page<Clazz>> searchByContent(@PageableDefault(value = 5) Pageable pageable,
-                                                       @RequestParam Optional<String> keySearch1) {
-        String nameClazzSearch = keySearch1.orElse("");
-        Page<Clazz> clazz = clazzService.findAllClazz(pageable, nameClazzSearch);
-        clazz.hasNext();
+                                                       @RequestParam (defaultValue = "" )  String keySearch1) {
+//        String nameClazzSearch = keySearch1.orElse("");
+        Page<Clazz> clazz = clazzService.findAllClazz(pageable, keySearch1);
         if (clazz.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -59,7 +58,7 @@ public class RestControllerClazz {
 
 
 
-    @PutMapping("/update/{clazzId}")
+    @PutMapping ("/update/{clazzId}")
     public ResponseEntity<Clazz> updateClazz(@PathVariable("clazzId") Long clazzId,
                                         @Valid @RequestBody ClassStudentDto classStudentDto,
                                         BindingResult bindingResult) {
@@ -80,6 +79,29 @@ public class RestControllerClazz {
 
         }
     }
+
+    @GetMapping("teacher")
+    public ResponseEntity<List<Teacher>> showListTeacher() {
+        List<Teacher> teachers = teacherService.showListTeacher();
+        if (teachers.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity(teachers, HttpStatus.OK);
+    }
+
+    @GetMapping("block")
+    public ResponseEntity<List<Block>> showListBlock() {
+        List<Block> blocks = blockService.showListBlock();
+        if (blocks.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity(blocks, HttpStatus.OK);
+    }
+
+
+
+
+
 
 
 }

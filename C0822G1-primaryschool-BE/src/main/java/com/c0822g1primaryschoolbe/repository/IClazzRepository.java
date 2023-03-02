@@ -14,19 +14,19 @@ import org.springframework.transaction.annotation.Transactional;
 public interface IClazzRepository extends JpaRepository<Clazz, Long> {
 
     @Query(value =
-            " select *" +
-                    " from clazz c " +
-                    "join teacher t on t.teacher_id = c.teacher_id " +
-                    "join block b on b.block_id = c.block_id " +
-                    "where clazz_name like concat('%', :keySearch1 ,'%') " +
+            " select c.*" +
+                    " from `clazz` c " +
+                    "join `teacher` t on t.teacher_id = c.teacher_id " +
+                    "join `block` b on b.block_id = c.block_id " +
+                    "where c.clazz_name like concat('%', :keySearch1 ,'%') " +
                     "and c.flag_delete=false " +
                     "order by c.clazz_id desc",
             countQuery =
-                    " select *" +
-                            " from clazz c " +
-                            "join teacher t on t.teacher_id = c.teacher_id " +
-                            "join block b on b.block_id = c.block_id " +
-                            "where clazz_name like concat('%', :keySearch1 ,'%') " +
+                    " select c.*" +
+                            " from `clazz` c " +
+                            "join `teacher` t on t.teacher_id = c.teacher_id " +
+                            "join `block` b on b.block_id = c.block_id " +
+                            "where c.clazz_name like concat('%', :keySearch1 ,'%') " +
                             "and c.flag_delete=false " +
                             "order by c.clazz_id desc ",
             nativeQuery = true)
