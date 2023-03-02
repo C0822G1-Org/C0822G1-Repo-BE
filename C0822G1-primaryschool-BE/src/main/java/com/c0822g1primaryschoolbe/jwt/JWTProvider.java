@@ -43,4 +43,5 @@ public class JWTProvider {
         String username = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
         return username;
     }
+
 }

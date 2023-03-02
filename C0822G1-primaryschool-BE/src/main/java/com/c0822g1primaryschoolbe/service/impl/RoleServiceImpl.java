@@ -1,6 +1,5 @@
 package com.c0822g1primaryschoolbe.service.impl;
 
-import com.c0822g1primaryschoolbe.entity.account.Account;
 import com.c0822g1primaryschoolbe.entity.account.Role;
 import com.c0822g1primaryschoolbe.entity.account.RoleName;
 import com.c0822g1primaryschoolbe.repository.IRoleRepository;
