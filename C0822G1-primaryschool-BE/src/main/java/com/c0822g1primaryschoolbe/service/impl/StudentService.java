@@ -2,6 +2,7 @@ package com.c0822g1primaryschoolbe.service.impl;
 
 
 import com.c0822g1primaryschoolbe.dto.IStudentDto;
+import com.c0822g1primaryschoolbe.dto.StudentDtoToSearch;
 import com.c0822g1primaryschoolbe.entity.student.Student;
 import com.c0822g1primaryschoolbe.repository.StudentRepository;
 import com.c0822g1primaryschoolbe.service.IStudentService;
@@ -18,11 +19,16 @@ public class StudentService implements IStudentService {
 
     @Override
     public Page<Student> findByName(String name, String status, Pageable pageable) {
-        return studentRepository.findByName(name,status,pageable);
+        return studentRepository.findByName(name, status, pageable);
     }
 
     @Override
     public Page<IStudentDto> findByNameAndStatus(String name, Boolean status, Pageable pageable) {
         return studentRepository.findByNameAndStatus(name, status, pageable);
+    }
+
+    @Override
+    public Page<IStudentDto> searchStudent(StudentDtoToSearch studentDtoToSearch, Pageable pageable) {
+        return studentRepository.searchStudent(studentDtoToSearch, pageable);
     }
 }

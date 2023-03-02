@@ -1,6 +1,9 @@
 package com.c0822g1primaryschoolbe.controller;
 
 
+import com.c0822g1primaryschoolbe.dto.IStudentDto;
+import com.c0822g1primaryschoolbe.dto.StudentDtoToSearch;
+import com.c0822g1primaryschoolbe.dto.TeacherDtoToSearch;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import com.c0822g1primaryschoolbe.service.ITeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +13,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-
-
-
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -50,6 +47,22 @@ public class TeacherController {
 
 
     }
+
+    @PostMapping("/search")
+    public ResponseEntity<Page<Teacher>> searchTeacher(@RequestBody TeacherDtoToSearch teacherDtoToSearch,
+                                                       @PageableDefault(value = 5) Pageable pageable){
+
+
+        if (teacherDtoToSearch == null || ObjectUtils.isEmpty(teacherDtoToSearch)) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        Page<Teacher> teacherPage = teacherService.searchTeacher(teacherDtoToSearch, pageable);
+        if (teacherPage.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(teacherPage, HttpStatus.OK);
+    }
+
 
 
 }
