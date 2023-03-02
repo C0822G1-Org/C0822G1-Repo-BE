@@ -1,11 +1,10 @@
 package com.c0822g1primaryschoolbe.entity.clazz;
 
-import com.c0822g1primaryschoolbe.entity.student.Student;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.TimeTable;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 public class Clazz {
@@ -18,16 +17,15 @@ public class Clazz {
     private Boolean flagDelete;
     private Integer year;
     private String schoolYear;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "time_table_id")
+    @OneToOne(mappedBy = "clazz")
     private TimeTable timeTable;
     @ManyToOne
     @JoinColumn(name = "block_id",nullable = false,referencedColumnName = "block_id")
     private Block block;
-    @OneToOne(mappedBy = "clazz")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "teacher_id")
     private Teacher teacher;
-    @ManyToMany(mappedBy = "clazzSet")
-    private Set<Student> students;
+
 
     public Long getClazzId() {
         return clazzId;
@@ -83,14 +81,6 @@ public class Clazz {
 
     public void setBlock(Block block) {
         this.block = block;
-    }
-
-    public Set<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(Set<Student> students) {
-        this.students = students;
     }
 
     public Teacher getTeacher() {

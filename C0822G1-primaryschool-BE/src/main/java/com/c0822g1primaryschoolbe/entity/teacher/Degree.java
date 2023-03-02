@@ -11,6 +11,14 @@ public class Degree {
     @Column(columnDefinition = "varchar(45)")
     private String degreeName;
 
+    public Degree(Long degreeId) {
+        this.degreeId = degreeId;
+    }
+
+    public Degree() {
+
+    }
+
     public Long getDegreeId() {
         return degreeId;
     }
