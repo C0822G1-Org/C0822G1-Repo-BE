@@ -16,10 +16,11 @@ import java.util.List;
 public class TimeTableRestController {
     @Autowired
     private ITimeTableService timeTableService;
+
     /**
      * Created by: VanNTC
      * Date Created: 27/02/2023
-     *  * Description: get time table of the class by id
+     * * Description: get time table of the class by id
      */
     @GetMapping("/{teacherId}")
     public ResponseEntity<List<TimeTableView>> showTimeTable(@PathVariable String teacherId) {

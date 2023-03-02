@@ -8,7 +8,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface IStudentRepository extends JpaRepository<Student, Long> {
 
     /**
@@ -20,16 +22,12 @@ public interface IStudentRepository extends JpaRepository<Student, Long> {
      * @return Page<StudentListViewDto>
      */
 
-    @Query(value = "select student.student_id as studentId, student.student_name as studentName, student.gender as gender, student.date_of_birth as dateOfBirth\n" +
-            "from student \n" +
-            "join clazz on student.clazz_id = clazz.clazz_id\n" +
-            "join teacher on clazz.teacher_id = teacher.teacher_id\n" +
-            "where teacher.teacher_id= :teacherId and student.flag_delete = false\n" +
-            "order by student.student_name", nativeQuery = true, countQuery = "select select student.student_id as studentId, student.student_name as studentName, student.gender as gender, student.date_of_birth as dateOfBirth\n" +
-            "from student \n" +
-            "join clazz on student.clazz_id = clazz.clazz_id\n" +
-            "join teacher on clazz.teacher_id = teacher.teacher_id\n" +
-            "where teacher.teacher_id=:teacherId and student.flag_delete = false\n" +
-            "order by student.student_name")
+    @Query(value = "select `student`.student_id as studentId, `student`.student_name as studentName, `student`.gender as gender,"  +
+            " `student`.date_of_birth as dateOfBirth, `clazz`.clazz_name as nameClazz " +
+            "from `student` " +
+            "join `clazz` on `student`.clazz_id = `clazz`.clazz_id " +
+            "join `teacher` on `clazz`.teacher_id = `teacher`.teacher_id " +
+            "where `teacher`.teacher_id= :teacherId and `student`.flag_delete = false " +
+            "order by `student`.student_name ", nativeQuery = true)
     Page<StudentListViewDto> showAllStudent(@Param("teacherId") Long teacherId, Pageable pageable);
 }

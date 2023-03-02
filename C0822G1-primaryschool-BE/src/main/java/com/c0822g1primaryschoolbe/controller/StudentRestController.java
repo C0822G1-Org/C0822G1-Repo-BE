@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/student")
+@RequestMapping("/api/students")
 @CrossOrigin("*")
 public class StudentRestController {
     @Autowired
@@ -31,8 +31,8 @@ public class StudentRestController {
      * @return
      */
 
-    @GetMapping("/list-student/{teacherId}")
-    public ResponseEntity<Page<StudentListViewDto>> getAllStudentByIdTeacher(@PageableDefault(size = 5) Pageable pageable, @PathVariable Long teacherId) {
+    @GetMapping("/list-id-teacher/{teacherId}")
+    public ResponseEntity<Page<StudentListViewDto>> getAllStudentByIdTeacher(@PageableDefault(size = 10) Pageable pageable, @PathVariable Long teacherId) {
         Page<StudentListViewDto> studentListViewDtoPage = studentService.showAllStudent(teacherId, pageable);
         if (studentListViewDtoPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
