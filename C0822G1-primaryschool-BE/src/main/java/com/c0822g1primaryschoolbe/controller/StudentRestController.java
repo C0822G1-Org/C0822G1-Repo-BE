@@ -39,7 +39,7 @@ public class StudentRestController {
      * @return HttpStatus.NO_CONTENT if rerult is error or HttpStatus.OK if result is not error
      */
     @GetMapping("/list")
-    public ResponseEntity<Page<IStudentInfo>> getStudentList(@PageableDefault(size = 2) Pageable pageable, @RequestParam String year, @RequestParam String clazzId) {
+    public ResponseEntity<Page<IStudentInfo>> getStudentList(@PageableDefault(size = 10) Pageable pageable, @RequestParam String year, @RequestParam String clazzId) {
         Page<IStudentInfo> iStudentInfos = iStudentService.getStudentList(pageable, Integer.parseInt(year), Long.parseLong(clazzId));
         if (iStudentInfos.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
