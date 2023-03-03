@@ -34,18 +34,7 @@ public class StudentController {
     @Autowired
     private IStudentService studentService;
 
-//    @GetMapping("")
-//    public ResponseEntity<Page<Student>> findByName(@RequestParam(value = "name", defaultValue = "") String name,
-//                                                    @RequestParam(value = "status", defaultValue = "") String status,
-//                                                    @PageableDefault(value = 3) Pageable pageable) {
-//
-//        Page<Student> students = studentService.findByName(name, status, pageable);
-//        if (students.isEmpty()) {
-//            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-//        }
-//        return new ResponseEntity<>(students, HttpStatus.OK);
-//
-//    }
+
 
 
 
@@ -69,15 +58,8 @@ public class StudentController {
         return new ResponseEntity<>(studentPage, HttpStatus.OK);
     }
 
-    @GetMapping("")
-    public ResponseEntity<Page<IStudentDto>> findByStatus(@RequestParam(value = "name", defaultValue = "") String name,
-                                                          @RequestParam(defaultValue = "false") Boolean status,
-                                                          @PageableDefault(value = 5) Pageable pageable) {
 
-        Page<IStudentDto> studentPage = studentService.findByNameAndStatus(name, status, pageable);
-        if (studentPage.isEmpty()) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(studentPage, HttpStatus.OK);
-    }
+
+
+
 }

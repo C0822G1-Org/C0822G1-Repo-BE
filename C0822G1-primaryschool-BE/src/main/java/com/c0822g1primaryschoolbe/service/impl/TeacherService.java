@@ -1,6 +1,7 @@
 package com.c0822g1primaryschoolbe.service.impl;
 
 
+import com.c0822g1primaryschoolbe.dto.ITeacherDto;
 import com.c0822g1primaryschoolbe.dto.TeacherDtoToSearch;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import com.c0822g1primaryschoolbe.repository.TeacherRepository;
@@ -25,8 +26,9 @@ public class TeacherService implements ITeacherService {
     }
 
     @Override
-    public Page<Teacher> searchTeacher(TeacherDtoToSearch teacherDtoToSearch, Pageable pageable) {
-        return teacherRepository.searchTeacher(teacherDtoToSearch,pageable);
-
+    public Page<ITeacherDto> searchTeacher(TeacherDtoToSearch teacherDtoToSearch, Pageable pageable) {
+        return teacherRepository.searchTeacher(teacherDtoToSearch, pageable);
     }
+
+
 }

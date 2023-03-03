@@ -1,5 +1,6 @@
 package com.c0822g1primaryschoolbe.service;
 
+import com.c0822g1primaryschoolbe.dto.ITeacherDto;
 import com.c0822g1primaryschoolbe.dto.TeacherDtoToSearch;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import org.springframework.data.domain.Page;
@@ -19,7 +20,7 @@ public interface ITeacherService {
      * @param "name, status"
      * @return
      */
-    Page<Teacher>searchTeacher(TeacherDtoToSearch teacherDtoToSearch, Pageable pageable);
+    Page<ITeacherDto>searchTeacher(TeacherDtoToSearch teacherDtoToSearch, Pageable pageable);
 
 
 

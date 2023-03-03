@@ -1,7 +1,7 @@
 package com.c0822g1primaryschoolbe.dto;
 
 public class TeacherDtoToSearch {
-    private String nameTeacher;
+        private String nameTeacher;
     private Boolean teachStatus;
 
     public TeacherDtoToSearch() {
