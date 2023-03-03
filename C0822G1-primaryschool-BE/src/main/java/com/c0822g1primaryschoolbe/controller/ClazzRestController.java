@@ -1,8 +1,6 @@
 package com.c0822g1primaryschoolbe.controller;
 
-import com.c0822g1primaryschoolbe.entity.ClassStudentDto;
-import com.c0822g1primaryschoolbe.entity.ClazzDto;
-import com.c0822g1primaryschoolbe.entity.ClazzStudentDto;
+import com.c0822g1primaryschoolbe.entity.*;
 import com.c0822g1primaryschoolbe.entity.clazz.Block;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 import com.c0822g1primaryschoolbe.entity.student.Student;
@@ -99,8 +97,8 @@ public class ClazzRestController {
      * @return
      */
     @GetMapping("teacher")
-    public ResponseEntity<List<Teacher>> showListTeacher() {
-        List<Teacher> teachers = teacherService.showListTeacher();
+    public ResponseEntity<List<ITeacherDto>> showListTeacher() {
+        List<ITeacherDto> teachers = teacherService.showListTeacher();
         if (teachers.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -140,6 +138,11 @@ public class ClazzRestController {
      */
     @GetMapping("/list-class")
     public ResponseEntity<List<Clazz>> showListClass() {
+        try {
+            clazzService.showListAll();
+        }catch (Exception e) {
+
+        }
         List<Clazz> listClass = clazzService.showListAll();
         if (listClass.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -174,7 +177,6 @@ public class ClazzRestController {
         if (bindingResult.hasErrors()){
             return new ResponseEntity(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
         }
-
         Clazz clazz = new Clazz();
         BeanUtils.copyProperties(classDto,clazz);
         Teacher teacher = new Teacher();
@@ -186,11 +188,4 @@ public class ClazzRestController {
         clazzService.createChooseClass(clazz);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-
-
-
-
-
-
-
 }

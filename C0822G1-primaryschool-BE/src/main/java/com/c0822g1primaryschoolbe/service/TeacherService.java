@@ -1,5 +1,7 @@
 package com.c0822g1primaryschoolbe.service;
 
+import com.c0822g1primaryschoolbe.entity.ITeacherDto;
+import com.c0822g1primaryschoolbe.entity.TeacherDto;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import com.c0822g1primaryschoolbe.repository.ITeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ public class TeacherService implements ITeacherService{
      * @return
      */
     @Override
-    public List<Teacher> showListTeacher() {
+    public List<ITeacherDto> showListTeacher() {
         return teacherRepository.showListTeacher();
     }
 }

@@ -1,6 +1,6 @@
 package com.c0822g1primaryschoolbe.entity.time_table_subject;
 
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 
 @Entity
@@ -9,11 +9,14 @@ public class TimeTableSubject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne()
+    @JsonBackReference
     @JoinColumn(name = "subject_id")
     private Subject subject;
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "time_table_id")
     private TimeTable timeTable;
+
 
     public Long getId() {
         return id;

@@ -1,5 +1,4 @@
 package com.c0822g1primaryschoolbe.repository;
-
 import com.c0822g1primaryschoolbe.entity.ClazzStudentDto;
 import com.c0822g1primaryschoolbe.entity.clazz.Block;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
@@ -17,6 +16,12 @@ import java.util.List;
 
 @Repository
 public interface IClazzRepository extends JpaRepository<Clazz, Long> {
+    @Transactional
+    @Modifying
+    @Query(value = "select * from clazz",countQuery = "select * from clazz", nativeQuery = true)
+    List<Clazz> findAllClazz();
+
+
     /* Ngô Đình Nhật Tuấn*/
     @Query(value =
             " select c.*" +
@@ -83,28 +88,24 @@ public interface IClazzRepository extends JpaRepository<Clazz, Long> {
             ,countQuery = "insert into `clazz` (clazz_name,school_year,block_id,teacher_id,flag_delete,year)VALUES(:clazzName,:schoolYear,:blockId,:teacherId,false,:year)"
             ,nativeQuery = true)
     void createChooseClass(@Param("clazzName") String clazzName,@Param("schoolYear") String schoolYear, @Param("blockId") Block blockId, @Param("teacherId") Teacher teacherId,@Param("year") Integer year);
-
-
     /**
      * create by : DungND
      * Data create: 27/02/2023
      * funcion: showListClassStudentById()
      * @param 'id'
      */
-    @Query(value = "SELECT clazz.clazz_id as clazzId,clazz.clazz_name as clazzName,teacher.teacher_id as teacherId,teacher.teacher_name as teacherName,student.student_id as studentId," +
-            "student.student_name as studentName,student.date_of_birth as dateOfBirth,student.gender as gender,student.address as address FROM  clazz left join student  on clazz.clazz_id= student.clazz_id left join teacher on clazz.teacher_id = teacher.teacher_id  where clazz.clazz_id= :id"
-            ,countQuery = "SELECT clazz.clazz_id as clazzId,clazz.clazz_name as clazzName,teacher.teacher_id as teacherId,teacher.teacher_name as teacherName,student.student_id as studentId," +
-            "student.student_name as studentName,student.date_of_birth as dateOfBirth,student.gender as gender,student.address as address FROM  clazz left join student  on clazz.clazz_id= student.clazz_id left join teacher on clazz.teacher_id = teacher.teacher_id  where clazz.clazz_id= :id"
+    @Query(value = "SELECT `clazz`.clazz_id as clazzId,`clazz`.clazz_name as clazzName,`teacher`.teacher_id as teacherId,`teacher`.teacher_name as teacherName,`student`.student_id as studentId," +
+            "`student`.student_name as studentName,`student`.date_of_birth as dateOfBirth,`student`.gender as gender,student.address as address FROM  `clazz` left join `student`  on `clazz`.clazz_id= `student`.clazz_id left join `teacher` on `clazz`.teacher_id = `teacher`.teacher_id  where `clazz`.clazz_id= :id"
+            ,countQuery = "SELECT `clazz`.clazz_id as clazzId,`clazz`.clazz_name as clazzName,`teacher`.teacher_id as teacherId,`teacher`.teacher_name as teacherName,`student`.student_id as studentId," +
+            "`student`.student_name as studentName,`student`.date_of_birth as dateOfBirth,`student`.gender as gender,`student`.address as address FROM  `clazz` left join `student`  on `clazz`.clazz_id= `student`.clazz_id left join `teacher` on `clazz`.teacher_id = `teacher`.teacher_id  where `clazz`.clazz_id= :id"
             ,nativeQuery = true)
     List<ClazzStudentDto> showListClassStudentById(@Param("id") long id);
     /**
      * create by : DungND
      * Data create: 27/02/2023
-     * funcion: showListClassStudentById()
-     *
+     * funcion: showListClass()
      */
     @Query(value = "SELECT * FROM `clazz`"
-            ,countQuery = "SELECT * FROM `clazz`"
             ,nativeQuery = true)
     List<Clazz> showListAll();
 }
