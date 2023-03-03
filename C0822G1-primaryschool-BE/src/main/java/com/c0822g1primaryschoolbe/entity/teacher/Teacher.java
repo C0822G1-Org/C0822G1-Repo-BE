@@ -38,6 +38,16 @@ public class Teacher {
 
     @Column(columnDefinition = "varchar(45)",unique = true)
     private String email;
+    private String address;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     private Boolean flagDelete;
     private String teacherType;
     private Boolean teacherStatus;

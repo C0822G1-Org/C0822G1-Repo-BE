@@ -10,5 +10,5 @@ public interface ITeacherService {
      * Function: editInfoTeacher
      */
 
-    void editInfoTeacher(String teacherName, String dateOfBirth, Boolean gender, Long degreeId, String teacherType, String idCard, String email, String phoneNumber, Long teacherId);
+    void editInfoTeacher(String email, String phoneNumber, String address, Long teacherId);
 }

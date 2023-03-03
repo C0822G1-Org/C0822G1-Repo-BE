@@ -20,16 +20,9 @@ public interface ITeacherRepository extends JpaRepository<Teacher, Long> {
      */
 
     @Modifying
-    @Query(value = "update teacher set teacher_name = :teacherName, date_of_birth = :dateOfBirth, gender = :gender, degree_id = :degreeId, teacher_type = :teacherType, id_card= :idCard, email = :email, phone_number = :phoneNumber where teacher_id= :teacherId", nativeQuery = true)
-    void editInfoTeacher(@Param("teacherName") String teacherName,
-                         @Param("dateOfBirth") String dateOfBirth,
-                         @Param("gender") Boolean gender,
-                         @Param("degreeId") Long degreeId,
-                         @Param("teacherType") String teacherType,
-                         @Param("idCard") String idCard,
-                         @Param("email") String email,
+    @Query(value = "update teacher set email = :email, phone_number = :phoneNumber, address = :address where teacher_id= :teacherId", nativeQuery = true)
+    void editInfoTeacher(@Param("email") String email,
                          @Param("phoneNumber") String phoneNumber,
+                         @Param("address") String address,
                          @Param("teacherId") Long teacherId);
-
-
 }

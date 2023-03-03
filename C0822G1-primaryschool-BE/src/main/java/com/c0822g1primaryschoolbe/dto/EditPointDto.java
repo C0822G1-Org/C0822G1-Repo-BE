@@ -8,11 +8,11 @@ public class EditPointDto {
     private Long id;
     @Min(value = 0, message = "Điểm học kỳ 1 không được nhỏ hơn 0")
     @Max(value = 10, message = "Điểm học kỳ 1 không được lớn hơn 10")
-//    @Pattern(message = "Chỉ được phép nhập số",regexp = "[\\d]+")
+//    @Pattern(regexp = "\\d+", message = "Chỉ được phép nhập số")
     private Double semesterOne;
     @Min(value = 0, message = "Điểm học kỳ 2 không được nhỏ hơn 0")
     @Max(value = 10, message = "Điểm học kỳ 2 không được lớn hơn 10")
-//    @Pattern(regexp = "[\\d]+", message = "Chỉ được phép nhập số")
+//    @Pattern( regexp = "\\d+",message = "Chỉ được phép nhập số")
     private Double semesterTwo;
 
     public Long getId() {

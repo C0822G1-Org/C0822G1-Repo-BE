@@ -10,8 +10,9 @@ public class TeacherDto {
     private String idCard;
     private String email;
     private String phoneNumber;
+    private String address;
 
-    public TeacherDto( String teacherName, String dateOfBirth, Boolean gender, Long degreeId, String teacherType, String idCard, String email, String phoneNumber,Long teacherId) {
+    public TeacherDto(String teacherName, String dateOfBirth, Boolean gender, Long degreeId, String teacherType, String idCard, String email, String phoneNumber, Long teacherId) {
         this.teacherId = teacherId;
         this.teacherName = teacherName;
         this.dateOfBirth = dateOfBirth;
@@ -21,6 +22,13 @@ public class TeacherDto {
         this.idCard = idCard;
         this.email = email;
         this.phoneNumber = phoneNumber;
+    }
+
+    public TeacherDto(Long teacherId, String email, String phoneNumber, String address) {
+        this.teacherId = teacherId;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
     }
 
     public Long getTeacherId() {
@@ -93,5 +101,13 @@ public class TeacherDto {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

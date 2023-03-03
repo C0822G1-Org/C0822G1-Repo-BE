@@ -7,8 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
-
 @RestController
 @RequestMapping("api/teacher")
 @CrossOrigin("*")
@@ -24,8 +22,9 @@ public class TeacherRestController {
 
     @PutMapping("/editInfoTeacher")
     public ResponseEntity<?> editInfoTeacher(@RequestBody TeacherDto teacherDto) {
-        iTeacherService.editInfoTeacher(teacherDto.getTeacherName(), teacherDto.getDateOfBirth(), teacherDto.getGender(), teacherDto.getDegreeId(), teacherDto.getTeacherType(), teacherDto.getIdCard(), teacherDto.getEmail(), teacherDto.getPhoneNumber(), teacherDto.getTeacherId());
+        System.out.println("zzzzz");
+        teacherDto.setTeacherId(1L);
+        iTeacherService.editInfoTeacher(teacherDto.getEmail(), teacherDto.getPhoneNumber(), teacherDto.getAddress(), teacherDto.getTeacherId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }
