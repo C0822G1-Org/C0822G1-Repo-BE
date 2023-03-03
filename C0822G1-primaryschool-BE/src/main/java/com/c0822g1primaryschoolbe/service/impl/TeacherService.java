@@ -25,6 +25,15 @@ public class TeacherService implements ITeacherService {
 
     }
 
+
+    /**
+     * create by : VinhLD
+     * date create 27/02/2023
+     * function: search teacher by name and status
+     * @param teacherDtoToSearch
+     * @param pageable
+     * @return
+     */
     @Override
     public Page<ITeacherDto> searchTeacher(TeacherDtoToSearch teacherDtoToSearch, Pageable pageable) {
         return teacherRepository.searchTeacher(teacherDtoToSearch, pageable);

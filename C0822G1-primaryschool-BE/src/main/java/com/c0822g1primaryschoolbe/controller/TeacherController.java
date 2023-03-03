@@ -24,15 +24,13 @@ public class TeacherController {
     @Autowired
     private ITeacherService teacherService;
 
-   
-
-
 
     /**
-     * create by :VinhLD
+     * create by VinhLD
      * date create 27/02/2023
-     *funtion : search teacher by name and status
-     * @param "name, status"
+     * function : search teacher by name and status
+     * @param "teacherDtoToSearch"
+     * @param "pageable"
      * @return
      */
 

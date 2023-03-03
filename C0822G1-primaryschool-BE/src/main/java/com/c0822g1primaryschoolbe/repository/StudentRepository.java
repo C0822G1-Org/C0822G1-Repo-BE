@@ -58,18 +58,6 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
                                           @Param("status") Boolean status,
                                           Pageable pageable);
 
-//        @Query(value = "SELECT nt.`id_notification` AS idNotification, nt.posting_date AS postingDate, nt.`title` AS `title`, nt.`content` AS `content` " +
-//            " FROM `notification` AS nt " +
-//            " WHERE nt.flag_delete = 0 " +
-//            " AND nt.posting_date BETWEEN :#{#notificationSearchDto.startDate} AND NOW()" +
-//            " AND nt.`title` LIKE %:#{#notificationSearchDto.title}% " +
-//            " AND nt.`content` LIKE %:#{#notificationSearchDto.content}% " +
-//            " ORDER BY nt.posting_date DESC, nt.id_notification DESC "
-//            , nativeQuery = true)
-//    Page<NotificationAllPropertyDto> searchNotifications(@Param("notificationSearchDto") NotificationSearchDto notificationSearchDto,
-//                                                         Pageable pageable);
-
-
 
     /**
      * create by :VinhLD

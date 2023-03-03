@@ -31,9 +31,14 @@ public interface TeacherRepository extends JpaRepository<Teacher, Long> {
     Page<Teacher> searchNameTeacher(@Param("teacherDtoToSearch") TeacherDtoToSearch teacherDtoToSearch, Pageable pageable);
 
 
-
-
-
+    /**
+     * create by : VinhLD
+     * date create : 27/02/2023
+     * function: search teacher by name and status
+     * @param teacherDtoToSearch
+     * @param pageable
+     * @return
+     */
 
     @Query(value = " select `teacher`.teacher_id as idTeacher , `teacher`.teacher_name as nameTeacher, `teacher`.date_of_birth as dateOfBirthTeacher from `teacher` where `teacher`.teacher_name like %:#{#teacherDtoToSearch.nameTeacher}% " +
             " and `teacher`.teacher_status = :#{#teacherDtoToSearch.teachStatus} order by `teacher`.teacher_name asc", nativeQuery = true)

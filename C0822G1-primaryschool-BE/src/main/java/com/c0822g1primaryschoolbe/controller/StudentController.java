@@ -34,15 +34,12 @@ public class StudentController {
     @Autowired
     private IStudentService studentService;
 
-
-
-
-
     /**
-     * create by :VinhLD
-     * date create 27/02/2023
-     *funtion : search student by name and status
-     * @param "name, status"
+     *  create by :VinhLD
+     *  date create 27/02/2023
+      *function : search student by name and status
+     * @param studentDtoToSearch
+     * @param pageable
      * @return
      */
     @PostMapping("/search")
