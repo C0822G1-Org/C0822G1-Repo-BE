@@ -19,6 +19,14 @@ public class ClazzRestController {
     @Autowired
     private IClazzService clazzService;
 
+    /**
+     * Create by: HoangNM,
+     * Date created: 27/02/2023
+     * Function: get listClazz
+     *
+     * @return HttpStatus.OK
+     */
+
     @GetMapping("")
     public ResponseEntity<List<Clazz>> getAll() {
         List<Clazz> clazzList = clazzService.getAll();

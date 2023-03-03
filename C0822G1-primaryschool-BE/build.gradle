@@ -38,13 +38,15 @@ dependencies {
 
     implementation group: 'org.springframework.security', name: 'spring-security-taglibs', version: '5.4.2'
 
-    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-core
+    //https://mvnrepository.com/artifact/org.springframework.security/spring-security-core
+
     implementation group: 'org.springframework.security', name: 'spring-security-core', version: '5.4.3'
 
     //JWT
     //     https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
     implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.0'
     testImplementation 'org.springframework.security:spring-security-test'
+    
 }
 
 tasks.named('test') {

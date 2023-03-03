@@ -1,5 +1,6 @@
 package com.c0822g1primaryschoolbe.service.impl;
 
+import com.c0822g1primaryschoolbe.entity.student.IStudentInfo;
 import com.c0822g1primaryschoolbe.dto.student.StudentListViewDto;
 import com.c0822g1primaryschoolbe.entity.student.Student;
 import com.c0822g1primaryschoolbe.repository.IStudentRepository;
@@ -13,9 +14,25 @@ import java.util.Optional;
 
 @Service
 public class StudentService implements IStudentService {
-
     @Autowired
     private IStudentRepository studentRepository;
+
+
+    @Override
+    public Page<IStudentInfo> getStudentList(Pageable pageable, int year, Long clazzId) {
+        return studentRepository.getStudentList(pageable, year, clazzId);
+    }
+
+    @Override
+    public void removeStudent(Long id) {
+        studentRepository.removeStudent(id);
+    }
+
+    @Override
+    public Student getStudentById(Long id) {
+        return studentRepository.getStudentById(id);
+    }
+
 
     /**
      * Create by : HoangNM
@@ -39,7 +56,6 @@ public class StudentService implements IStudentService {
     /**
      * Create by : VanNTC
      * Date create: 27/02/2023
-     *
      */
 
     @Override
@@ -51,13 +67,11 @@ public class StudentService implements IStudentService {
          * Date create: 28/02/2023
          * Description: repository call database
          *
-    **/
+         **/
     }
 
     @Override
     public Optional<Student> findById(Long id) {
         return studentRepository.findById(id);
     }
-
-
 }

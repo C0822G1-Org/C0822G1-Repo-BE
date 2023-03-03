@@ -1,3 +1,4 @@
+
 package com.c0822g1primaryschoolbe.repository;
 
 import com.c0822g1primaryschoolbe.entity.account.Account;
@@ -12,6 +13,12 @@ import java.util.Optional;
 @Repository
 @Transactional
 public interface IAccountRepository extends JpaRepository<Account,Long> {
+
+    Boolean existsAccountByUsername(String username);
+
+    Boolean existsAccountByEmail(String email);
+
+
     @Query(value = "select * from account where username = :username", nativeQuery = true)
     Optional<Account> findByUsername(@Param("username") String username);
 
@@ -25,6 +32,7 @@ public interface IAccountRepository extends JpaRepository<Account,Long> {
      */
     @Query(value = "select * from account where account_id = :accountId", nativeQuery = true)
     Account findByUserId(@Param("accountId") Long accountId);
+
 
     @Query(value = "update account set password = :newPass where account_id= :accountId",nativeQuery = true)
     void save(@Param("accountId") Long accountId);

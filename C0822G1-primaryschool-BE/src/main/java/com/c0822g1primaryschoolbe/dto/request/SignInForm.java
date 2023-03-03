@@ -1,7 +1,14 @@
 package com.c0822g1primaryschoolbe.dto.request;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 public class SignInForm {
+    @Size(min = 3,max = 10)
+    @Pattern(regexp = "[\\w]+")
     private String username;
+    @Size(min = 3,max = 10)
+    @Pattern(regexp = "[\\w]+")
     private String password;
 
     public SignInForm() {

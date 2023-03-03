@@ -11,7 +11,8 @@ import java.util.Date;
 @Component
 public class JWTProvider {
     private static final Logger logger = LoggerFactory.getLogger(JWTProvider.class);
-    private String jwtSecret = "tranvansy@gmail.com";
+
+    private String jwtSecret = "primaryschool";
     private int jwtExpiration = 86400;
 
     public String createToken(Authentication authentication) {
