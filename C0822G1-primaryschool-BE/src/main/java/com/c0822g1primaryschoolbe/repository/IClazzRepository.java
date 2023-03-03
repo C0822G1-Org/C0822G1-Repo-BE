@@ -1,15 +1,13 @@
 package com.c0822g1primaryschoolbe.repository;
-
-
-import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import com.c0822g1primaryschoolbe.entity.ClazzStudentDto;
 import com.c0822g1primaryschoolbe.entity.clazz.Block;
+import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +20,7 @@ public interface IClazzRepository extends JpaRepository<Clazz, Long> {
     @Modifying
     @Query(value = "select * from clazz",countQuery = "select * from clazz", nativeQuery = true)
     List<Clazz> findAllClazz();
+
 
     /* Ngô Đình Nhật Tuấn*/
     @Query(value =
@@ -85,32 +84,28 @@ public interface IClazzRepository extends JpaRepository<Clazz, Long> {
      * */
     @Transactional
     @Modifying
-    @Query(value = "insert into `clazz` (clazz_name,school_year,block_id,teacher_id,flag_delete)VALUES(:clazzName,:schoolYear,:blockId,:teacherId,false)"
-            ,countQuery = "insert into `clazz` (clazz_name,school_year,block_id,teacher_id,flag_delete)VALUES(:clazzName,:schoolYear,:blockId,:teacherId,false"
+    @Query(value = "insert into `clazz` (clazz_name,school_year,block_id,teacher_id,flag_delete,year)VALUES(:clazzName,:schoolYear,:blockId,:teacherId,false,:year)"
+            ,countQuery = "insert into `clazz` (clazz_name,school_year,block_id,teacher_id,flag_delete,year)VALUES(:clazzName,:schoolYear,:blockId,:teacherId,false,:year)"
             ,nativeQuery = true)
-    void createChooseClass(@Param("clazzName") String clazzName,@Param("schoolYear") String schoolYear, @Param("blockId") Block blockId, @Param("teacherId") Teacher teacherId);
-
-
+    void createChooseClass(@Param("clazzName") String clazzName,@Param("schoolYear") String schoolYear, @Param("blockId") Block blockId, @Param("teacherId") Teacher teacherId,@Param("year") Integer year);
     /**
      * create by : DungND
      * Data create: 27/02/2023
      * funcion: showListClassStudentById()
      * @param 'id'
      */
-    @Query(value = "SELECT clazz.clazz_id as clazzId,clazz.clazz_name as clazzName,teacher.teacher_id as teacherId,teacher.teacher_name as teacherName,student.student_id as studentId," +
-            "student.student_name as studentName,student.date_of_birth as dateOfBirth,student.gender as gender,student.address as address FROM  clazz left join student  on clazz.clazz_id= student.clazz_id left join teacher on clazz.teacher_id = teacher.teacher_id  where clazz.clazz_id= :id"
-            ,countQuery = "SELECT clazz.clazz_id as clazzId,clazz.clazz_name as clazzName,teacher.teacher_id as teacherId,teacher.teacher_name as teacherName,student.student_id as studentId," +
-            "student.student_name as studentName,student.date_of_birth as dateOfBirth,student.gender as gender,student.address as address FROM  clazz left join student  on clazz.clazz_id= student.clazz_id left join teacher on clazz.teacher_id = teacher.teacher_id  where clazz.clazz_id= :id"
+    @Query(value = "SELECT `clazz`.clazz_id as clazzId,`clazz`.clazz_name as clazzName,`teacher`.teacher_id as teacherId,`teacher`.teacher_name as teacherName,`student`.student_id as studentId," +
+            "`student`.student_name as studentName,`student`.date_of_birth as dateOfBirth,`student`.gender as gender,student.address as address FROM  `clazz` left join `student`  on `clazz`.clazz_id= `student`.clazz_id left join `teacher` on `clazz`.teacher_id = `teacher`.teacher_id  where `clazz`.clazz_id= :id"
+            ,countQuery = "SELECT `clazz`.clazz_id as clazzId,`clazz`.clazz_name as clazzName,`teacher`.teacher_id as teacherId,`teacher`.teacher_name as teacherName,`student`.student_id as studentId," +
+            "`student`.student_name as studentName,`student`.date_of_birth as dateOfBirth,`student`.gender as gender,`student`.address as address FROM  `clazz` left join `student`  on `clazz`.clazz_id= `student`.clazz_id left join `teacher` on `clazz`.teacher_id = `teacher`.teacher_id  where `clazz`.clazz_id= :id"
             ,nativeQuery = true)
     List<ClazzStudentDto> showListClassStudentById(@Param("id") long id);
     /**
      * create by : DungND
      * Data create: 27/02/2023
-     * funcion: showListClassStudentById()
-     * @param 'id'
+     * funcion: showListClass()
      */
     @Query(value = "SELECT * FROM `clazz`"
-            ,countQuery = "SELECT * FROM `clazz`"
             ,nativeQuery = true)
     List<Clazz> showListAll();
 }

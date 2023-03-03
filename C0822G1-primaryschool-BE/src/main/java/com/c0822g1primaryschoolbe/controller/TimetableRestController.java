@@ -18,8 +18,6 @@ import java.util.List;
 public class TimetableRestController {
     @Autowired
     private ITimetableService timetableService;
-//    @Autowired
-//    private IClazzService clazzService;
     @Autowired
     private ISubjectService subjectService;
 

@@ -1,9 +1,7 @@
 package com.c0822g1primaryschoolbe.service;
 
 import com.c0822g1primaryschoolbe.entity.ClazzStudentDto;
-import com.c0822g1primaryschoolbe.entity.clazz.Block;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
-import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
@@ -58,4 +56,5 @@ public interface IClazzService {
      * @return
      */
     List<Clazz> findAllClazz();
+
 }
