@@ -1,4 +1,4 @@
-package com.c0822g1primaryschoolbe.dto;
+package com.c0822g1primaryschoolbe.entity;
 
 public interface ClazzStudentDto {
     Long getClazzId();
@@ -12,4 +12,10 @@ public interface ClazzStudentDto {
     Long getTeacherId();
 
     String getTeacherName();
+
+    String getDateOfBirth();
+
+    Boolean getGender();
+
+    String getAddress();
 }

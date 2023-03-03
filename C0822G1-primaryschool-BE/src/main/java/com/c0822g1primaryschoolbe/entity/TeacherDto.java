@@ -1,8 +1,13 @@
-package com.c0822g1primaryschoolbe.dto;
+package com.c0822g1primaryschoolbe.entity;
+
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 public class TeacherDto implements Validator {
+    /**
+     * Create by : TuanNDN
+     * @return
+     */
     private Long teacherId;
     private String teacherName;
 

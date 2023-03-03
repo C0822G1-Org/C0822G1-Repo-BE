@@ -15,7 +15,6 @@ public class Blog {
     private String poster;
     private String img;
 
-
     public Long getId() {
         return id;
     }

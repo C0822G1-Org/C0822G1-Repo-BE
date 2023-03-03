@@ -1,9 +1,8 @@
-package com.c0822g1primaryschoolbe.dto;
+package com.c0822g1primaryschoolbe.entity;
+
 import com.sun.istack.NotNull;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -17,9 +16,18 @@ public class ClazzDto implements Validator {
     private String clazzName;
     @NotBlank
     @NotNull
-    @Pattern(regexp = "^[0-9]{4}$", message = "Niên khóa chưa đúng định dạng")
     private String schoolYear;
     private TeacherDto teacherDto;
+    private Integer year;
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
     public TeacherDto getTeacherDto() {
         return teacherDto;
     }

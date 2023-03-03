@@ -1,20 +1,20 @@
 package com.c0822g1primaryschoolbe.service;
 
-import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
+import com.c0822g1primaryschoolbe.entity.clazz.Block;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface ITeacherService {
+public interface IBlockService{
+
     /**
      * Create by : TuanNDN
      * @return
      */
-    Optional<Teacher> findByIdTeacher(@Param("teacherId") Long teacherId);
+    Block findByIdBlock(@Param("blockId") Long blockId);
     /**
      * Create by : TuanNDN
      * @return
      */
-    List<Teacher> showListTeacher();
+    List<Block> showListBlock();
 }

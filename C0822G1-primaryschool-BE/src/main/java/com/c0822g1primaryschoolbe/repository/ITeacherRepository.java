@@ -1,18 +1,28 @@
 package com.c0822g1primaryschoolbe.repository;
+
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import java.util.List;
+import org.springframework.data.repository.query.Param;
 
-public interface ITeacherRepository extends JpaRepository<Teacher,Long> {
+import java.util.List;
+import java.util.Optional;
+
+public interface ITeacherRepository extends JpaRepository<Teacher, Long> {
     /**
-     * create by : DungND
-     * Data create: 27/02/2023
-     * funcion: showListTeacher()
+     * Create by : TuanNDN
+     * @return
+     */
+    @Query(value ="SELECT * from teacher where teacher_id = :teacherId and flag_delete = false",
+            nativeQuery = true)
+    Optional<Teacher> findByIdTeacher(@Param("teacherId") Long teacherId);
+
+    /**
+     * Create by : TuanNDN
+     * @return
      */
     @Query(value = "SELECT * FROM `primary-school-management`.teacher"
             ,countQuery = "SELECT * FROM `primary-school-management`.teacher"
             ,nativeQuery = true)
     List<Teacher> showListTeacher();
-
 }
