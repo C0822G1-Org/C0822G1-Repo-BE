@@ -18,7 +18,7 @@ public class JWTEntryPoint implements AuthenticationEntryPoint {
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
 
        logger.error("Unauthorized error Message: {}", authException.getMessage());
-       response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Sai tài khoản hoặc mật khẩu");
+       response.sendError(HttpServletResponse.SC_NOT_ACCEPTABLE, "UnAuthority");
     }
 }
 

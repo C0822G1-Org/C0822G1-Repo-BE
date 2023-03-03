@@ -1,5 +1,4 @@
 package com.c0822g1primaryschoolbe.service.principle;
-
 import com.c0822g1primaryschoolbe.entity.account.Account;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -75,7 +74,9 @@ public class AccountPrinciple implements UserDetails {
     }
 
     public static AccountPrinciple build(Account account) {
-        List<GrantedAuthority> authorityList = account.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName().name())).collect(Collectors.toList());
+        List<GrantedAuthority> authorityList = account.getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName().name()))
+                .collect(Collectors.toList());
         return new AccountPrinciple(
                 account.getAccountId(),
                 account.getUsername(),
