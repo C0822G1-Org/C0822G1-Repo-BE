@@ -3,6 +3,7 @@ package com.c0822g1primaryschoolbe.dto.response;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
+import java.util.List;
 
 public class JwtResponse {
     private String token;
@@ -13,12 +14,12 @@ public class JwtResponse {
 
     private String email;
     private String avatar;
-    private Collection<? extends GrantedAuthority> roles;
+    private List<String> roles;
 
     public JwtResponse() {
     }
 
-    public JwtResponse(String token, String name, Long id, String username, String email, String avatar, Collection<? extends GrantedAuthority> roles) {
+    public JwtResponse(String token, String name, Long id, String username, String email, String avatar, List<String> roles) {
         this.token = token;
         this.name = name;
         this.id = id;
@@ -26,19 +27,6 @@ public class JwtResponse {
         this.email = email;
         this.roles = roles;
         this.avatar = avatar;
-    }
-
-    public JwtResponse(String token, String type, String name, Collection<? extends GrantedAuthority> roles) {
-        this.token = token;
-        this.type = type;
-        this.name = name;
-        this.roles = roles;
-    }
-
-    public JwtResponse(String token, String name, Collection<? extends GrantedAuthority> authorities) {
-        this.token = token;
-        this.name = name;
-        this.roles = authorities;
     }
 
     public String getAvatar() {
@@ -97,11 +85,11 @@ public class JwtResponse {
         this.name = name;
     }
 
-    public Collection<? extends GrantedAuthority> getRoles() {
+    public List<String> getRoles() {
         return roles;
     }
 
-    public void setRoles(Collection<? extends GrantedAuthority> roles) {
+    public void setRoles(List<String> roles) {
         this.roles = roles;
     }
 }

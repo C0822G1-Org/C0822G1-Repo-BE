@@ -4,11 +4,11 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class SignInForm {
-    @Size(min = 3,max = 10)
-    @Pattern(regexp = "[\\w]+")
+    @Size(min = 3,max = 20, message = "Tài khoản phải lớn hơn 3 ký tự và nhỏ hơn 20 ký tự")
+    @Pattern(regexp = "[\\w]+", message = "chưa đúng định dạng")
     private String username;
-    @Size(min = 3,max = 10)
-    @Pattern(regexp = "[\\w]+")
+    @Size(min = 3,max = 20, message = "Mật khẩu phải lớn hơn 3 ký tự và nhỏ hơn 20 ký tự")
+    @Pattern(regexp = "[\\w]+", message = "chưa đúng định dạng")
     private String password;
 
     public SignInForm() {

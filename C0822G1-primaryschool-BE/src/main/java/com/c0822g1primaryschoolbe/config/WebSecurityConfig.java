@@ -19,7 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AccountDetailService accountDetailService;
@@ -51,9 +51,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
-                .authorizeRequests().antMatchers("/api/auth/**", "/blog/**").permitAll()
-                .antMatchers("/api/teacher/**").access("hasRole('TEACHER')")
-                .antMatchers("/api/admin/**").access("hasRole('ADMIN')")
+                .authorizeRequests().antMatchers("/blog/**","/api/auth/**").permitAll()
+                .antMatchers("/api/teacher/**").hasRole("TEACHER")
+                .antMatchers("/api/students/**").hasRole("TEACHER")
+                .antMatchers("/api/time-table/**").hasRole("TEACHER")
+                .antMatchers("/api/timeTable/**").access("hasRole('ADMIN')")
                 .anyRequest().authenticated()
                 .and().exceptionHandling()
                 .authenticationEntryPoint(jwtEntryPoint)

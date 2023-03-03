@@ -14,16 +14,21 @@ import com.c0822g1primaryschoolbe.service.principle.AccountPrinciple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -57,12 +62,16 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtProvider.createToken(authentication);
         AccountPrinciple accountPrinciple = (AccountPrinciple) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+        List<String> roles = accountPrinciple.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList());
         return ResponseEntity.ok(new JwtResponse(token,
                 accountPrinciple.getName(),
-                accountPrinciple.getId(), accountPrinciple.getUsername(),
-                accountPrinciple.getEmail(), accountPrinciple.getAvatar(),
-                accountPrinciple.getAuthorities()));
+                accountPrinciple.getId(),
+                accountPrinciple.getUsername(),
+                accountPrinciple.getEmail(),
+                accountPrinciple.getAvatar(),
+                roles));
     }
 
     /**
@@ -75,17 +84,19 @@ public class AuthController {
      */
 
     @PostMapping("/sign-up")
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> register(@Valid @RequestBody SignUpForm signUpForm) {
         if (iAccountService.existsAccountByUsername(signUpForm.getUsername())) {
-            return new ResponseEntity<>(new ResponseMessage("Tên đăng nhập " + signUpForm.getUsername() + " đã được sử dụng, vui lòng chọn tên khác"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ResponseMessage("Tên đăng nhập " + signUpForm.getUsername() +
+                    " đã được sử dụng, vui lòng chọn tên khác"), HttpStatus.BAD_REQUEST);
         }
         if (iAccountService.existsAccountByEmail(signUpForm.getEmail())) {
             return new ResponseEntity<>(new ResponseMessage("Email đã tồn tại"), HttpStatus.BAD_REQUEST);
         }
         Account account = new Account(signUpForm.getUsername(), passwordEncoder.encode(signUpForm.getPassword()), signUpForm.getName(), signUpForm.getEmail());
         Set<Role> roles = new HashSet<>();
-        Role roleEmployee = iRoleService.findByName(RoleName.ROLE_TEACHER).orElseThrow(() -> new RuntimeException("Role not found"));
-        roles.add(roleEmployee);
+        Role role = iRoleService.findByName(RoleName.ROLE_TEACHER).orElseThrow(() -> new RuntimeException("Role not found"));
+        roles.add(role);
         account.setRoles(roles);
         iAccountService.save(account);
         return new ResponseEntity<>(new ResponseMessage("Đăng kí thành công"), HttpStatus.OK);
