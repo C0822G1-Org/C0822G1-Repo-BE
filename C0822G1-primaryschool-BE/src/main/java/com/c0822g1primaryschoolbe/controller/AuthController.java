@@ -45,7 +45,6 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private JWTProvider jwtProvider;
-
     /**
      * Created by: SyTV
      * Date created: 27/02/2023
@@ -55,7 +54,6 @@ public class AuthController {
      * @return ResponseEntity.ok with jwtResponse(token,name,id,username,email,avatar,roles)
      */
 
-
     @PostMapping("/sign-in")
     public ResponseEntity<?> login(@Valid @RequestBody SignInForm signInForm) {
 
@@ -63,7 +61,6 @@ public class AuthController {
                 new UsernamePasswordAuthenticationToken(signInForm.getUsername(), signInForm.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtProvider.createToken(authentication);
-
         AccountPrinciple accountPrinciple = (AccountPrinciple) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<String> roles = accountPrinciple.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
@@ -76,18 +73,6 @@ public class AuthController {
                 accountPrinciple.getAvatar(),
                 roles));
 
-    }
-
-    /**
-     * Create by : NuongHT
-     * Date create: 28/02/2023
-     * Description: api change password
-     *
-     */
-    @PatchMapping("/change-password")
-    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDto changePasswordDto) throws Exception {
-        iAccountService.changePassword(changePasswordDto);
-        return ResponseEntity.ok().build();
     }
 
     /**
@@ -116,6 +101,18 @@ public class AuthController {
         account.setRoles(roles);
         iAccountService.save(account);
         return new ResponseEntity<>(new ResponseMessage("Đăng kí thành công"), HttpStatus.OK);
+    }
+
+    /**
+     * Create by : NuongHT
+     * Date create: 28/02/2023
+     * Description: api change password
+     *
+     */
+    @PatchMapping("/change-password")
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDto changePasswordDto) throws Exception {
+        iAccountService.changePassword(changePasswordDto);
+        return ResponseEntity.ok().build();
     }
 }
 
