@@ -1,5 +1,6 @@
 package com.c0822g1primaryschoolbe.controller;
 
+import com.c0822g1primaryschoolbe.dto.request.ChangePasswordDto;
 import com.c0822g1primaryschoolbe.dto.request.SignInForm;
 import com.c0822g1primaryschoolbe.dto.request.SignUpForm;
 import com.c0822g1primaryschoolbe.dto.response.JwtResponse;
@@ -14,17 +15,16 @@ import com.c0822g1primaryschoolbe.service.principle.AccountPrinciple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,6 +38,7 @@ public class AuthController {
     private IAccountService iAccountService;
     @Autowired
     private IRoleService iRoleService;
+
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
@@ -54,6 +55,7 @@ public class AuthController {
      * @return ResponseEntity.ok with jwtResponse(token,name,id,username,email,avatar,roles)
      */
 
+
     @PostMapping("/sign-in")
     public ResponseEntity<?> login(@Valid @RequestBody SignInForm signInForm) {
 
@@ -61,6 +63,7 @@ public class AuthController {
                 new UsernamePasswordAuthenticationToken(signInForm.getUsername(), signInForm.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtProvider.createToken(authentication);
+
         AccountPrinciple accountPrinciple = (AccountPrinciple) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<String> roles = accountPrinciple.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
@@ -72,6 +75,19 @@ public class AuthController {
                 accountPrinciple.getEmail(),
                 accountPrinciple.getAvatar(),
                 roles));
+
+    }
+
+    /**
+     * Create by : NuongHT
+     * Date create: 28/02/2023
+     * Description: api change password
+     *
+     */
+    @PatchMapping("/change-password")
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDto changePasswordDto) throws Exception {
+        iAccountService.changePassword(changePasswordDto);
+        return ResponseEntity.ok().build();
     }
 
     /**
@@ -102,3 +118,4 @@ public class AuthController {
         return new ResponseEntity<>(new ResponseMessage("Đăng kí thành công"), HttpStatus.OK);
     }
 }
+

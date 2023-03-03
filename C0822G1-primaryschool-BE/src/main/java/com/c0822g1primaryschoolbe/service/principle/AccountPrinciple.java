@@ -74,7 +74,9 @@ public class AccountPrinciple implements UserDetails {
     }
 
     public static AccountPrinciple build(Account account) {
-        List<GrantedAuthority> authorityList = account.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName().name())).collect(Collectors.toList());
+        List<GrantedAuthority> authorityList = account.getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName().name()))
+                .collect(Collectors.toList());
         return new AccountPrinciple(
                 account.getAccountId(),
                 account.getUsername(),
@@ -124,5 +126,5 @@ public class AccountPrinciple implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
 }
+
