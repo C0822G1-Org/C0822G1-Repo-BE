@@ -24,15 +24,22 @@ public class Teacher {
     private Boolean flagDelete;
     private String teacherType;
     private Boolean teacherStatus;
-    @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")
     private Account account;
     @ManyToOne()
     @JoinColumn(name = "degree_id",nullable = false,referencedColumnName = "degree_id")
     private Degree degree;
-    @OneToOne(mappedBy = "teacher")
+    @OneToOne(mappedBy = "teacher", orphanRemoval = true, fetch = FetchType.LAZY)
     private Clazz clazz;
+
+    public Clazz getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(Clazz clazz) {
+        this.clazz = clazz;
+    }
 
     public String getIdCard() {
         return idCard;

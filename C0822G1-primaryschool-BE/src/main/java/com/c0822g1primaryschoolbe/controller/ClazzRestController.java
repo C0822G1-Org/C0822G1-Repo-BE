@@ -1,8 +1,6 @@
 package com.c0822g1primaryschoolbe.controller;
 
-import com.c0822g1primaryschoolbe.entity.ClassStudentDto;
-import com.c0822g1primaryschoolbe.entity.ClazzDto;
-import com.c0822g1primaryschoolbe.entity.ClazzStudentDto;
+import com.c0822g1primaryschoolbe.entity.*;
 import com.c0822g1primaryschoolbe.entity.clazz.Block;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 import com.c0822g1primaryschoolbe.entity.student.Student;
@@ -22,6 +20,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,13 +43,14 @@ public class ClazzRestController {
     private StudentService studentService;
 
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
+     * @param pageable
+     * @param keySearch1
      * @return
      */
     @GetMapping("")
     public ResponseEntity<Page<Clazz>> searchByContent(@PageableDefault(value = 5) Pageable pageable,
                                                        @RequestParam (defaultValue = "" )  String keySearch1) {
-//        String nameClazzSearch = keySearch1.orElse("");
         Page<Clazz> clazz = clazzService.findAllClazz(pageable, keySearch1);
         if (clazz.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -59,9 +59,11 @@ public class ClazzRestController {
     }
 
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
+     * @param id
      * @return
      */
+
     @GetMapping("/info/{id}")
     public ResponseEntity<Clazz> findById(@PathVariable("id") Long id) {
         Clazz clazz = clazzService.findByIdClazz(id);
@@ -71,20 +73,20 @@ public class ClazzRestController {
         return new ResponseEntity<>(clazz, HttpStatus.OK);
     }
 
-
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
+     * @param clazzId
+     * @param classStudentDto
+     * @param bindingResult
      * @return
      */
+
     @PutMapping ("/update/{clazzId}")
     public ResponseEntity<Clazz> updateClazz(@PathVariable("clazzId") Long clazzId,
                                         @Valid @RequestBody ClassStudentDto classStudentDto,
                                         BindingResult bindingResult) {
         Clazz clazz = clazzService.findByIdClazz(clazzId);
         Optional<Teacher> teacher = teacherService.findByIdTeacher(classStudentDto.getTeacher().getTeacherId());
-        if (!teacher.isPresent()){
-
-        }
         Block block = blockService.findByIdBlock(classStudentDto.getBlock().getBlockId());
         if (clazz == null) {
             return new ResponseEntity<>(clazz,HttpStatus.BAD_REQUEST);
@@ -97,20 +99,23 @@ public class ClazzRestController {
 
         }
     }
+
+
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
      * @return
      */
     @GetMapping("teacher")
-    public ResponseEntity<List<Teacher>> showListTeacher() {
-        List<Teacher> teachers = teacherService.showListTeacher();
+    public ResponseEntity<List<ITeacherDto>> showListTeacher() {
+        List<ITeacherDto> teachers = teacherService.showListTeacher();
         if (teachers.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity(teachers, HttpStatus.OK);
+        return new ResponseEntity<>(teachers, HttpStatus.OK);
     }
+
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
      * @return
      */
     @GetMapping("block")
@@ -119,11 +124,11 @@ public class ClazzRestController {
         if (blocks.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity(blocks, HttpStatus.OK);
+        return new ResponseEntity<>(blocks, HttpStatus.OK);
     }
 
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
      * @return
      */
     @GetMapping("student")
@@ -132,8 +137,63 @@ public class ClazzRestController {
         if (students.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity(students, HttpStatus.OK);
+        return new ResponseEntity<>(students, HttpStatus.OK);
     }
+
+    /**
+     * Create by TuanNDN
+     * @param clazzId
+     * @return
+     */
+    @GetMapping("student/search-clazz-student/a/{id}")
+    public ResponseEntity<List<Student>> findByAllStudentName(@PathVariable("id") Integer clazzId) {
+        List<Student> students = studentService.findAllStudentByClassId(clazzId);
+        if (students.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(students, HttpStatus.OK);
+    }
+
+    /**
+     * Create by TuanNDN
+     * @param idList
+     * @return
+     */
+    @PostMapping("/find-by-student-id")
+    public ResponseEntity<List<Student>> findByListId(@RequestBody List<Long> idList) {
+        if (idList == null || idList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        List<Student> studentList = studentService.findByListStudentId(idList);
+        if (idList.size() != studentList.size()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(studentList, HttpStatus.OK);
+    }
+
+    /**
+     * Create by TuanNDN
+     * @return
+     */
+    @PatchMapping("/student/up-class")
+    public ResponseEntity<HttpStatus> upClass() {
+//        System.out.println(list.toString());
+//        if (list == null || list.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//        List<Student> studentList = studentService.findByListStudentId(list);
+//        if (list.size() == 0) {
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }
+//        studentService.upBlockNew();
+
+        studentService.upClassNew();
+        studentService.lockUpClass();
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
 
     /**
      * create by : DungND
@@ -143,11 +203,16 @@ public class ClazzRestController {
      */
     @GetMapping("/list-class")
     public ResponseEntity<List<Clazz>> showListClass() {
+        try {
+            clazzService.showListAll();
+        }catch (Exception e) {
+
+        }
         List<Clazz> listClass = clazzService.showListAll();
         if (listClass.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity(listClass, HttpStatus.OK);
+        return new ResponseEntity<>(listClass, HttpStatus.OK);
     }
     /**
      * create by : DungND
@@ -162,7 +227,7 @@ public class ClazzRestController {
         if (listClass.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity(listClass, HttpStatus.OK);
+        return new ResponseEntity<>(listClass, HttpStatus.OK);
     }
     /**
      * Create by: DungND
@@ -177,12 +242,14 @@ public class ClazzRestController {
         if (bindingResult.hasErrors()){
             return new ResponseEntity(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
         }
-
         Clazz clazz = new Clazz();
         BeanUtils.copyProperties(classDto,clazz);
         Teacher teacher = new Teacher();
         teacher.setTeacherId(classDto.getTeacherDto().getTeacherId());
         clazz.setTeacher(teacher);
+        LocalDate today = LocalDate.now();
+        Integer year = today.getYear();
+        clazz.setYear(year);
         clazzService.createChooseClass(clazz);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

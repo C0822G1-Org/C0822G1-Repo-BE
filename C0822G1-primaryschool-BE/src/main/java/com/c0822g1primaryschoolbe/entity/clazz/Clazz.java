@@ -1,13 +1,10 @@
 package com.c0822g1primaryschoolbe.entity.clazz;
 
-import com.c0822g1primaryschoolbe.entity.student.Student;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.TimeTable;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Clazz {
@@ -20,18 +17,17 @@ public class Clazz {
     private Boolean flagDelete;
     private Integer year;
     private String schoolYear;
-    @OneToOne(mappedBy = "clazz")
+    @OneToOne(mappedBy = "clazz", orphanRemoval = true, fetch = FetchType.LAZY)
     private TimeTable timeTable;
-
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "block_id",nullable = false,referencedColumnName = "block_id")
     private Block block;
-    @OneToOne(cascade = CascadeType.ALL)
+    @JsonBackReference
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
-    @JsonBackReference
-    @OneToMany(mappedBy = "clazz")
-    private Set<Student> students;
+
 
     public Long getClazzId() {
         return clazzId;
