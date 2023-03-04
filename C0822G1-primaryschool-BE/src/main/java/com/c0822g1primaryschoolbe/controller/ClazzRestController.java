@@ -43,7 +43,9 @@ public class ClazzRestController {
     private StudentService studentService;
 
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
+     * @param pageable
+     * @param keySearch1
      * @return
      */
     @GetMapping("")
@@ -57,9 +59,11 @@ public class ClazzRestController {
     }
 
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
+     * @param id
      * @return
      */
+
     @GetMapping("/info/{id}")
     public ResponseEntity<Clazz> findById(@PathVariable("id") Long id) {
         Clazz clazz = clazzService.findByIdClazz(id);
@@ -69,11 +73,14 @@ public class ClazzRestController {
         return new ResponseEntity<>(clazz, HttpStatus.OK);
     }
 
-
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
+     * @param clazzId
+     * @param classStudentDto
+     * @param bindingResult
      * @return
      */
+
     @PutMapping ("/update/{clazzId}")
     public ResponseEntity<Clazz> updateClazz(@PathVariable("clazzId") Long clazzId,
                                         @Valid @RequestBody ClassStudentDto classStudentDto,
@@ -92,8 +99,10 @@ public class ClazzRestController {
 
         }
     }
+
+
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
      * @return
      */
     @GetMapping("teacher")
@@ -104,8 +113,9 @@ public class ClazzRestController {
         }
         return new ResponseEntity<>(teachers, HttpStatus.OK);
     }
+
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
      * @return
      */
     @GetMapping("block")
@@ -118,7 +128,7 @@ public class ClazzRestController {
     }
 
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
      * @return
      */
     @GetMapping("student")
@@ -129,6 +139,61 @@ public class ClazzRestController {
         }
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
+
+    /**
+     * Create by TuanNDN
+     * @param clazzId
+     * @return
+     */
+    @GetMapping("student/search-clazz-student/a/{id}")
+    public ResponseEntity<List<Student>> findByAllStudentName(@PathVariable("id") Integer clazzId) {
+        List<Student> students = studentService.findAllStudentByClassId(clazzId);
+        if (students.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(students, HttpStatus.OK);
+    }
+
+    /**
+     * Create by TuanNDN
+     * @param idList
+     * @return
+     */
+    @PostMapping("/find-by-student-id")
+    public ResponseEntity<List<Student>> findByListId(@RequestBody List<Long> idList) {
+        if (idList == null || idList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        List<Student> studentList = studentService.findByListStudentId(idList);
+        if (idList.size() != studentList.size()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(studentList, HttpStatus.OK);
+    }
+
+    /**
+     * Create by TuanNDN
+     * @return
+     */
+    @PatchMapping("/student/up-class")
+    public ResponseEntity<HttpStatus> upClass() {
+//        System.out.println(list.toString());
+//        if (list == null || list.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//        List<Student> studentList = studentService.findByListStudentId(list);
+//        if (list.size() == 0) {
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }
+//        studentService.upBlockNew();
+
+        studentService.upClassNew();
+        studentService.lockUpClass();
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
 
     /**
      * create by : DungND

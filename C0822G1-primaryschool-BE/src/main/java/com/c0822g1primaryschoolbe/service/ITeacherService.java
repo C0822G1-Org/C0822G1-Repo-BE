@@ -10,13 +10,16 @@ import java.util.Optional;
 
 public interface ITeacherService {
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
+     * @param teacherId
      * @return
      */
     Optional<Teacher> findByIdTeacher(@Param("teacherId") Long teacherId);
+
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
      * @return
      */
+
     List<ITeacherDto> showListTeacher();
 }

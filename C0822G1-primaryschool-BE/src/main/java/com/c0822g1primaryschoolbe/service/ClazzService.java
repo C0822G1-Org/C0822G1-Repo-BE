@@ -18,25 +18,36 @@ public class ClazzService implements IClazzService {
 
     @Autowired
     private IClazzRepository clazzRepository;
+
+    @Autowired
+    private ITeacherRepository teacherRepository;
+
+    @Autowired
+    private IBlockRepository blockRepository;
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
+     * @param pageable
+     * @param keySearch1
      * @return
      */
     @Override
     public Page<Clazz> findAllClazz(Pageable pageable, String keySearch1) {
         return clazzRepository.findAllClazz(pageable, keySearch1);
     }
+
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
+     * @param clazzId
      * @return
      */
     @Override
     public Clazz findByIdClazz(Long clazzId) {
         return clazzRepository.findByIdClazz(clazzId);
     }
+
     /**
-     * Create by : TuanNDN
-     * @return
+     * Create by TuanNDN
+     * @param clazz
      */
     @Override
     public void updateClazz(Clazz clazz) {
@@ -49,6 +60,15 @@ public class ClazzService implements IClazzService {
                 clazz.getYear(),
                 clazz.getBlock().getBlockId());
     }
+
+    /**
+     * Create by TuanNDN
+     */
+    @Override
+    public void upBlockNew() {
+        clazzRepository.upBlockNew();
+    }
+
 
     /** Method use: createChooseClass()
      * Created date: 27/02/2023
@@ -74,6 +94,7 @@ public class ClazzService implements IClazzService {
         clazz.setBlock(block);
         clazzRepository.createChooseClass(clazz.getClazzName(),clazz.getSchoolYear(),clazz.getBlock(),clazz.getTeacher(),clazz.getYear());
     }
+
     /**
      * create by : DungND
      * Data create: 27/02/2023

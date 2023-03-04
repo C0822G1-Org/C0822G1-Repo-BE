@@ -11,22 +11,30 @@ import java.util.List;
 public interface IClazzService {
 
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
+     * @param pageable
+     * @param keySearch1
      * @return
      */
     Page<Clazz> findAllClazz(Pageable pageable, @Param("keySearch1") String keySearch1);
 
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
+     * @param clazzId
      * @return
      */
     Clazz findByIdClazz(@Param("clazzId") Long clazzId);
 
     /**
-     * Create by : TuanNDN
-     * @return
+     * Create by TuanNDN
+     * @param clazz
      */
     void updateClazz(Clazz clazz);
+
+    /**
+     * Create by TuanNDN
+     */
+    void upBlockNew();
 
     /** Method use: createChooseClass()
      * Created date: 27/02/2023

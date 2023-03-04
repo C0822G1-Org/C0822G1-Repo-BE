@@ -14,16 +14,19 @@ import java.util.Optional;
 public class TeacherService implements ITeacherService{
     @Autowired
     private ITeacherRepository teacherRepository;
+
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
+     * @param teacherId
      * @return
      */
     @Override
     public Optional<Teacher> findByIdTeacher(Long teacherId) {
         return teacherRepository.findByIdTeacher(teacherId);
     }
+
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
      * @return
      */
     @Override

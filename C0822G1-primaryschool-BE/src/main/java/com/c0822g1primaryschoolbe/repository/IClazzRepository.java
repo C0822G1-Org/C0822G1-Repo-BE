@@ -16,6 +16,10 @@ import java.util.List;
 
 @Repository
 public interface IClazzRepository extends JpaRepository<Clazz, Long> {
+    /**
+     * Create by TuanNDN
+     * @return
+     */
     @Transactional
     @Modifying
     @Query(value = "select * from clazz",countQuery = "select * from clazz", nativeQuery = true)
@@ -28,31 +32,41 @@ public interface IClazzRepository extends JpaRepository<Clazz, Long> {
                     " from `clazz` c " +
                     "join `teacher` t on t.teacher_id = c.teacher_id " +
                     "join `block` b on b.block_id = c.block_id " +
-                    "join `student` s on s.clazz_id = c.clazz_id " +
                     "where c.clazz_name like concat('%', :keySearch1 ,'%') " +
                     "and c.flag_delete=false " +
-                    "order by c.clazz_id desc",
+                    "order by c.clazz_name asc",
             countQuery =
                     " select c.*" +
                             " from `clazz` c " +
                             "join `teacher` t on t.teacher_id = c.teacher_id " +
                             "join `block` b on b.block_id = c.block_id " +
-                            "join `student` s on s.clazz_id = c.clazz_id " +
                             "where c.clazz_name like concat('%', :keySearch1 ,'%') " +
                             "and c.flag_delete=false " +
-                            "order by c.clazz_id desc ",
+                            "order by c.clazz_name asc ",
             nativeQuery = true)
     Page<Clazz> findAllClazz(Pageable pageable, @Param("keySearch1") String keySearch1);
 
-    /* Ngô Đình Nhật Tuấn*/
+    /**
+     * Create by TuanNDN
+     * @param clazzId
+     * @return
+     */
     @Query(value ="SELECT * from clazz where clazz_id = :clazzId and flag_delete = false",
             countQuery = "SELECT * from clazz where clazz_id = :clazzId and flag_delete = false",
             nativeQuery = true)
     Clazz findByIdClazz(@Param("clazzId") Long clazzId);
 
 
-
-    /* Ngô Đình Nhật Tuấn*/
+    /**
+     * Create by TuanNDN
+     * @param clazzId
+     * @param teacherId
+     * @param clazzName
+     * @param flagDelete
+     * @param schoolYear
+     * @param year
+     * @param blockId
+     */
     @Transactional
     @Modifying
     @Query(value =
@@ -73,6 +87,25 @@ public interface IClazzRepository extends JpaRepository<Clazz, Long> {
                      @Param("schoolYear") String schoolYear,
                      @Param("year") Integer year,
                      @Param("blockId") Long blockId);
+
+
+    /**
+     * Create by TuanNDN
+     */
+    @Transactional
+    @Modifying
+    @Query(value =
+            "update clazz" +
+                    " set clazz.block_id = clazz.block_id + 1" +
+                    " where clazz.block_id" +
+                    " in (" +
+                    " select p.student_id" +
+                    " from block b" +
+                    " join teacher t on t.teacher_id = clazz.teacher_id" +
+                    " join student s on s.clazz_id = clazz.clazz_id" +
+                    " join point_management p on s.student_id = p.student_id" +
+                    " where p.condition_check = false)", nativeQuery = true)
+    void upBlockNew();
 
 
 
