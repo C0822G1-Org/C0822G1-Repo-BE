@@ -13,8 +13,16 @@ public interface ITimetableService {
      *
      * @Param idClazz
      */
-    List<ITimetable>getAllTimetable(Long idClazz);
-//    List<List<ITimetable>>getAllTimetable(Long idClazz);
+    List<ITimetable> getAllTimetable(Long idClazz);
 
-   void updateTimetable(Long idTimetable, Long idSubject);
+
+
+    /**
+     * Create by : NamHH
+     * Date created: 28/02/2023
+     * Function: update timetable where id_subject
+     *
+     * @Param id_timetable, id_subject
+     */
+    void updateTimetable(Long idTimetable, Long idSubject);
 }

@@ -4,6 +4,7 @@ import com.c0822g1primaryschoolbe.entity.ClazzStudentDto;
 import com.c0822g1primaryschoolbe.entity.clazz.Block;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
+import com.c0822g1primaryschoolbe.entity.time_table_subject.IClazz;
 import com.c0822g1primaryschoolbe.repository.IBlockRepository;
 import com.c0822g1primaryschoolbe.repository.IClazzRepository;
 import com.c0822g1primaryschoolbe.repository.ITeacherRepository;
@@ -92,13 +93,27 @@ public class ClazzService implements IClazzService {
         return clazzRepository.showListClassStudentById(id);
     }
 
+
+
     /**
      * Create by NamHH
-     * @return
-     */
+     * Date 01/03/2023
+     * Function: showListClazz
+     **/
     @Override
-    public List<Clazz> findAllClazz() {
-        return clazzRepository.findAllClazz();
+    public List<IClazz> showListClazz(Long bockId) {
+        return clazzRepository.showListClazz(bockId);
+    }
+
+
+    /**
+     * Create by NamHH
+     * Date 01/03/2023
+     * Function: showClazz
+     **/
+    @Override
+    public IClazz showClazz(Long clazzId) {
+        return clazzRepository.showClazz(clazzId);
     }
 
 }

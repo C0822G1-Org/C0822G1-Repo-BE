@@ -2,6 +2,7 @@ package com.c0822g1primaryschoolbe.repository;
 
 
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
+import com.c0822g1primaryschoolbe.entity.time_table_subject.IClazz;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -20,7 +21,7 @@ import java.util.List;
 public interface IClazzRepository extends JpaRepository<Clazz, Long> {
     @Transactional
     @Modifying
-    @Query(value = "select * from clazz",countQuery = "select * from clazz", nativeQuery = true)
+    @Query(value = "select * from clazz", countQuery = "select * from clazz", nativeQuery = true)
     List<Clazz> findAllClazz();
 
     /* Ngô Đình Nhật Tuấn*/
@@ -46,11 +47,10 @@ public interface IClazzRepository extends JpaRepository<Clazz, Long> {
     Page<Clazz> findAllClazz(Pageable pageable, @Param("keySearch1") String keySearch1);
 
     /* Ngô Đình Nhật Tuấn*/
-    @Query(value ="SELECT * from clazz where clazz_id = :clazzId and flag_delete = false",
+    @Query(value = "SELECT * from clazz where clazz_id = :clazzId and flag_delete = false",
             countQuery = "SELECT * from clazz where clazz_id = :clazzId and flag_delete = false",
             nativeQuery = true)
     Clazz findByIdClazz(@Param("clazzId") Long clazzId);
-
 
 
     /* Ngô Đình Nhật Tuấn*/
@@ -63,54 +63,76 @@ public interface IClazzRepository extends JpaRepository<Clazz, Long> {
                     "c.school_year = :schoolYear, " +
                     "c.year = :year," +
                     "c.block_id =:blockId " +
-                    "WHERE c.clazz_id = :clazzId" ,
+                    "WHERE c.clazz_id = :clazzId",
 
             nativeQuery = true)
     void updateClazz(
-                     @Param("clazzId") Long clazzId,
-                     @Param("teacherId") Long teacherId,
-                     @Param("clazzName") String clazzName,
-                     @Param("flagDelete") Boolean flagDelete,
-                     @Param("schoolYear") String schoolYear,
-                     @Param("year") Integer year,
-                     @Param("blockId") Long blockId);
+            @Param("clazzId") Long clazzId,
+            @Param("teacherId") Long teacherId,
+            @Param("clazzName") String clazzName,
+            @Param("flagDelete") Boolean flagDelete,
+            @Param("schoolYear") String schoolYear,
+            @Param("year") Integer year,
+            @Param("blockId") Long blockId);
 
 
-
-    /** Method use: createChooseClass()
+    /**
+     * Method use: createChooseClass()
      * Created date: 27/02/2023
      * Function:createChooseClass
      * Parameter: contentClass
      * Author: DungND
-     * */
+     */
     @Transactional
     @Modifying
     @Query(value = "insert into `clazz` (clazz_name,school_year,block_id,teacher_id,flag_delete)VALUES(:clazzName,:schoolYear,:blockId,:teacherId,false)"
-            ,countQuery = "insert into `clazz` (clazz_name,school_year,block_id,teacher_id,flag_delete)VALUES(:clazzName,:schoolYear,:blockId,:teacherId,false"
-            ,nativeQuery = true)
-    void createChooseClass(@Param("clazzName") String clazzName,@Param("schoolYear") String schoolYear, @Param("blockId") Block blockId, @Param("teacherId") Teacher teacherId);
+            , countQuery = "insert into `clazz` (clazz_name,school_year,block_id,teacher_id,flag_delete)VALUES(:clazzName,:schoolYear,:blockId,:teacherId,false"
+            , nativeQuery = true)
+    void createChooseClass(@Param("clazzName") String clazzName, @Param("schoolYear") String schoolYear, @Param("blockId") Block blockId, @Param("teacherId") Teacher teacherId);
 
 
     /**
      * create by : DungND
      * Data create: 27/02/2023
      * funcion: showListClassStudentById()
+     *
      * @param 'id'
      */
     @Query(value = "SELECT clazz.clazz_id as clazzId,clazz.clazz_name as clazzName,teacher.teacher_id as teacherId,teacher.teacher_name as teacherName,student.student_id as studentId," +
             "student.student_name as studentName,student.date_of_birth as dateOfBirth,student.gender as gender,student.address as address FROM  clazz left join student  on clazz.clazz_id= student.clazz_id left join teacher on clazz.teacher_id = teacher.teacher_id  where clazz.clazz_id= :id"
-            ,countQuery = "SELECT clazz.clazz_id as clazzId,clazz.clazz_name as clazzName,teacher.teacher_id as teacherId,teacher.teacher_name as teacherName,student.student_id as studentId," +
+            , countQuery = "SELECT clazz.clazz_id as clazzId,clazz.clazz_name as clazzName,teacher.teacher_id as teacherId,teacher.teacher_name as teacherName,student.student_id as studentId," +
             "student.student_name as studentName,student.date_of_birth as dateOfBirth,student.gender as gender,student.address as address FROM  clazz left join student  on clazz.clazz_id= student.clazz_id left join teacher on clazz.teacher_id = teacher.teacher_id  where clazz.clazz_id= :id"
-            ,nativeQuery = true)
+            , nativeQuery = true)
     List<ClazzStudentDto> showListClassStudentById(@Param("id") long id);
+
     /**
      * create by : DungND
      * Data create: 27/02/2023
      * funcion: showListClassStudentById()
+     *
      * @param 'id'
      */
     @Query(value = "SELECT * FROM `clazz`"
-            ,countQuery = "SELECT * FROM `clazz`"
-            ,nativeQuery = true)
+            , countQuery = "SELECT * FROM `clazz`"
+            , nativeQuery = true)
     List<Clazz> showListAll();
+
+
+    /**
+     * Create by NamHH
+     * Date 01/03/2023
+     * Function: showListClazz
+     **/
+    @Query(value = "select clazz_id as clazzId, clazz_name as clazzName from clazz where block_id=:bockId order by clazz_name", countQuery = "select clazz_id as clazzId, clazz_name as clazzName from clazz where block_id=:bockId order by clazz_name", nativeQuery = true)
+    List<IClazz> showListClazz(@Param("bockId") Long bockId);
+
+
+    /**
+     * Create by NamHH
+     * Date 01/03/2023
+     * Function: showClazz
+     **/
+    @Query(value = "select clazz_id as clazzId, clazz_name as clazzName from clazz where clazz_id=:clazzId", nativeQuery = true)
+    IClazz showClazz(@Param("clazzId") Long clazzId);
+
 }
