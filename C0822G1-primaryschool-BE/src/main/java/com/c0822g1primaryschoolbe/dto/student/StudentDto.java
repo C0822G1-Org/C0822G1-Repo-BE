@@ -47,7 +47,7 @@ public class StudentDto {
     public StudentDto() {
     }
 
-    public StudentDto(Long studentId, String img, String studentName, String dateOfBirth, Boolean gender, String fatherName, String phoneNumberFather, String fatherJob, String motherName, String phoneNumberMother, String motherJob, String religion, String address, Boolean studentStatus, Boolean flagDelete, PointManagement pointManagement, Clazz clazz) {
+    public StudentDto(Long studentId, String img, String studentName, String dateOfBirth, boolean gender, String fatherName, String phoneNumberFather, String fatherJob, String motherName, String phoneNumberMother, String motherJob, String religion, String address, boolean studentStatus, boolean flagDelete, PointManagement pointManagement, Clazz clazz) {
         this.studentId = studentId;
         this.img = img;
         this.studentName = studentName;
@@ -99,11 +99,11 @@ public class StudentDto {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Boolean getGender() {
+    public boolean isGender() {
         return gender;
     }
 
-    public void setGender(Boolean gender) {
+    public void setGender(boolean gender) {
         this.gender = gender;
     }
 
@@ -171,19 +171,19 @@ public class StudentDto {
         this.address = address;
     }
 
-    public Boolean getStudentStatus() {
+    public boolean isStudentStatus() {
         return studentStatus;
     }
 
-    public void setStudentStatus(Boolean studentStatus) {
+    public void setStudentStatus(boolean studentStatus) {
         this.studentStatus = studentStatus;
     }
 
-    public Boolean getFlagDelete() {
+    public boolean isFlagDelete() {
         return flagDelete;
     }
 
-    public void setFlagDelete(Boolean flagDelete) {
+    public void setFlagDelete(boolean flagDelete) {
         this.flagDelete = flagDelete;
     }
 
