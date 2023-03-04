@@ -1,4 +1,4 @@
-package com.c0822g1primaryschoolbe.service;
+package com.c0822g1primaryschoolbe.service.teacher;
 
 import com.c0822g1primaryschoolbe.dto.ITeacherDto;
 import com.c0822g1primaryschoolbe.dto.TeacherDtoToSearch;
@@ -8,7 +8,16 @@ import org.springframework.data.domain.Pageable;
 
 public interface ITeacherService {
 
-    Page<Teacher> findByName(String name, Boolean status, Pageable pageable);
+    /**
+     * Created by: MinhCDK
+     * Date created: 28/02/2023
+     * Function: editInfoTeacher
+     */
+
+    void editInfoTeacher(String teacherName, String dateOfBirth, Boolean gender, Long degreeId, String teacherType, String idCard, String email, String phoneNumber, Long teacherId);
+
+
+
 
 
     /**
@@ -21,6 +30,5 @@ public interface ITeacherService {
      * @return
      */
     Page<ITeacherDto> searchTeacher(TeacherDtoToSearch teacherDtoToSearch, Pageable pageable);
-
 
 }

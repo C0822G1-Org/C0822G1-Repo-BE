@@ -3,7 +3,10 @@ package com.c0822g1primaryschoolbe.entity.clazz;
 import com.c0822g1primaryschoolbe.entity.student.Student;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.TimeTable;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 import javax.persistence.*;
 import java.util.Set;
@@ -29,9 +32,11 @@ public class Clazz {
     private Teacher teacher;
 
 
+
     @JsonIgnore
     @OneToMany(mappedBy = "clazz")
     private Set<Student> students;
+
 
 
 

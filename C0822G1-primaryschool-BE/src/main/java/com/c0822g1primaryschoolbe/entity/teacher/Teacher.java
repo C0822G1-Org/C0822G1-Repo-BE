@@ -2,6 +2,7 @@ package com.c0822g1primaryschoolbe.entity.teacher;
 
 import com.c0822g1primaryschoolbe.entity.account.Account;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -18,6 +19,23 @@ public class Teacher {
     private String phoneNumber;
     @Column(columnDefinition = "varchar(45)",unique = true)
     private String idCard;
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Column(columnDefinition = "varchar(45)",unique = true)
     private String email;
     private Boolean flagDelete;
