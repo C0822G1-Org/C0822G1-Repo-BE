@@ -10,7 +10,8 @@ import java.util.Optional;
 
 public interface ITeacherRepository extends JpaRepository<Teacher, Long> {
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
+     * @param teacherId
      * @return
      */
     @Query(value ="SELECT * from teacher where teacher_id = :teacherId and flag_delete = false",
@@ -18,7 +19,7 @@ public interface ITeacherRepository extends JpaRepository<Teacher, Long> {
     Optional<Teacher> findByIdTeacher(@Param("teacherId") Long teacherId);
 
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
      * @return
      */
     @Query(value = "SELECT * FROM `primary-school-management`.teacher"

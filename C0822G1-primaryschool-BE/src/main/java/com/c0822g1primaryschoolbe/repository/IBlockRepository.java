@@ -9,7 +9,8 @@ import java.util.List;
 
 public interface IBlockRepository extends JpaRepository<Block, Long> {
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
+     * @param blockId
      * @return
      */
     @Query(value ="SELECT * from block where block_id = :blockId",
@@ -18,7 +19,7 @@ public interface IBlockRepository extends JpaRepository<Block, Long> {
     Block findByIdBlock(@Param("blockId") Long blockId);
 
     /**
-     * Create by : TuanNDN
+     * Create by TuanNDN
      * @return
      */
     @Query(value = "SELECT * FROM `primary-school-management`.block"

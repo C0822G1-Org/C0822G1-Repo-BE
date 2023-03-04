@@ -8,8 +8,7 @@ import org.springframework.validation.Validator;
 
 public class ClassStudentDto implements Validator {
     /**
-     * Create by : TuanNDN
-     * @return
+     * Create by TuanNDN
      */
     private Long clazzId;
     private String clazzName;
