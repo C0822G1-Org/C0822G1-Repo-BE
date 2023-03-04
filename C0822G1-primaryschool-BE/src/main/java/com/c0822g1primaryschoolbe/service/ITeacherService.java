@@ -1,5 +1,7 @@
 package com.c0822g1primaryschoolbe.service;
 
+import com.c0822g1primaryschoolbe.entity.ITeacherDto;
+import com.c0822g1primaryschoolbe.entity.TeacherDto;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import org.springframework.data.repository.query.Param;
 
@@ -18,7 +20,6 @@ public interface ITeacherService {
      * Create by TuanNDN
      * @return
      */
-    List<Teacher> showListTeacher();
 
-
+    List<ITeacherDto> showListTeacher();
 }

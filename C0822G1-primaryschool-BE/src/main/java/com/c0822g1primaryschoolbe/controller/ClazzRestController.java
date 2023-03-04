@@ -1,8 +1,6 @@
 package com.c0822g1primaryschoolbe.controller;
 
-import com.c0822g1primaryschoolbe.entity.ClassStudentDto;
-import com.c0822g1primaryschoolbe.entity.ClazzDto;
-import com.c0822g1primaryschoolbe.entity.ClazzStudentDto;
+import com.c0822g1primaryschoolbe.entity.*;
 import com.c0822g1primaryschoolbe.entity.clazz.Block;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 import com.c0822g1primaryschoolbe.entity.student.Student;
@@ -22,6 +20,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -88,7 +87,6 @@ public class ClazzRestController {
                                         BindingResult bindingResult) {
         Clazz clazz = clazzService.findByIdClazz(clazzId);
         Optional<Teacher> teacher = teacherService.findByIdTeacher(classStudentDto.getTeacher().getTeacherId());
-        if (!teacher.isPresent()){}
         Block block = blockService.findByIdBlock(classStudentDto.getBlock().getBlockId());
         if (clazz == null) {
             return new ResponseEntity<>(clazz,HttpStatus.BAD_REQUEST);
@@ -108,8 +106,8 @@ public class ClazzRestController {
      * @return
      */
     @GetMapping("teacher")
-    public ResponseEntity<List<Teacher>> showListTeacher() {
-        List<Teacher> teachers = teacherService.showListTeacher();
+    public ResponseEntity<List<ITeacherDto>> showListTeacher() {
+        List<ITeacherDto> teachers = teacherService.showListTeacher();
         if (teachers.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -205,6 +203,11 @@ public class ClazzRestController {
      */
     @GetMapping("/list-class")
     public ResponseEntity<List<Clazz>> showListClass() {
+        try {
+            clazzService.showListAll();
+        }catch (Exception e) {
+
+        }
         List<Clazz> listClass = clazzService.showListAll();
         if (listClass.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -239,12 +242,14 @@ public class ClazzRestController {
         if (bindingResult.hasErrors()){
             return new ResponseEntity(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
         }
-
         Clazz clazz = new Clazz();
         BeanUtils.copyProperties(classDto,clazz);
         Teacher teacher = new Teacher();
         teacher.setTeacherId(classDto.getTeacherDto().getTeacherId());
         clazz.setTeacher(teacher);
+        LocalDate today = LocalDate.now();
+        Integer year = today.getYear();
+        clazz.setYear(year);
         clazzService.createChooseClass(clazz);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

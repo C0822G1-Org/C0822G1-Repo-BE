@@ -15,7 +15,6 @@ public class ClassStudentDto implements Validator {
     private Boolean flagDelete;
     private Integer year;
     private String schoolYear;
-//    private TimeTable timeTable;
     private BlockDto block;
     private TeacherDto teacher;
 

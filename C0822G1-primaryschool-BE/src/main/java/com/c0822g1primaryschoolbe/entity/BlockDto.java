@@ -12,8 +12,6 @@ public class BlockDto  {
      */
     private Long blockId;
     private String blockName;
-//    private TeacherDto teacher;
-
 
     public BlockDto() {
     }

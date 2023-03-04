@@ -3,7 +3,6 @@ package com.c0822g1primaryschoolbe.service;
 import com.c0822g1primaryschoolbe.entity.ClazzStudentDto;
 import com.c0822g1primaryschoolbe.entity.clazz.Block;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
-import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import com.c0822g1primaryschoolbe.repository.IBlockRepository;
 import com.c0822g1primaryschoolbe.repository.IClazzRepository;
 import com.c0822g1primaryschoolbe.repository.ITeacherRepository;
@@ -25,7 +24,6 @@ public class ClazzService implements IClazzService {
 
     @Autowired
     private IBlockRepository blockRepository;
-
     /**
      * Create by TuanNDN
      * @param pageable
@@ -94,7 +92,7 @@ public class ClazzService implements IClazzService {
         Long a = Long.parseLong(String.valueOf(clazz.getClazzName().trim().charAt(0)));
         Block block = new Block(a);
         clazz.setBlock(block);
-        clazzRepository.createChooseClass(clazz.getClazzName(),clazz.getSchoolYear(),clazz.getBlock(),clazz.getTeacher());
+        clazzRepository.createChooseClass(clazz.getClazzName(),clazz.getSchoolYear(),clazz.getBlock(),clazz.getTeacher(),clazz.getYear());
     }
 
     /**
@@ -107,7 +105,13 @@ public class ClazzService implements IClazzService {
     public List<ClazzStudentDto> showListClassStudentById(long id) {
         return clazzRepository.showListClassStudentById(id);
     }
-
-
+    /**
+     * Create by NamHH
+     * @return
+     */
+    @Override
+    public List<Clazz> findAllClazz() {
+        return clazzRepository.findAllClazz();
+    }
 
 }

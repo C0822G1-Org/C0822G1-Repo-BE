@@ -16,9 +16,18 @@ public class ClazzDto implements Validator {
     private String clazzName;
     @NotBlank
     @NotNull
-    @Pattern(regexp = "^[0-9]{4}$", message = "Niên khóa chưa đúng định dạng")
     private String schoolYear;
     private TeacherDto teacherDto;
+    private Integer year;
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
     public TeacherDto getTeacherDto() {
         return teacherDto;
     }
