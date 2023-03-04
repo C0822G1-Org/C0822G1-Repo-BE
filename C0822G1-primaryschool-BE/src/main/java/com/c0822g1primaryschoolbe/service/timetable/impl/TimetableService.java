@@ -22,13 +22,18 @@ public class TimetableService implements ITimetableService {
      * @Param idClazz
      */
     @Override
-    public List<ITimetable> getAllTimetable(Long idClazz) {
+    public List<ITimetable>getAllTimetable(Long idClazz) {
         return timetableRepository.getAllTimetable(idClazz);
     }
-//    public List<List<ITimetable>> getAllTimetable(Long idClazz) {
-//        return timetableRepository.getAllTimetable(idClazz);
-//    }
 
+
+    /**
+     * Create by : NamHH
+     * Date created: 28/02/2023
+     * Function: update timetable where id_subject
+     *
+     * @Param id_timetable, id_subject
+     */
     @Override
     public void updateTimetable(Long idTimetable, Long idSubject) {
         timetableRepository.updateTimetable(idTimetable, idSubject);

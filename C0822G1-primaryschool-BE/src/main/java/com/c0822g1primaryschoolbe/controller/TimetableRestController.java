@@ -1,6 +1,8 @@
 package com.c0822g1primaryschoolbe.controller;
 
+import com.c0822g1primaryschoolbe.entity.time_table_subject.IClazz;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.ITimetable;
+import com.c0822g1primaryschoolbe.entity.time_table_subject.ITimetableUpdate;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.Subject;
 import com.c0822g1primaryschoolbe.service.IClazzService;
 import com.c0822g1primaryschoolbe.service.subject.ISubjectService;
@@ -18,8 +20,12 @@ import java.util.List;
 public class TimetableRestController {
     @Autowired
     private ITimetableService timetableService;
+
     @Autowired
     private ISubjectService subjectService;
+
+    @Autowired
+    private IClazzService clazzService;
 
 
     /**
@@ -30,7 +36,6 @@ public class TimetableRestController {
      * @Param idClazz
      * @Return HttpStatus.NO_CONTENT if result is error or HttpStatus.OK if result is not error
      */
-
     @GetMapping(value = "/list-timetable/{idClazz}")
     public ResponseEntity<List<ITimetable>> getAllTimetable(@PathVariable("idClazz") Long idClazz) {
         List<ITimetable> listTimetable = timetableService.getAllTimetable(idClazz);
@@ -48,13 +53,13 @@ public class TimetableRestController {
      *
      * @Return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
-    @PutMapping(value = "/update-timetable-subject")
-    public ResponseEntity<List<ITimetable>> updateTimetableSubject(@RequestBody List<ITimetable> iTimetableList) {
-        for (ITimetable iTimetable : iTimetableList) {
-            if (iTimetable == null) {
+    @PutMapping(value = "/update-timetable")
+    public ResponseEntity<?> updateTimetableSubject(@RequestBody List<ITimetableUpdate> iTimetableUpdates) {
+        for (ITimetableUpdate iTimetableUpdate : iTimetableUpdates) {
+            if (iTimetableUpdate == null) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
-            timetableService.updateTimetable(iTimetable.getSubjectId(), iTimetable.getTimetableId());
+            timetableService.updateTimetable(iTimetableUpdate.getTimetableId(), iTimetableUpdate.getSubjectId());
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -75,4 +80,39 @@ public class TimetableRestController {
         }
         return new ResponseEntity<>(subjectList, HttpStatus.OK);
     }
+
+
+    /**
+     * Create by : NamHH
+     * Date created: 01/03/2023
+     * Function: get all clazz
+     *
+     * @Return HttpStatus.NO_CONTENT if result is error or HttpStatus.OK if result is not error
+     */
+    @GetMapping("/list-clazz/{bockId}")
+    public ResponseEntity<List<IClazz>> showListClazz(@PathVariable("bockId") Long bockId) {
+        List<IClazz> clazzList = clazzService.showListClazz(bockId);
+        if (clazzList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(clazzList, HttpStatus.OK);
+    }
+
+
+    /**
+     * Create by : NamHH
+     * Date created: 01/03/2023
+     * Function: get clazz
+     *
+     * @Return HttpStatus.NO_CONTENT if result is error or HttpStatus.OK if result is not error
+     */
+    @GetMapping("/object-clazz/{clazzId}")
+    public ResponseEntity<IClazz> showClazz(@PathVariable("clazzId") Long clazzId) {
+        IClazz iClazz = clazzService.showClazz(clazzId);
+        if (iClazz == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(iClazz, HttpStatus.OK);
+    }
+
 }
