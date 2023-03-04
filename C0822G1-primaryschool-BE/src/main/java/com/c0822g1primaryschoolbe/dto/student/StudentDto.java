@@ -6,26 +6,32 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
-public class StudentDto  {
+public class StudentDto {
     private Long studentId;
+
     @NotBlank(message = "Không được để trống!")
     private String img;
     @NotBlank(message = "Không được để trống!")
+    @Pattern(regexp = "[a-z 0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+")
     private String studentName;
     @NotBlank(message = "Không được để trống!")
     private String dateOfBirth;
-
     private boolean gender;
     @NotBlank(message = "Không được để trống!")
+    @Pattern(regexp = "[a-z 0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+")
     private String fatherName;
     @NotBlank(message = "Không được để trống!")
+    @Pattern(regexp = "^(((\\+|)84)|0)(3|5|7|8|9)+([0-9]{8})$")
     private String phoneNumberFather;
     @NotBlank(message = "Không được để trống!")
     private String fatherJob;
     @NotBlank(message = "Không được để trống!")
+    @Pattern(regexp = "[a-z 0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+")
     private String motherName;
     @NotBlank(message = "Không được để trống!")
+    @Pattern(regexp = "^(((\\+|)84)|0)(3|5|7|8|9)+([0-9]{8})$")
     private String phoneNumberMother;
     @NotBlank(message = "Không được để trống!")
     private String motherJob;
@@ -195,5 +201,28 @@ public class StudentDto  {
 
     public void setClazz(Clazz clazz) {
         this.clazz = clazz;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentDto{" +
+                "studentId=" + studentId +
+                ", img='" + img + '\'' +
+                ", studentName='" + studentName + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", gender=" + gender +
+                ", fatherName='" + fatherName + '\'' +
+                ", phoneNumberFather='" + phoneNumberFather + '\'' +
+                ", fatherJob='" + fatherJob + '\'' +
+                ", motherName='" + motherName + '\'' +
+                ", phoneNumberMother='" + phoneNumberMother + '\'' +
+                ", motherJob='" + motherJob + '\'' +
+                ", religion='" + religion + '\'' +
+                ", address='" + address + '\'' +
+                ", studentStatus=" + studentStatus +
+                ", flagDelete=" + flagDelete +
+                ", pointManagement=" + pointManagement +
+                ", clazz=" + clazz +
+                '}';
     }
 }
