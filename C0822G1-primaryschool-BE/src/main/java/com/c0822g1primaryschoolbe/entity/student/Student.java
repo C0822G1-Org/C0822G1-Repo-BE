@@ -2,6 +2,9 @@ package com.c0822g1primaryschoolbe.entity.student;
 
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 import javax.persistence.*;
 
 @Entity
@@ -32,6 +35,7 @@ public class Student {
     private String address;
     private Boolean studentStatus;
     private Boolean flagDelete;
+    @JsonIgnore
     @OneToOne(mappedBy = "student")
     private PointManagement pointManagement;
     @ManyToOne
