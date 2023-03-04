@@ -6,37 +6,41 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
-public class StudentDto implements Validator {
-    @NotBlank(message = "Không được để trống!")
+public class StudentDto {
     private Long studentId;
+
     @NotBlank(message = "Không được để trống!")
     private String img;
     @NotBlank(message = "Không được để trống!")
+    @Pattern(regexp = "[a-z 0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+")
     private String studentName;
     @NotBlank(message = "Không được để trống!")
     private String dateOfBirth;
+    private boolean gender;
     @NotBlank(message = "Không được để trống!")
-    private Boolean gender;
-    @NotBlank(message = "Không được để trống!")
+    @Pattern(regexp = "[a-z 0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+")
     private String fatherName;
     @NotBlank(message = "Không được để trống!")
+    @Pattern(regexp = "^(((\\+|)84)|0)(3|5|7|8|9)+([0-9]{8})$")
     private String phoneNumberFather;
     @NotBlank(message = "Không được để trống!")
     private String fatherJob;
     @NotBlank(message = "Không được để trống!")
+    @Pattern(regexp = "[a-z 0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+")
     private String motherName;
     @NotBlank(message = "Không được để trống!")
+    @Pattern(regexp = "^(((\\+|)84)|0)(3|5|7|8|9)+([0-9]{8})$")
     private String phoneNumberMother;
     @NotBlank(message = "Không được để trống!")
     private String motherJob;
     @NotBlank(message = "Không được để trống!")
     private String religion;
     @NotBlank(message = "Không được để trống!")
-    private String address;  @NotBlank(message = "Không được để trống!")
-    @NotBlank(message = "Không được để trống!")
-    private Boolean studentStatus;
-    private Boolean flagDelete;
+    private String address;
+    private boolean studentStatus;
+    private boolean flagDelete;
     private PointManagement pointManagement;
     private Clazz clazz;
 
@@ -200,12 +204,25 @@ public class StudentDto implements Validator {
     }
 
     @Override
-    public boolean supports(Class<?> clazz) {
-        return false;
-    }
-
-    @Override
-    public void validate(Object target, Errors errors) {
-
+    public String toString() {
+        return "StudentDto{" +
+                "studentId=" + studentId +
+                ", img='" + img + '\'' +
+                ", studentName='" + studentName + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", gender=" + gender +
+                ", fatherName='" + fatherName + '\'' +
+                ", phoneNumberFather='" + phoneNumberFather + '\'' +
+                ", fatherJob='" + fatherJob + '\'' +
+                ", motherName='" + motherName + '\'' +
+                ", phoneNumberMother='" + phoneNumberMother + '\'' +
+                ", motherJob='" + motherJob + '\'' +
+                ", religion='" + religion + '\'' +
+                ", address='" + address + '\'' +
+                ", studentStatus=" + studentStatus +
+                ", flagDelete=" + flagDelete +
+                ", pointManagement=" + pointManagement +
+                ", clazz=" + clazz +
+                '}';
     }
 }
