@@ -22,7 +22,7 @@ public class Clazz {
     private Boolean flagDelete;
     private Integer year;
     private String schoolYear;
-    @OneToOne(mappedBy = "clazz")
+    @OneToOne(mappedBy = "clazz", orphanRemoval = true, fetch = FetchType.LAZY)
     private TimeTable timeTable;
     @JsonBackReference
     @ManyToOne
@@ -31,7 +31,8 @@ public class Clazz {
 
     @JsonBackReference
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
@@ -180,6 +181,7 @@ public class Clazz {
         this.teacher = teacher;
     }
 
+
     public Set<Student> getStudents() {
         return students;
     }
@@ -188,3 +190,6 @@ public class Clazz {
         this.students = students;
     }
 }
+
+
+

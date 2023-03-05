@@ -1,4 +1,5 @@
 package com.c0822g1primaryschoolbe.service.principle;
+
 import com.c0822g1primaryschoolbe.entity.account.Account;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

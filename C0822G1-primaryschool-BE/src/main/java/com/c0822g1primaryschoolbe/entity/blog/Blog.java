@@ -73,4 +73,3 @@ public class Blog {
         this.img = img;
     }
 }
-

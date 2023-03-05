@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -93,12 +93,67 @@ public class StudentService implements IStudentService {
     /**
      * create by :VinhLD
      * date create 27/02/2023
-     *funtion : search student by name and status
+     * funtion : search student by name and status
+     *
      * @param "name, status"
      * @return
      */
     @Override
     public Page<IStudentDto> searchStudent(StudentDtoToSearch studentDtoToSearch, Pageable pageable) {
-        return studentRepository.searchStudent(studentDtoToSearch, pageable);
+        return studentRepository.searchStudent(studentDtoToSearch, pageable);}
+        /**
+         * Create by TuanNDN
+         * @return
+         */
+        @Override
+        public List<Student> showListStudent () {
+            return studentRepository.showListStudent();
+        }
+
+
+        /**
+         * Create by TuanNDN
+         * @param classId
+         * @return
+         */
+        @Override
+        public List<Student> findAllStudentByClassId(Integer classId){
+            return this.studentRepository.findAllStudentByClassId(classId);
+        }
+
+        /**
+         * Create by TuanNDN
+         * @param list
+         */
+        @Override
+        public void changeClazzId (List < Long > list) {
+            studentRepository.changeClazzId(list);
+        }
+
+        /**
+         * Create by TuanNDN
+         * @param idList
+         * @return
+         */
+        @Override
+        public List<Student> findByListStudentId (List < Long > idList) {
+            return studentRepository.findByListStudentId(idList);
+        }
+
+        /**
+         * Create by TuanNDN
+         */
+        @Override
+        public void upClassNew () {
+            studentRepository.upClassNew();
+        }
+
+        /**
+         * Create by TuanNDN
+         */
+        @Override
+        public void lockUpClass () {
+            studentRepository.lockUpClass();
+
+        }
     }
-}

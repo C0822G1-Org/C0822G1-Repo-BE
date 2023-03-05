@@ -1,16 +1,31 @@
 package com.c0822g1primaryschoolbe.service;
-
 import com.c0822g1primaryschoolbe.dto.TeacherDtoToSearch;
 import com.c0822g1primaryschoolbe.dto.teacher.ITeacherDto;
+import com.c0822g1primaryschoolbe.entity.ITeacherDtoTuan;
+import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
+import org.springframework.data.repository.query.Param;
 import com.c0822g1primaryschoolbe.dto.teacher.TeacherViewDto;
 import com.c0822g1primaryschoolbe.entity.teacher.ITeacherInfo;
-import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
 import java.util.List;
+import java.util.Optional;
 
 public interface ITeacherService {
+    /**
+     * Create by TuanNDN
+     * @param teacherId
+     * @return
+     */
+    Optional<Teacher> findByIdTeacher(@Param("teacherId") Long teacherId);
+
+    /**
+     * Create by TuanNDN
+     * @return
+     */
+
+    List<ITeacherDtoTuan> showListTeacher();
+
     List<ITeacherInfo> getListNameTeacher(int year);
 
     ITeacherInfo getNameTeacher(String idCard,int year);
@@ -23,8 +38,6 @@ public interface ITeacherService {
      * *return Teacher
      **/
     TeacherViewDto findIdTeacher(Long accountId);
-
-
 
     /**
      * Created by: MinhCDK

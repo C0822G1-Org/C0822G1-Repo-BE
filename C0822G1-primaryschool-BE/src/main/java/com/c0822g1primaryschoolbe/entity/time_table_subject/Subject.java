@@ -3,6 +3,7 @@ package com.c0822g1primaryschoolbe.entity.time_table_subject;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -13,6 +14,9 @@ public class Subject {
     private Long subjectId;
     @Column(columnDefinition = "varchar(45)")
     private String subjectName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subject")
+    private List<TimeTable> timeTables;
+
     @OneToMany(mappedBy = "subject")
     @JsonBackReference
     private Set<TimeTableSubject> timeTableSubjectSet;
@@ -31,6 +35,14 @@ public class Subject {
 
     public void setSubjectName(String subjectName) {
         this.subjectName = subjectName;
+    }
+
+    public List<TimeTable> getTimeTables() {
+        return timeTables;
+    }
+
+    public void setTimeTables(List<TimeTable> timeTables) {
+        this.timeTables = timeTables;
     }
 
     public Set<TimeTableSubject> getTimeTableSubjectSet() {

@@ -40,13 +40,13 @@ public class Student {
     private Boolean flagDelete;
     @JsonIgnore
     @OneToOne(mappedBy = "student")
+    @JsonBackReference
     private PointManagement pointManagement;
     @ManyToOne
 
     @JsonBackReference
-    @JoinColumn(name = "clazz_id",nullable = false,referencedColumnName = "clazz_id")
+    @JoinColumn(name = "clazz_id", nullable = false, referencedColumnName = "clazz_id")
     private Clazz clazz;
-
 
     public Long getStudentId() {
         return studentId;
