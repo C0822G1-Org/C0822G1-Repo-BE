@@ -4,6 +4,11 @@ import com.c0822g1primaryschoolbe.entity.student.IStudentInfo;
 import com.c0822g1primaryschoolbe.dto.student.StudentListViewDto;
 import com.c0822g1primaryschoolbe.entity.student.Student;
 import com.c0822g1primaryschoolbe.repository.IStudentRepository;
+
+
+import com.c0822g1primaryschoolbe.dto.IStudentDto;
+import com.c0822g1primaryschoolbe.dto.StudentDtoToSearch;
+
 import com.c0822g1primaryschoolbe.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -73,5 +78,27 @@ public class StudentService implements IStudentService {
     @Override
     public Optional<Student> findById(Long id) {
         return studentRepository.findById(id);
+    }
+
+    @Override
+    public Page<Student> findByName(String name, String status, Pageable pageable) {
+        return studentRepository.findByName(name, status, pageable);
+    }
+
+    @Override
+    public Page<IStudentDto> findByNameAndStatus(String name, Boolean status, Pageable pageable) {
+        return studentRepository.findByNameAndStatus(name, status, pageable);
+    }
+
+    /**
+     * create by :VinhLD
+     * date create 27/02/2023
+     *funtion : search student by name and status
+     * @param "name, status"
+     * @return
+     */
+    @Override
+    public Page<IStudentDto> searchStudent(StudentDtoToSearch studentDtoToSearch, Pageable pageable) {
+        return studentRepository.searchStudent(studentDtoToSearch, pageable);
     }
 }

@@ -90,7 +90,6 @@ public class AuthController {
      */
 
     @PostMapping("/sign-up")
-//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> register(@Valid @RequestBody SignUpForm signUpForm) {
         if (iAccountService.existsAccountByUsername(signUpForm.getUsername())) {
             return new ResponseEntity<>(new ResponseMessage("Tên đăng nhập " + signUpForm.getUsername() +
