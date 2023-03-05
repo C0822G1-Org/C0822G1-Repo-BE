@@ -1,12 +1,13 @@
-package com.c0822g1primaryschoolbe.service;
+package com.c0822g1primaryschoolbe.service.impl;
 
 import com.c0822g1primaryschoolbe.entity.ClazzStudentDto;
-import com.c0822g1primaryschoolbe.entity.clazz.Block;
+import com.c0822g1primaryschoolbe.entity.clazz.*;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.IClazz;
 import com.c0822g1primaryschoolbe.repository.IBlockRepository;
 import com.c0822g1primaryschoolbe.repository.IClazzRepository;
 import com.c0822g1primaryschoolbe.repository.ITeacherRepository;
+import com.c0822g1primaryschoolbe.service.IClazzService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +17,6 @@ import java.util.List;
 
 @Service
 public class ClazzService implements IClazzService {
-
     @Autowired
     private IClazzRepository clazzRepository;
 
@@ -25,6 +25,67 @@ public class ClazzService implements IClazzService {
 
     @Autowired
     private IBlockRepository blockRepository;
+
+    /**
+     * Create by : TrungNQ
+     * Date create: 27/02/2023
+     */
+    @Override
+    public List<IClazzYear> getListYear() {
+        return clazzRepository.getListYear();
+    }
+
+
+    /**
+     * Create by : TrungNQ
+     * Date create: 27/02/2023
+     */
+    @Override
+    public List<IClazzName> getListClazzName(int year, String name) {
+        return clazzRepository.getListClazzName(year,name);
+    }
+
+
+    /**
+     * Create by : TrungNQ
+     * Date create: 27/02/2023
+     */
+    @Override
+    public IClazzTeacher getClazzTeacher(int year, Long clazzId) {
+        return clazzRepository.getClazzTeacher(year,clazzId);
+    }
+
+
+    /**
+     * Create by : TrungNQ
+     * Date create: 27/02/2023
+     */
+    @Override
+    public void editTeacher(Long teacherId, Long clazzId) {
+        clazzRepository.editTeacher(teacherId,clazzId);
+    }
+
+
+    /**
+     * Create by:TrungNQ
+     * Date create:27/2/2023
+     */
+    @Override
+    public Clazz getClazzById(Long clazzId) {
+        return clazzRepository.getClazzById(clazzId);
+    }
+
+
+    /**
+     * Create by : HoangNM
+     * Date create: 27/02/2023
+     */
+    @Override
+    public List<Clazz> getAll() {
+        return clazzRepository.getAll();
+    }
+
+
     /**
      * Create by TuanNDN
      * @param pageable

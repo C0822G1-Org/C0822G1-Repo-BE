@@ -1,12 +1,13 @@
 package com.c0822g1primaryschoolbe.controller;
 
+import com.c0822g1primaryschoolbe.dto.time_table.TimeTableView;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.IClazz;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.ITimetable;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.ITimetableUpdate;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.Subject;
 import com.c0822g1primaryschoolbe.service.IClazzService;
+import com.c0822g1primaryschoolbe.service.ITimetableService;
 import com.c0822g1primaryschoolbe.service.subject.ISubjectService;
-import com.c0822g1primaryschoolbe.service.timetable.ITimetableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/timetable")
 @CrossOrigin("*")
-public class TimetableRestController {
+public class TimeTableRestController {
     @Autowired
     private ITimetableService timetableService;
 
@@ -115,4 +116,17 @@ public class TimetableRestController {
         return new ResponseEntity<>(iClazz, HttpStatus.OK);
     }
 
+    /**
+     * Created by: VanNTC
+     * Date Created: 27/02/2023
+     * * Description: get time table of the class by id
+     */
+    @GetMapping("/{teacherId}")
+    public ResponseEntity<List<TimeTableView>> showTimeTable(@PathVariable String teacherId) {
+        List<TimeTableView> timeTable = timetableService.getTimeTableByIdTeacher(teacherId);
+        if (timeTable.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(timeTable, HttpStatus.OK);
+    }
 }

@@ -1,4 +1,4 @@
-package com.c0822g1primaryschoolbe.service;
+package com.c0822g1primaryschoolbe.service.impl;
 
 import com.c0822g1primaryschoolbe.entity.clazz.Block;
 import com.c0822g1primaryschoolbe.repository.IBlockRepository;

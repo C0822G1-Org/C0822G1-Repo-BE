@@ -15,11 +15,11 @@ public class Teacher {
     private String teacherName;
     private String dateOfBirth;
     private Boolean gender;
-    @Column(columnDefinition = "varchar(45)",unique = true)
+    @Column(columnDefinition = "varchar(45)", unique = true)
     private String phoneNumber;
-    @Column(columnDefinition = "varchar(45)",unique = true)
+    @Column(columnDefinition = "varchar(45)", unique = true)
     private String idCard;
-    @Column(columnDefinition = "varchar(45)",unique = true)
+    @Column(columnDefinition = "varchar(45)", unique = true)
     private String email;
     private Boolean flagDelete;
     private String teacherType;
@@ -28,7 +28,7 @@ public class Teacher {
     @JoinColumn(name = "account_id")
     private Account account;
     @ManyToOne()
-    @JoinColumn(name = "degree_id",nullable = false,referencedColumnName = "degree_id")
+    @JoinColumn(name = "degree_id", nullable = false, referencedColumnName = "degree_id")
     private Degree degree;
     @OneToOne(mappedBy = "teacher", orphanRemoval = true, fetch = FetchType.LAZY)
     private Clazz clazz;

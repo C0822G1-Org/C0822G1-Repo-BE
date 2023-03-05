@@ -5,10 +5,11 @@ import com.c0822g1primaryschoolbe.entity.clazz.Block;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 import com.c0822g1primaryschoolbe.entity.student.Student;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
-import com.c0822g1primaryschoolbe.service.ClazzService;
+
 import com.c0822g1primaryschoolbe.service.ITeacherService;
-import com.c0822g1primaryschoolbe.service.BlockService;
-import com.c0822g1primaryschoolbe.service.StudentService;
+import com.c0822g1primaryschoolbe.service.impl.BlockService;
+import com.c0822g1primaryschoolbe.service.impl.ClazzService;
+import com.c0822g1primaryschoolbe.service.impl.StudentService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

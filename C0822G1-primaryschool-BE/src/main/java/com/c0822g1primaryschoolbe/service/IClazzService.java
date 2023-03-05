@@ -6,11 +6,11 @@ import com.c0822g1primaryschoolbe.entity.time_table_subject.IClazz;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
+import com.c0822g1primaryschoolbe.entity.clazz.*;
 
 import java.util.List;
 
 public interface IClazzService {
-
     /**
      * Create by TuanNDN
      * @param pageable
@@ -82,4 +82,40 @@ public interface IClazzService {
      * @Param id_clazz
      */
     IClazz showClazz(Long clazzId);
+
+    /**
+     * Create by : TrungNQ
+     * Date create: 27/02/2023
+     */
+    List<IClazzYear> getListYear();
+
+    /**
+     * Create by : TrungNQ
+     * Date create: 27/02/2023
+     */
+    List<IClazzName> getListClazzName(int year, String name);
+
+    /**
+     * Create by : TrungNQ
+     * Date create: 27/02/2023
+     */
+    IClazzTeacher getClazzTeacher(int year, Long clazzId);
+
+    /**
+     * Create by : TrungNQ
+     * Date create: 27/02/2023
+     */
+    void editTeacher(Long teacherId, Long clazzId);
+
+    /**
+     * Create by : TrungNQ
+     * Date create: 27/02/2023
+     */
+    Clazz getClazzById(Long clazzId);
+
+    /**
+     * Create: HoangMN
+     * @return
+     */
+    List<Clazz> getAll();
 }

@@ -37,9 +37,9 @@ public class Student {
     @JsonBackReference
     private PointManagement pointManagement;
     @ManyToOne
-    @JoinColumn(name = "clazz_id",nullable = false,referencedColumnName = "clazz_id")
+    @JsonBackReference
+    @JoinColumn(name = "clazz_id", nullable = false, referencedColumnName = "clazz_id")
     private Clazz clazz;
-
 
     public Long getStudentId() {
         return studentId;
