@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -73,5 +73,60 @@ public class StudentService implements IStudentService {
     @Override
     public Optional<Student> findById(Long id) {
         return studentRepository.findById(id);
+    }
+
+    /**
+     * Create by TuanNDN
+     * @return
+     */
+    @Override
+    public List<Student> showListStudent() {
+        return studentRepository.showListStudent();
+    }
+
+
+    /**
+     * Create by TuanNDN
+     * @param classId
+     * @return
+     */
+    @Override
+    public List<Student> findAllStudentByClassId(Integer classId) {
+        return this.studentRepository.findAllStudentByClassId(classId);
+    }
+
+    /**
+     * Create by TuanNDN
+     * @param list
+     */
+    @Override
+    public void changeClazzId(List<Long> list) {
+        studentRepository.changeClazzId(list);
+    }
+
+    /**
+     * Create by TuanNDN
+     * @param idList
+     * @return
+     */
+    @Override
+    public List<Student> findByListStudentId(List<Long> idList) {
+        return studentRepository.findByListStudentId(idList);
+    }
+
+    /**
+     * Create by TuanNDN
+     */
+    @Override
+    public void upClassNew() {
+        studentRepository.upClassNew();
+    }
+
+    /**
+     * Create by TuanNDN
+     */
+    @Override
+    public void lockUpClass() {
+        studentRepository.lockUpClass();
     }
 }

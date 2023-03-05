@@ -1,6 +1,5 @@
 package com.c0822g1primaryschoolbe.service.impl;
 
-
 import com.c0822g1primaryschoolbe.dto.request.ChangePasswordDto;
 import com.c0822g1primaryschoolbe.entity.account.Account;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,4 +91,3 @@ public class AccountServiceImpl implements IAccountService {
     }
 
 }
-

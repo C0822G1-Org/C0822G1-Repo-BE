@@ -1,4 +1,3 @@
-
 package com.c0822g1primaryschoolbe.entity.blog;
 
 import javax.persistence.*;
@@ -76,4 +75,3 @@ public class Blog {
         this.img = img;
     }
 }
-
