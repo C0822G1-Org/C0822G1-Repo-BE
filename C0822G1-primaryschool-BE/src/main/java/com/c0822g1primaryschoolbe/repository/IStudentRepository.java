@@ -1,5 +1,7 @@
 package com.c0822g1primaryschoolbe.repository;
 
+import com.c0822g1primaryschoolbe.dto.IStudentDto;
+import com.c0822g1primaryschoolbe.dto.StudentDtoToSearch;
 import com.c0822g1primaryschoolbe.entity.student.Student;
 import com.c0822g1primaryschoolbe.entity.student.IStudentInfo;
 import com.c0822g1primaryschoolbe.dto.student.StudentListViewDto;
@@ -227,4 +229,62 @@ public interface IStudentRepository extends JpaRepository<Student, Long> {
             "clazz_id= :#{#student.clazz.clazzId}," +
             "flag_delete=false where student_id= :#{#student.studentId}", nativeQuery = true)
     void updateStudent(@Param("student") Student student);
+
+    /**
+     * create by :VinhLD
+     * date create 27/02/2023
+     *
+     * funtion : search student by name and status
+     *
+     * @param "name"
+     * @return
+     */
+    @Query(value = " SELECT student.*, `clazz`.`clazz_name` as studentClazz, ((`point_management`.semester_one + `point_management`.semester_two*2)/3) as studentPoint from student LEFT JOIN clazz on student.clazz_id = clazz.clazz_id LEFT JOIN point_management on student.`student_id` = point_management.`student_id` WHERE student.student_name like %:name% and student.student_status =:status ORDER BY student.student_name ASC", nativeQuery = true,
+            countQuery = " SELECT student.*, clazz.clazz_name as studentClazz, ((point_management.semester_one + point_management.semester_two*2)/3) as studentPoint from student LEFT JOIN clazz on student.clazz_id = clazz.clazz_id LEFT JOIN point_management on student.`student_id` = point_management.`student_id` WHERE student.student_name like %:name% and student.student_status =:status ORDER BY student.student_name ASC")
+    Page<Student> findByName(@Param("name") String name,
+                             @Param("status") String status,
+                             Pageable pageable);
+
+
+    @Query(value = "select `student`.student_name as nameStudent, " +
+            "`student`.student_id as idStudent, " +
+            "`student`.date_of_birth as dateOfBirthStudent, " +
+            "clazz.clazz_name as nameClazz, " +
+            "((point_management.semester_one+point_management.semester_two*2)/3) as studentPoint " +
+            "from student left join clazz on `student`.clazz_id = clazz.clazz_id " +
+            "left join point_management on student.student_id= point_management.student_id " +
+            "where student.student_name like %:name% and student.student_status = :status " +
+            "order by student.student_name asc",
+            countQuery = "select * from (select `student`.student_name as nameStudent, \n" +
+                    "            `student`.student_id as idStudent, \n" +
+                    "            `student`.date_of_birth as dateOfBirthStudent, \n" +
+                    "            clazz.clazz_name as nameClazz, \n" +
+                    "            ((point_management.semester_one+point_management.semester_two*2)/3) as studentPoint \n" +
+                    "            from student left join clazz on `student`.clazz_id = clazz.clazz_id \n" +
+                    "            left join point_management on student.student_id= point_management.student_id \n" +
+                    "            where student.student_name like %:name% and student.student_status = :status \n" +
+                    "            order by student.student_name asc) as newView;", nativeQuery = true)
+    Page<IStudentDto> findByNameAndStatus(@Param("name") String name,
+                                          @Param("status") Boolean status,
+                                          Pageable pageable);
+
+
+    /**
+     * create by :VinhLD
+     * date create 27/02/2023
+     *funtion : search student by name and status
+     * @param "name, status"
+     * @return
+     */
+    @Query(value = "select `student`.student_name as nameStudent, " +
+            " `student`.student_id as idStudent, " +
+            " `student`.date_of_birth as dateOfBirthStudent, " +
+            " `clazz`.clazz_name as nameClazz, " +
+            " ((point_management.semester_one+point_management.semester_two*2)/3) as studentPoint " +
+            " from `student` left join clazz on `student`.clazz_id = `clazz`.clazz_id " +
+            " left join point_management on `student`.student_id = point_management.student_id " +
+            " where `student`.student_name like %:#{#studentDtoToSearch.nameStudent}% " +
+            " and `student`.student_status = :#{#studentDtoToSearch.studyStatus} " +
+            " order by `student`.student_name asc", nativeQuery = true)
+    Page<IStudentDto> searchStudent(@Param("studentDtoToSearch") StudentDtoToSearch studentDtoToSearch, Pageable pageable);
 }

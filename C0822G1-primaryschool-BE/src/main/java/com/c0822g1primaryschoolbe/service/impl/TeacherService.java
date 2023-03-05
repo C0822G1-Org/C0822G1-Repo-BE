@@ -1,11 +1,15 @@
 package com.c0822g1primaryschoolbe.service.impl;
 
-import com.c0822g1primaryschoolbe.entity.ITeacherDto;
+import com.c0822g1primaryschoolbe.dto.TeacherDtoToSearch;
+import com.c0822g1primaryschoolbe.dto.teacher.ITeacherDto;
+import com.c0822g1primaryschoolbe.entity.ITeacherDtoTuan;
 import com.c0822g1primaryschoolbe.entity.teacher.ITeacherInfo;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import com.c0822g1primaryschoolbe.repository.ITeacherRepository;
 import com.c0822g1primaryschoolbe.service.ITeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.c0822g1primaryschoolbe.dto.teacher.TeacherViewDto;
 
@@ -19,6 +23,7 @@ public class TeacherService implements ITeacherService {
 
     /**
      * Create by: TrungNQ
+     *
      * @param year
      * @return
      */
@@ -39,8 +44,41 @@ public class TeacherService implements ITeacherService {
 
     }
 
+    @Override
+    public ITeacherDto findByTeacherDto(Long teacherId) {
+        return iTeacherRepository.findByTeacherDto(teacherId);
+    }
+
+
+    /**
+     * Created by: MinhCDK
+     * Date created: 28/02/2023
+     * Function: editInfoTeacher
+     */
+
+    @Override
+    public void editInfoTeacher(String email, String phoneNumber, String address, Long teacherId) {
+        iTeacherRepository.editInfoTeacher(email, phoneNumber, address, teacherId);
+    }
+
+
+    /**
+     * create by : VinhLD
+     * date create 27/02/2023
+     * function: search teacher by name and status
+     *
+     * @param teacherDtoToSearch
+     * @param pageable
+     * @return
+     */
+    @Override
+    public Page<com.c0822g1primaryschoolbe.dto.ITeacherDto> searchTeacher(TeacherDtoToSearch teacherDtoToSearch, Pageable pageable) {
+        return iTeacherRepository.searchTeacher(teacherDtoToSearch, pageable);
+    }
+
     /**
      * Create by TuanNDN
+     *
      * @param teacherId
      * @return
      */
@@ -51,10 +89,11 @@ public class TeacherService implements ITeacherService {
 
     /**
      * Create by TuanNDN
+     *
      * @return
      */
     @Override
-    public List<ITeacherDto> showListTeacher() {
+    public List<ITeacherDtoTuan> showListTeacher() {
         return iTeacherRepository.showListTeacher();
     }
 }

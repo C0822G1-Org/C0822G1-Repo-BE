@@ -1,7 +1,5 @@
 package com.c0822g1primaryschoolbe.entity.blog;
-
 import javax.persistence.*;
-
 @Entity
 public class Blog {
     @Id

@@ -1,5 +1,6 @@
 package com.c0822g1primaryschoolbe.jwt;
 
+
 import com.c0822g1primaryschoolbe.service.principle.AccountPrinciple;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
@@ -44,4 +45,6 @@ public class JWTProvider {
         String username = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
         return username;
     }
+
 }
+

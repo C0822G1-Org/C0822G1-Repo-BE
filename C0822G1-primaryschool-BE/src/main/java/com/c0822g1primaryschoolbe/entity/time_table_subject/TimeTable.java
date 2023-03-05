@@ -27,6 +27,7 @@ public class TimeTable {
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "day_id", nullable = false,referencedColumnName = "day_id")
+
     private Day day;
     @OneToMany(mappedBy = "timeTable")
     @JsonBackReference

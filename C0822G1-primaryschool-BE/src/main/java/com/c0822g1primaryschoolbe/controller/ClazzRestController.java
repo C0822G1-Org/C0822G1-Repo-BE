@@ -1,11 +1,9 @@
 package com.c0822g1primaryschoolbe.controller;
-
 import com.c0822g1primaryschoolbe.entity.*;
 import com.c0822g1primaryschoolbe.entity.clazz.Block;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 import com.c0822g1primaryschoolbe.entity.student.Student;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
-
 import com.c0822g1primaryschoolbe.service.ITeacherService;
 import com.c0822g1primaryschoolbe.service.impl.BlockService;
 import com.c0822g1primaryschoolbe.service.impl.ClazzService;
@@ -107,8 +105,8 @@ public class ClazzRestController {
      * @return
      */
     @GetMapping("teacher")
-    public ResponseEntity<List<ITeacherDto>> showListTeacher() {
-        List<ITeacherDto> teachers = teacherService.showListTeacher();
+    public ResponseEntity<List<ITeacherDtoTuan>> showListTeacher() {
+        List<ITeacherDtoTuan> teachers = teacherService.showListTeacher();
         if (teachers.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

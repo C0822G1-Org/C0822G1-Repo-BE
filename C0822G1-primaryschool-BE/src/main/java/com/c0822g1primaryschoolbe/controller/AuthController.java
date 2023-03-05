@@ -1,5 +1,10 @@
 package com.c0822g1primaryschoolbe.controller;
 
+
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.c0822g1primaryschoolbe.dto.request.ChangePasswordDto;
 import com.c0822g1primaryschoolbe.dto.request.SignInForm;
 import com.c0822g1primaryschoolbe.dto.request.SignUpForm;
@@ -85,7 +90,6 @@ public class AuthController {
      */
 
     @PostMapping("/sign-up")
-//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> register(@Valid @RequestBody SignUpForm signUpForm) {
         if (iAccountService.existsAccountByUsername(signUpForm.getUsername())) {
             return new ResponseEntity<>(new ResponseMessage("Tên đăng nhập " + signUpForm.getUsername() +

@@ -4,6 +4,11 @@ import com.c0822g1primaryschoolbe.entity.student.IStudentInfo;
 import com.c0822g1primaryschoolbe.dto.student.StudentListViewDto;
 import com.c0822g1primaryschoolbe.entity.student.Student;
 import com.c0822g1primaryschoolbe.repository.IStudentRepository;
+
+
+import com.c0822g1primaryschoolbe.dto.IStudentDto;
+import com.c0822g1primaryschoolbe.dto.StudentDtoToSearch;
+
 import com.c0822g1primaryschoolbe.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -75,58 +80,80 @@ public class StudentService implements IStudentService {
         return studentRepository.findById(id);
     }
 
+    @Override
+    public Page<Student> findByName(String name, String status, Pageable pageable) {
+        return studentRepository.findByName(name, status, pageable);
+    }
+
+    @Override
+    public Page<IStudentDto> findByNameAndStatus(String name, Boolean status, Pageable pageable) {
+        return studentRepository.findByNameAndStatus(name, status, pageable);
+    }
+
     /**
-     * Create by TuanNDN
+     * create by :VinhLD
+     * date create 27/02/2023
+     * funtion : search student by name and status
+     *
+     * @param "name, status"
      * @return
      */
     @Override
-    public List<Student> showListStudent() {
-        return studentRepository.showListStudent();
-    }
+    public Page<IStudentDto> searchStudent(StudentDtoToSearch studentDtoToSearch, Pageable pageable) {
+        return studentRepository.searchStudent(studentDtoToSearch, pageable);}
+        /**
+         * Create by TuanNDN
+         * @return
+         */
+        @Override
+        public List<Student> showListStudent () {
+            return studentRepository.showListStudent();
+        }
 
 
-    /**
-     * Create by TuanNDN
-     * @param classId
-     * @return
-     */
-    @Override
-    public List<Student> findAllStudentByClassId(Integer classId) {
-        return this.studentRepository.findAllStudentByClassId(classId);
-    }
+        /**
+         * Create by TuanNDN
+         * @param classId
+         * @return
+         */
+        @Override
+        public List<Student> findAllStudentByClassId(Integer classId){
+            return this.studentRepository.findAllStudentByClassId(classId);
+        }
 
-    /**
-     * Create by TuanNDN
-     * @param list
-     */
-    @Override
-    public void changeClazzId(List<Long> list) {
-        studentRepository.changeClazzId(list);
-    }
+        /**
+         * Create by TuanNDN
+         * @param list
+         */
+        @Override
+        public void changeClazzId (List < Long > list) {
+            studentRepository.changeClazzId(list);
+        }
 
-    /**
-     * Create by TuanNDN
-     * @param idList
-     * @return
-     */
-    @Override
-    public List<Student> findByListStudentId(List<Long> idList) {
-        return studentRepository.findByListStudentId(idList);
-    }
+        /**
+         * Create by TuanNDN
+         * @param idList
+         * @return
+         */
+        @Override
+        public List<Student> findByListStudentId (List < Long > idList) {
+            return studentRepository.findByListStudentId(idList);
+        }
 
-    /**
-     * Create by TuanNDN
-     */
-    @Override
-    public void upClassNew() {
-        studentRepository.upClassNew();
-    }
+        /**
+         * Create by TuanNDN
+         */
+        @Override
+        public void upClassNew () {
+            studentRepository.upClassNew();
+        }
 
-    /**
-     * Create by TuanNDN
-     */
-    @Override
-    public void lockUpClass() {
-        studentRepository.lockUpClass();
+        /**
+         * Create by TuanNDN
+         */
+        @Override
+        public void lockUpClass () {
+            studentRepository.lockUpClass();
+
+        }
     }
-}
