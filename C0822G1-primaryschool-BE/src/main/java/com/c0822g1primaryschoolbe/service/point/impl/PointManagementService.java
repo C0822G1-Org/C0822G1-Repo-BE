@@ -1,6 +1,6 @@
 package com.c0822g1primaryschoolbe.service.point.impl;
 
-import com.c0822g1primaryschoolbe.dto.PointManagementDto;
+import com.c0822g1primaryschoolbe.dto.point.PointManagementDto;
 import com.c0822g1primaryschoolbe.repository.IPointManagementRepository;
 import com.c0822g1primaryschoolbe.service.point.IPointManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +21,10 @@ public class PointManagementService implements IPointManagementService {
      * @Param: teacherID
      */
 
-    @Override
-    public List<PointManagementDto> showListPoint(Long teacherId) {
-        return iPointManagementRepository.showListPoint(teacherId);
-    }
+//    @Override
+//    public List<PointManagementDto> showListPoint(Long teacherId) {
+//        return iPointManagementRepository.showListPoint(teacherId);
+//    }
 
     /**
      * Created by: MinhCDK

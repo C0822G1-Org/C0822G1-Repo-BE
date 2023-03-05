@@ -1,8 +1,6 @@
 package com.c0822g1primaryschoolbe.service.point;
 
-import com.c0822g1primaryschoolbe.dto.PointManagementDto;
-import com.c0822g1primaryschoolbe.entity.student.PointManagement;
-import org.springframework.data.repository.query.Param;
+import com.c0822g1primaryschoolbe.dto.point.PointManagementDto;
 
 import java.util.List;
 
@@ -16,7 +14,7 @@ public interface IPointManagementService {
      * @Param: teacherID
      */
 
-    List<PointManagementDto> showListPoint(Long teacherId);
+//    List<PointManagementDto> showListPoint(Long teacherId);
 
     /**
      * Created by: MinhCDK

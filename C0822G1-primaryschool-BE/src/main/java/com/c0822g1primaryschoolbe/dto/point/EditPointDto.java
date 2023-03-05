@@ -1,4 +1,4 @@
-package com.c0822g1primaryschoolbe.dto;
+package com.c0822g1primaryschoolbe.dto.point;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
