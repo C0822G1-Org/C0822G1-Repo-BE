@@ -1,4 +1,4 @@
-package com.c0822g1primaryschoolbe.dto;
+package com.c0822g1primaryschoolbe.dto.point;
 
 public interface PointManagementDto {
     Long getId();
@@ -14,6 +14,8 @@ public interface PointManagementDto {
     Double getSemesterTwo();
 
     Double getAvgPoint();
+
+    String getClazzName();
 
 
 }

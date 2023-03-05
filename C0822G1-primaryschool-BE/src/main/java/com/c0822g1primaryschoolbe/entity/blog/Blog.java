@@ -1,7 +1,5 @@
 package com.c0822g1primaryschoolbe.entity.blog;
-
 import javax.persistence.*;
-
 @Entity
 public class Blog {
     @Id
@@ -14,6 +12,18 @@ public class Blog {
     private String startDate;
     private String poster;
     private String img;
+
+    public Blog() {
+    }
+
+    public Blog(Long id, String title, String content, String startDate, String poster, String img) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.startDate = startDate;
+        this.poster = poster;
+        this.img = img;
+    }
 
     public Long getId() {
         return id;
@@ -63,3 +73,4 @@ public class Blog {
         this.img = img;
     }
 }
+

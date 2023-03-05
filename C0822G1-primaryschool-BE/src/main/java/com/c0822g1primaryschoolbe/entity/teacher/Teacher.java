@@ -20,24 +20,19 @@ public class Teacher {
     @Column(columnDefinition = "varchar(45)",unique = true)
     private String idCard;
 
-    public String getIdCard() {
-        return idCard;
-    }
-
-    public void setIdCard(String idCard) {
-        this.idCard = idCard;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     @Column(columnDefinition = "varchar(45)",unique = true)
     private String email;
+    private String address;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     private Boolean flagDelete;
     private String teacherType;
     private Boolean teacherStatus;
@@ -138,6 +133,21 @@ public class Teacher {
         this.clazz = clazz;
     }
 
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
 
 }

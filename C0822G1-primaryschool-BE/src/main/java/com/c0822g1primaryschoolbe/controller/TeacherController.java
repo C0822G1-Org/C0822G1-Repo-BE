@@ -5,7 +5,8 @@ package com.c0822g1primaryschoolbe.controller;
 import com.c0822g1primaryschoolbe.dto.ITeacherDto;
 
 import com.c0822g1primaryschoolbe.dto.TeacherDtoToSearch;
-import com.c0822g1primaryschoolbe.service.teacher.ITeacherService;
+
+import com.c0822g1primaryschoolbe.service.ITeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin("*")
 @RestController
-
 @RequestMapping("/teachers")
 public class TeacherController {
     @Autowired

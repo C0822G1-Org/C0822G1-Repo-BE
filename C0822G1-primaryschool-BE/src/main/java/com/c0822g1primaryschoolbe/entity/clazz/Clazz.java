@@ -24,9 +24,13 @@ public class Clazz {
     private String schoolYear;
     @OneToOne(mappedBy = "clazz")
     private TimeTable timeTable;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "block_id",nullable = false,referencedColumnName = "block_id")
     private Block block;
+
+    @JsonBackReference
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
