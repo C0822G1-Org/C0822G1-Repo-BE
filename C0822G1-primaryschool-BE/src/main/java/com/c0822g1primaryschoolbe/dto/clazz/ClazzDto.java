@@ -1,5 +1,6 @@
-package com.c0822g1primaryschoolbe.entity;
+package com.c0822g1primaryschoolbe.dto.clazz;
 
+import com.c0822g1primaryschoolbe.dto.TeacherDto;
 import com.sun.istack.NotNull;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -8,6 +9,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class ClazzDto implements Validator {
+    private Long clazzId;
     @NotBlank
     @NotNull
     @Pattern(regexp = "^[1-5][A-Z]{1,4}$", message = "Tên lớp học chưa đúng định dạng")
@@ -19,6 +21,14 @@ public class ClazzDto implements Validator {
     private String schoolYear;
     private TeacherDto teacherDto;
     private Integer year;
+
+    public Long getClazzId() {
+        return clazzId;
+    }
+
+    public void setClazzId(Long clazzId) {
+        this.clazzId = clazzId;
+    }
 
     public Integer getYear() {
         return year;

@@ -1,6 +1,7 @@
 package com.c0822g1primaryschoolbe.entity.student;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 @Entity
@@ -11,6 +12,7 @@ public class PointManagement {
     private Double semesterOne;
     private Double semesterTwo;
     private Boolean conditionCheck;
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "student_id")
     private Student student;

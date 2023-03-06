@@ -1,4 +1,4 @@
-package com.c0822g1primaryschoolbe.entity;
+package com.c0822g1primaryschoolbe.dto.teacher;
 
 public interface ITeacherDtoTuan {
 

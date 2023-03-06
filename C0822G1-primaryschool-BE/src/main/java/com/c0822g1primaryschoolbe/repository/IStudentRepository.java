@@ -1,11 +1,10 @@
 package com.c0822g1primaryschoolbe.repository;
 
-import com.c0822g1primaryschoolbe.dto.IStudentDto;
-import com.c0822g1primaryschoolbe.dto.StudentDtoToSearch;
+import com.c0822g1primaryschoolbe.dto.student.IStudentDto;
+import com.c0822g1primaryschoolbe.dto.student.StudentDtoToSearch;
 import com.c0822g1primaryschoolbe.entity.student.Student;
-import com.c0822g1primaryschoolbe.entity.student.IStudentInfo;
+import com.c0822g1primaryschoolbe.dto.student.IStudentInfo;
 import com.c0822g1primaryschoolbe.dto.student.StudentListViewDto;
-import com.c0822g1primaryschoolbe.entity.student.Student;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -57,7 +56,7 @@ public interface IStudentRepository extends JpaRepository<Student, Long> {
      */
     @Query(value = "SELECT * " +
             "FROM `student` s " +
-            "WHERE s.student_id IN :idList AND flag_delete = false ", nativeQuery = true)
+            "WHERE s.student_id IN :idList AND flag_delete = false", nativeQuery = true)
     List<Student> findByListStudentId(@Param("idList") List<Long> idList);
 
     /**
@@ -82,7 +81,7 @@ public interface IStudentRepository extends JpaRepository<Student, Long> {
     @Modifying
     @Query(value =
             "update point_management " +
-                    "set point_management.condition_check = true " +
+                    "set point_management.condition_check = true" +
                     "where point_management.condition_check = false", nativeQuery = true)
     void lockUpClass();
 
@@ -97,8 +96,8 @@ public interface IStudentRepository extends JpaRepository<Student, Long> {
      * @return page student
      */
     @Transactional
-    @Query(value = "select s.student_id as id,s.student_name as name,s.address as address,s.date_of_birth as dateOfBirth from student s join clazz c on c.clazz_id = s.clazz_id where c.year= :year and c.clazz_id= :clazzId and s.flag_delete=true",
-    countQuery = " select s.student_id as id,s.student_name as name,s.address as address,s.date_of_birth as dateOfBirth from student s join clazz c on c.clazz_id = s.clazz_id where c.year= :year and c.clazz_id= :clazzId and s.flag_delete=true", nativeQuery = true)
+    @Query(value = "select s.student_id as id,s.student_name as name,s.address as address,s.date_of_birth as dateOfBirth from student s join clazz c on c.clazz_id = s.clazz_id where c.year= :year and c.clazz_id= :clazzId and s.flag_delete=false",
+    countQuery = " select s.student_id as id,s.student_name as name,s.address as address,s.date_of_birth as dateOfBirth from student s join clazz c on c.clazz_id = s.clazz_id where c.year= :year and c.clazz_id= :clazzId and s.flag_delete=false", nativeQuery = true)
     Page<IStudentInfo> getStudentList(Pageable pageable, @Param("year") int year, @Param("clazzId") Long clazzId);
 
 
@@ -133,13 +132,13 @@ public interface IStudentRepository extends JpaRepository<Student, Long> {
      * @return Page<StudentListViewDto>
      */
 
-    @Query(value = "select `student`.student_id as studentId, `student`.student_name as studentName, `student`.gender as gender,"  +
-            " `student`.date_of_birth as dateOfBirth, `clazz`.clazz_name as nameClazz " +
-            "from `student` " +
-            "join `clazz` on `student`.clazz_id = `clazz`.clazz_id " +
-            "join `teacher` on `clazz`.teacher_id = `teacher`.teacher_id " +
-            "where `teacher`.teacher_id= :teacherId and `student`.flag_delete = false " +
-            "order by `student`.student_name ", nativeQuery = true)
+    @Query(value = "select `student`.student_id as studentId, `student`.student_name as studentName, `student`.gender as gender,\n" +
+            "        `student`.date_of_birth as dateOfBirth, `clazz`.clazz_name as nameClazz\n" +
+            "            from `student`\n" +
+            "            join `clazz` on `student`.clazz_id = `clazz`.clazz_id\n" +
+            "            join `teacher` on `clazz`.teacher_id = `teacher`.teacher_id\n" +
+            "            where `teacher`.teacher_id= :teacherId and `student`.flag_delete = false\n" +
+            "            order by `student`.student_name", nativeQuery = true)
     Page<StudentListViewDto> showAllStudent(@Param("teacherId") Long teacherId, Pageable pageable);
 
     /**
@@ -159,7 +158,7 @@ public interface IStudentRepository extends JpaRepository<Student, Long> {
      * Description: create student
      *
      */
-
+    @Transactional
     @Modifying
     @Query(value = " insert into student( " +
             "img, " +
@@ -211,7 +210,7 @@ public interface IStudentRepository extends JpaRepository<Student, Long> {
      * Description: update student
      *
      */
-
+    @Transactional
     @Modifying
     @Query(value = "update student set img =:#{#student.img}," +
             " student_name=:#{#student.studentName}," +

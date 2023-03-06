@@ -1,9 +1,9 @@
 package com.c0822g1primaryschoolbe.controller;
 
 import com.c0822g1primaryschoolbe.dto.time_table.TimeTableView;
-import com.c0822g1primaryschoolbe.entity.time_table_subject.IClazz;
-import com.c0822g1primaryschoolbe.entity.time_table_subject.ITimetable;
-import com.c0822g1primaryschoolbe.entity.time_table_subject.ITimetableUpdate;
+import com.c0822g1primaryschoolbe.dto.time_table.IClazz;
+import com.c0822g1primaryschoolbe.dto.time_table.ITimetable;
+import com.c0822g1primaryschoolbe.dto.time_table.ITimetableUpdate;
 import com.c0822g1primaryschoolbe.entity.time_table_subject.Subject;
 import com.c0822g1primaryschoolbe.service.IClazzService;
 import com.c0822g1primaryschoolbe.service.ITimetableService;
@@ -11,6 +11,7 @@ import com.c0822g1primaryschoolbe.service.subject.ISubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -55,6 +56,7 @@ public class TimeTableRestController {
      * @Return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
     @PutMapping(value = "/update-timetable")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> updateTimetableSubject(@RequestBody List<ITimetableUpdate> iTimetableUpdates) {
         for (ITimetableUpdate iTimetableUpdate : iTimetableUpdates) {
             if (iTimetableUpdate == null) {
@@ -122,6 +124,7 @@ public class TimeTableRestController {
      * * Description: get time table of the class by id
      */
     @GetMapping("/{teacherId}")
+    @PreAuthorize("hasAuthority('ROLE_TEACHER')")
     public ResponseEntity<List<TimeTableView>> showTimeTable(@PathVariable String teacherId) {
         List<TimeTableView> timeTable = timetableService.getTimeTableByIdTeacher(teacherId);
         if (timeTable.isEmpty()) {

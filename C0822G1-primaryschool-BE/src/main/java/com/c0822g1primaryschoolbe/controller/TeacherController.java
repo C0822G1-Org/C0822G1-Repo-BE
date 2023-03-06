@@ -1,10 +1,8 @@
 package com.c0822g1primaryschoolbe.controller;
 
-
-
 import com.c0822g1primaryschoolbe.dto.ITeacherDto;
 
-import com.c0822g1primaryschoolbe.dto.TeacherDtoToSearch;
+import com.c0822g1primaryschoolbe.dto.teacher.TeacherDtoToSearch;
 
 import com.c0822g1primaryschoolbe.service.ITeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +21,6 @@ public class TeacherController {
     @Autowired
     private ITeacherService teacherService;
 
-
     /**
      * create by VinhLD
      * date create 27/02/2023
@@ -36,8 +33,6 @@ public class TeacherController {
      @PostMapping("/search")
     public ResponseEntity<Page<ITeacherDto>> searchTeacher(@RequestBody TeacherDtoToSearch teacherDtoToSearch,
                                                        @PageableDefault(value = 5) Pageable pageable){
-
-
         if (teacherDtoToSearch == null || ObjectUtils.isEmpty(teacherDtoToSearch)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

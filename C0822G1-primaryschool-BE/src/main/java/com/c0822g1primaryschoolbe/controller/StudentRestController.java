@@ -1,10 +1,10 @@
 package com.c0822g1primaryschoolbe.controller;
 
-import com.c0822g1primaryschoolbe.dto.clazz.ClazzTeacherDto;
+import com.c0822g1primaryschoolbe.dto.clazz.*;
 import com.c0822g1primaryschoolbe.entity.clazz.*;
-import com.c0822g1primaryschoolbe.entity.student.IStudentInfo;
+import com.c0822g1primaryschoolbe.dto.student.IStudentInfo;
 import com.c0822g1primaryschoolbe.entity.student.Student;
-import com.c0822g1primaryschoolbe.entity.teacher.ITeacherInfo;
+import com.c0822g1primaryschoolbe.dto.teacher.ITeacherInfo;
 import com.c0822g1primaryschoolbe.service.IClazzService;
 import com.c0822g1primaryschoolbe.service.IStudentService;
 import com.c0822g1primaryschoolbe.service.ITeacherService;
@@ -18,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -157,6 +158,7 @@ public class StudentRestController {
      * @return HttpStatus.BAD_REQUEST if rerult is error or HttpStatus.OK if result is not error
      */
     @PutMapping("/edit-teacher/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<ClazzTeacherDto> editTeacher(@RequestBody ClazzTeacherDto clazzTeacherDto, @PathVariable("id") Long clazzId) {
         Clazz clazz = clazzService.getClazzById(clazzId);
         if (clazz == null) {
@@ -174,6 +176,7 @@ public class StudentRestController {
      * @return HttpStatus.NO_CONTENT if rerult is error or HttpStatus.OK if result is not error
      */
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Student> deleteStudent(@PathVariable("id") Long id) {
         Student student = studentService.getStudentById(id);
         if (student == null) {
@@ -225,8 +228,8 @@ public class StudentRestController {
      * @param 'studentID'
      * @return student
      */
-
     @GetMapping("/info/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Student> getInfoStudent(@PathVariable Long id) {
         Student student = studentService.findById(id).orElse(null);
         if(student == null) {
@@ -259,6 +262,7 @@ public class StudentRestController {
      * @return HttpStatus.OK
      */
     @PostMapping(value = "/create-student")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> createStudent(@RequestBody @Valid StudentDto studentDto, BindingResult bindingResult) {
         System.out.println(studentDto);
         if (bindingResult.hasErrors()) {
@@ -266,6 +270,10 @@ public class StudentRestController {
         }
         Student student = new Student();
         BeanUtils.copyProperties(studentDto,student);
+        Clazz clazz = new Clazz();
+        clazz.setClazzId(studentDto.getClazzDto().getClazzId());
+        student.setClazz(clazz);
+
         studentService.create(student);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -280,12 +288,18 @@ public class StudentRestController {
      * @return HttpStatus.OK
      */
     @PutMapping("/update-student")
-    public ResponseEntity<?> updateStudent(@RequestBody @Validated StudentDto studentDto, BindingResult bindingResult) {
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public ResponseEntity<?> updateStudent(@RequestBody @Valid StudentDto studentDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
         Student student = new Student();
         BeanUtils.copyProperties(studentDto,student);
+        ClazzDto clazzDto = studentDto.getClazzDto();
+        Clazz clazz = new Clazz();
+        BeanUtils.copyProperties(clazzDto,clazz);
+//        clazz.setClazzId(studentDto.getClazzDto().getClazzId());
+        student.setClazz(clazz);
         studentService.update(student);
         return new ResponseEntity<>(HttpStatus.OK);
     }

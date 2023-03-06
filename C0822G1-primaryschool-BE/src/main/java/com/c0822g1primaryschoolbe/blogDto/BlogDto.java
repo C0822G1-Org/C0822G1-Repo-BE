@@ -7,7 +7,7 @@ package com.c0822g1primaryschoolbe.blogDto;
 public interface BlogDto {
     Long getId();
     String getTitle();
-    String getContent();
+    String getContents();
     String getStart_date();
     String getPoster();
     String getImg();

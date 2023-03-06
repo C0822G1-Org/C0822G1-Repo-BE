@@ -1,9 +1,9 @@
 package com.c0822g1primaryschoolbe.repository;
 
-import com.c0822g1primaryschoolbe.dto.TeacherDtoToSearch;
+import com.c0822g1primaryschoolbe.dto.teacher.TeacherDtoToSearch;
 import com.c0822g1primaryschoolbe.dto.teacher.ITeacherDto;
-import com.c0822g1primaryschoolbe.entity.ITeacherDtoTuan;
-import com.c0822g1primaryschoolbe.entity.teacher.ITeacherInfo;
+import com.c0822g1primaryschoolbe.dto.teacher.ITeacherDtoTuan;
+import com.c0822g1primaryschoolbe.dto.teacher.ITeacherInfo;
 import com.c0822g1primaryschoolbe.dto.teacher.TeacherViewDto;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import org.springframework.data.domain.Page;
@@ -68,7 +68,7 @@ public interface ITeacherRepository extends JpaRepository<Teacher, Long> {
          * Date create:27/2/2023
          * Funciton: get teacher name by Param
          */
-        @Query(value = "select t.teacher_id as id,t.teacher_name as name,t.id_card as idCard from teacher t where (t.teacher_id not in (select t.teacher_id from teacher t join clazz c on t.teacher_id=c.teacher_id where c.year=:year) and t.id_card=:idCard);", nativeQuery = true)
+        @Query(value = "select t.teacher_id as id,t.teacher_name as name,t.id_card as idCard from teacher t where (t.teacher_id not in (select t.teacher_id from teacher t join clazz c on t.teacher_id=c.teacher_id where c.year=:year) and t.id_card=:idCard)", nativeQuery = true)
         ITeacherInfo getNameTeacher(@Param("idCard") String idCard, @Param("year") int year);
 
 

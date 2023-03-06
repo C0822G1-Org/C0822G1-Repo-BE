@@ -38,4 +38,12 @@ public class Role {
     public void setName(RoleName name) {
         this.name = name;
     }
+
+    public Set<Account> getAccountSet() {
+        return accountSet;
+    }
+
+    public void setAccountSet(Set<Account> accountSet) {
+        this.accountSet = accountSet;
+    }
 }

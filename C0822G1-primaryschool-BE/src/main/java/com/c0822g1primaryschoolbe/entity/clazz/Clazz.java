@@ -22,97 +22,17 @@ public class Clazz {
     private Boolean flagDelete;
     private Integer year;
     private String schoolYear;
-    @OneToOne(mappedBy = "clazz", orphanRemoval = true, fetch = FetchType.LAZY)
-    private TimeTable timeTable;
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "block_id",nullable = false,referencedColumnName = "block_id")
+    @JoinColumn(name = "block_id", nullable = false, referencedColumnName = "block_id")
     private Block block;
-
     @JsonBackReference
-
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
-
-
-
     @JsonIgnore
     @OneToMany(mappedBy = "clazz")
     private Set<Student> students;
-
-
-
-
-
-
-
-
-
-//    public Long getClazzId() {
-//        return clazzId;
-//    }
-//
-//    public void setClazzId(Long clazzId) {
-//        this.clazzId = clazzId;
-//    }
-//
-//    public String getClazzName() {
-//        return clazzName;
-//    }
-//
-//    public void setClazzName(String clazzName) {
-//        this.clazzName = clazzName;
-//    }
-//
-//    public Boolean getFlagDelete() {
-//        return flagDelete;
-//    }
-//
-//    public void setFlagDelete(Boolean flagDelete) {
-//        this.flagDelete = flagDelete;
-//    }
-//
-//    public Integer getYear() {
-//        return year;
-//    }
-//
-//    public void setYear(Integer year) {
-//        this.year = year;
-//    }
-//
-//    public String getSchoolYear() {
-//        return schoolYear;
-//    }
-//
-//    public void setSchoolYear(String schoolYear) {
-//        this.schoolYear = schoolYear;
-//    }
-//
-//    public TimeTable getTimeTable() {
-//        return timeTable;
-//    }
-//
-//    public void setTimeTable(TimeTable timeTable) {
-//        this.timeTable = timeTable;
-//    }
-//
-//    public Block getBlock() {
-//        return block;
-//    }
-//
-//    public void setBlock(Block block) {
-//        this.block = block;
-//    }
-//
-//    public Teacher getTeacher() {
-//        return teacher;
-//    }
-//
-//    public void setTeacher(Teacher teacher) {
-//        this.teacher = teacher;
-//    }
 
     public Clazz() {
     }
@@ -155,14 +75,6 @@ public class Clazz {
 
     public void setSchoolYear(String schoolYear) {
         this.schoolYear = schoolYear;
-    }
-
-    public TimeTable getTimeTable() {
-        return timeTable;
-    }
-
-    public void setTimeTable(TimeTable timeTable) {
-        this.timeTable = timeTable;
     }
 
     public Block getBlock() {

@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/auth")
 @CrossOrigin("*")
-public class AuthController {
+public class AuthRestController {
     @Autowired
     private IAccountService iAccountService;
     @Autowired
@@ -50,6 +50,7 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private JWTProvider jwtProvider;
+
     /**
      * Created by: SyTV
      * Date created: 27/02/2023
@@ -58,10 +59,8 @@ public class AuthController {
      * @param signInForm
      * @return ResponseEntity.ok with jwtResponse(token,name,id,username,email,avatar,roles)
      */
-
     @PostMapping("/sign-in")
     public ResponseEntity<?> login(@Valid @RequestBody SignInForm signInForm) {
-
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(signInForm.getUsername(), signInForm.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -77,7 +76,6 @@ public class AuthController {
                 accountPrinciple.getEmail(),
                 accountPrinciple.getAvatar(),
                 roles));
-
     }
 
     /**
@@ -88,7 +86,6 @@ public class AuthController {
      * @param signUpForm
      * @return HttpStatus.Ok with message(Đăng ký thành công) or HttpStatus.BAD_REQUEST with message(Đăng ký thất bại)
      */
-
     @PostMapping("/sign-up")
     public ResponseEntity<?> register(@Valid @RequestBody SignUpForm signUpForm) {
         if (iAccountService.existsAccountByUsername(signUpForm.getUsername())) {

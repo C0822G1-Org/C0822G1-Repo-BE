@@ -27,11 +27,7 @@ public class TimeTable {
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "day_id", nullable = false,referencedColumnName = "day_id")
-
     private Day day;
-    @OneToMany(mappedBy = "timeTable")
-    @JsonBackReference
-    private Set<TimeTableSubject> timeTableSubjectSet;
 
     public Long getTimeTableId() {
         return timeTableId;
@@ -73,11 +69,4 @@ public class TimeTable {
         this.day = day;
     }
 
-    public Set<TimeTableSubject> getTimeTableSubjectSet() {
-        return timeTableSubjectSet;
-    }
-
-    public void setTimeTableSubjectSet(Set<TimeTableSubject> timeTableSubjectSet) {
-        this.timeTableSubjectSet = timeTableSubjectSet;
-    }
 }

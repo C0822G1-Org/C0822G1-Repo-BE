@@ -5,4 +5,5 @@ public interface StudentListViewDto {
     String getStudentName();
     Boolean getGender();
     String getDateOfBirth();
+    String getNameClazz();
 }

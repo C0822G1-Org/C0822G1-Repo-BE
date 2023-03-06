@@ -1,8 +1,7 @@
-package com.c0822g1primaryschoolbe.entity;
+package com.c0822g1primaryschoolbe.dto.clazz;
 
-import com.c0822g1primaryschoolbe.entity.clazz.Block;
-import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
-import com.c0822g1primaryschoolbe.entity.time_table_subject.TimeTable;
+import com.c0822g1primaryschoolbe.dto.BlockDto;
+import com.c0822g1primaryschoolbe.dto.TeacherDto;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 

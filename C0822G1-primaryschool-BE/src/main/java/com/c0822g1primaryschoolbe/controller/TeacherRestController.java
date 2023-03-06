@@ -7,6 +7,7 @@ import com.c0822g1primaryschoolbe.service.ITeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,7 @@ public class TeacherRestController {
      * Function: editInfoTeacher
      */
     @PutMapping("editInfoTeacher")
+    @PreAuthorize("hasAuthority('ROLE_TEACHER')")
     public ResponseEntity<?> editInfoTeacher(@Validated @RequestBody TeacherDto teacherDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);

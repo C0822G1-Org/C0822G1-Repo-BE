@@ -1,9 +1,9 @@
 package com.c0822g1primaryschoolbe.service.impl;
 
-import com.c0822g1primaryschoolbe.dto.TeacherDtoToSearch;
+import com.c0822g1primaryschoolbe.dto.teacher.TeacherDtoToSearch;
 import com.c0822g1primaryschoolbe.dto.teacher.ITeacherDto;
-import com.c0822g1primaryschoolbe.entity.ITeacherDtoTuan;
-import com.c0822g1primaryschoolbe.entity.teacher.ITeacherInfo;
+import com.c0822g1primaryschoolbe.dto.teacher.ITeacherDtoTuan;
+import com.c0822g1primaryschoolbe.dto.teacher.ITeacherInfo;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import com.c0822g1primaryschoolbe.repository.ITeacherRepository;
 import com.c0822g1primaryschoolbe.service.ITeacherService;

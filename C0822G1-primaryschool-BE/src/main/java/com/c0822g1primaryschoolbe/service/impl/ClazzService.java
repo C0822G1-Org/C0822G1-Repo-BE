@@ -1,9 +1,12 @@
 package com.c0822g1primaryschoolbe.service.impl;
 
-import com.c0822g1primaryschoolbe.entity.ClazzStudentDto;
+import com.c0822g1primaryschoolbe.dto.clazz.ClazzStudentDto;
+import com.c0822g1primaryschoolbe.dto.clazz.IClazzName;
+import com.c0822g1primaryschoolbe.dto.clazz.IClazzTeacher;
+import com.c0822g1primaryschoolbe.dto.clazz.IClazzYear;
 import com.c0822g1primaryschoolbe.entity.clazz.*;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
-import com.c0822g1primaryschoolbe.entity.time_table_subject.IClazz;
+import com.c0822g1primaryschoolbe.dto.time_table.IClazz;
 import com.c0822g1primaryschoolbe.repository.IBlockRepository;
 import com.c0822g1primaryschoolbe.repository.IClazzRepository;
 import com.c0822g1primaryschoolbe.repository.ITeacherRepository;

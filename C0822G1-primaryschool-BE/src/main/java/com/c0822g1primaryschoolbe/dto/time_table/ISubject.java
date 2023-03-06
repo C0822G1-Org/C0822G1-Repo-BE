@@ -1,4 +1,4 @@
-package com.c0822g1primaryschoolbe.entity.time_table_subject;
+package com.c0822g1primaryschoolbe.dto.time_table;
 
 public interface ISubject {
     Long getSubjectId();

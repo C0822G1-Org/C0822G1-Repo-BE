@@ -1,5 +1,8 @@
 package com.c0822g1primaryschoolbe.controller;
-import com.c0822g1primaryschoolbe.entity.*;
+import com.c0822g1primaryschoolbe.dto.clazz.ClassStudentDto;
+import com.c0822g1primaryschoolbe.dto.clazz.ClazzDto;
+import com.c0822g1primaryschoolbe.dto.clazz.ClazzStudentDto;
+import com.c0822g1primaryschoolbe.dto.teacher.ITeacherDtoTuan;
 import com.c0822g1primaryschoolbe.entity.clazz.Block;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 import com.c0822g1primaryschoolbe.entity.student.Student;
@@ -15,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -237,6 +241,7 @@ public class ClazzRestController {
      * @return HttpStatus.CREATED when the data is saved to the database, HttpStatus.NOT_MODIFIED when an error occurs
      */
     @PostMapping("/save")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Clazz> save(@Valid @RequestBody ClazzDto classDto, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return new ResponseEntity(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);

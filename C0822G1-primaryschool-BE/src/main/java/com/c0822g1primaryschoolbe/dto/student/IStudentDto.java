@@ -1,4 +1,4 @@
-package com.c0822g1primaryschoolbe.dto;
+package com.c0822g1primaryschoolbe.dto.student;
 
 public interface IStudentDto {
     Long getIdStudent();

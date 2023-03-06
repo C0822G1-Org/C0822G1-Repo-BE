@@ -1,9 +1,8 @@
 package com.c0822g1primaryschoolbe.controller;
 
 
-import com.c0822g1primaryschoolbe.dto.IStudentDto;
-import com.c0822g1primaryschoolbe.dto.StudentDtoToSearch;
-import com.c0822g1primaryschoolbe.entity.student.Student;
+import com.c0822g1primaryschoolbe.dto.student.IStudentDto;
+import com.c0822g1primaryschoolbe.dto.student.StudentDtoToSearch;
 import com.c0822g1primaryschoolbe.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,7 +23,6 @@ import org.springframework.web.bind.annotation.*;
  * @param "name, status"
  * @return httpStatus.Notfound if result is error or HttpStatus.Ok if result is not error
  */
-
 
 @CrossOrigin("*")
 @RestController
@@ -54,9 +52,5 @@ public class StudentController {
         }
         return new ResponseEntity<>(studentPage, HttpStatus.OK);
     }
-
-
-
-
 
 }

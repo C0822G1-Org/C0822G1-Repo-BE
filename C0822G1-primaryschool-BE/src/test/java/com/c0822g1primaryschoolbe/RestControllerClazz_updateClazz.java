@@ -1,7 +1,7 @@
 package com.c0822g1primaryschoolbe;
 
 
-import com.c0822g1primaryschoolbe.entity.ClassStudentDto;
+import com.c0822g1primaryschoolbe.dto.clazz.ClassStudentDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

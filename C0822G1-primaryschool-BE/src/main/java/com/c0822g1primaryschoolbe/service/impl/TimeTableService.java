@@ -1,7 +1,7 @@
 package com.c0822g1primaryschoolbe.service.impl;
 
 import com.c0822g1primaryschoolbe.dto.time_table.TimeTableView;
-import com.c0822g1primaryschoolbe.entity.time_table_subject.ITimetable;
+import com.c0822g1primaryschoolbe.dto.time_table.ITimetable;
 
 import com.c0822g1primaryschoolbe.repository.ITimeTableRepository;
 import com.c0822g1primaryschoolbe.service.ITimetableService;

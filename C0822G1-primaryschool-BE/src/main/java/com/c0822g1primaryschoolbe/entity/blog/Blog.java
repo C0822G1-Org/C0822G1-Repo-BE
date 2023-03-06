@@ -8,7 +8,7 @@ public class Blog {
     @Column(columnDefinition = "varchar(45)")
     private String title;
     @Column(columnDefinition = "longtext")
-    private String content;
+    private String contents;
     private String startDate;
     private String poster;
     private String img;
@@ -16,10 +16,10 @@ public class Blog {
     public Blog() {
     }
 
-    public Blog(Long id, String title, String content, String startDate, String poster, String img) {
+    public Blog(Long id, String title, String contents, String startDate, String poster, String img) {
         this.id = id;
         this.title = title;
-        this.content = content;
+        this.contents = contents;
         this.startDate = startDate;
         this.poster = poster;
         this.img = img;
@@ -42,11 +42,11 @@ public class Blog {
     }
 
     public String getContent() {
-        return content;
+        return contents;
     }
 
     public void setContent(String content) {
-        this.content = content;
+        this.contents = content;
     }
 
     public String getStartDate() {

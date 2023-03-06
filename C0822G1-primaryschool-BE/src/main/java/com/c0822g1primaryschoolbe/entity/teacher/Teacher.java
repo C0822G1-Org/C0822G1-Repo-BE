@@ -30,7 +30,7 @@ public class Teacher {
     private Boolean flagDelete;
     private String teacherType;
     private Boolean teacherStatus;
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id")
     private Account account;
     @ManyToOne()
@@ -142,4 +142,5 @@ public class Teacher {
     public void setDegree(Degree degree) {
         this.degree = degree;
     }
+
 }

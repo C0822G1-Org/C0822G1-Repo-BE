@@ -1,4 +1,4 @@
-package com.c0822g1primaryschoolbe.dto;
+package com.c0822g1primaryschoolbe.dto.teacher;
 
 public class TeacherDtoToSearch {
         private String nameTeacher;

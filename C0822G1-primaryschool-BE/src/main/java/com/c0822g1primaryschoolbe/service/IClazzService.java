@@ -1,12 +1,14 @@
 package com.c0822g1primaryschoolbe.service;
 
-import com.c0822g1primaryschoolbe.entity.ClazzStudentDto;
+import com.c0822g1primaryschoolbe.dto.clazz.ClazzStudentDto;
+import com.c0822g1primaryschoolbe.dto.clazz.IClazzName;
+import com.c0822g1primaryschoolbe.dto.clazz.IClazzTeacher;
+import com.c0822g1primaryschoolbe.dto.clazz.IClazzYear;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
-import com.c0822g1primaryschoolbe.entity.time_table_subject.IClazz;
+import com.c0822g1primaryschoolbe.dto.time_table.IClazz;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
-import com.c0822g1primaryschoolbe.entity.clazz.*;
 
 import java.util.List;
 

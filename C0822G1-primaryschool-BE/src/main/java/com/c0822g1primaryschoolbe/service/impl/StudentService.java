@@ -1,13 +1,13 @@
 package com.c0822g1primaryschoolbe.service.impl;
 
-import com.c0822g1primaryschoolbe.entity.student.IStudentInfo;
+import com.c0822g1primaryschoolbe.dto.student.IStudentInfo;
 import com.c0822g1primaryschoolbe.dto.student.StudentListViewDto;
 import com.c0822g1primaryschoolbe.entity.student.Student;
 import com.c0822g1primaryschoolbe.repository.IStudentRepository;
 
 
-import com.c0822g1primaryschoolbe.dto.IStudentDto;
-import com.c0822g1primaryschoolbe.dto.StudentDtoToSearch;
+import com.c0822g1primaryschoolbe.dto.student.IStudentDto;
+import com.c0822g1primaryschoolbe.dto.student.StudentDtoToSearch;
 
 import com.c0822g1primaryschoolbe.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;

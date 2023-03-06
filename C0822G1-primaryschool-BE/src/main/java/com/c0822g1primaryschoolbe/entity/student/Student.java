@@ -40,7 +40,7 @@ public class Student {
     private Boolean flagDelete;
     @JsonIgnore
     @OneToOne(mappedBy = "student")
-    @JsonBackReference
+//    @JsonBackReference
     private PointManagement pointManagement;
     @ManyToOne
 

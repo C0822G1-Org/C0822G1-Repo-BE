@@ -1,5 +1,6 @@
 package com.c0822g1primaryschoolbe.dto.student;
 
+import com.c0822g1primaryschoolbe.dto.clazz.ClazzDto;
 import com.c0822g1primaryschoolbe.entity.clazz.Clazz;
 import com.c0822g1primaryschoolbe.entity.student.PointManagement;
 import org.springframework.validation.Errors;
@@ -15,7 +16,6 @@ public class StudentDto  {
     private String studentName;
     @NotBlank(message = "Không được để trống!")
     private String dateOfBirth;
-
     private boolean gender;
     @NotBlank(message = "Không được để trống!")
     private String fatherName;
@@ -35,30 +35,9 @@ public class StudentDto  {
     private String address;
     private boolean studentStatus;
     private boolean flagDelete;
-    private PointManagement pointManagement;
-    private Clazz clazz;
+    private ClazzDto clazzDto;
 
     public StudentDto() {
-    }
-
-    public StudentDto(Long studentId, String img, String studentName, String dateOfBirth, boolean gender, String fatherName, String phoneNumberFather, String fatherJob, String motherName, String phoneNumberMother, String motherJob, String religion, String address, boolean studentStatus, boolean flagDelete, PointManagement pointManagement, Clazz clazz) {
-        this.studentId = studentId;
-        this.img = img;
-        this.studentName = studentName;
-        this.dateOfBirth = dateOfBirth;
-        this.gender = gender;
-        this.fatherName = fatherName;
-        this.phoneNumberFather = phoneNumberFather;
-        this.fatherJob = fatherJob;
-        this.motherName = motherName;
-        this.phoneNumberMother = phoneNumberMother;
-        this.motherJob = motherJob;
-        this.religion = religion;
-        this.address = address;
-        this.studentStatus = studentStatus;
-        this.flagDelete = flagDelete;
-        this.pointManagement = pointManagement;
-        this.clazz = clazz;
     }
 
     public Long getStudentId() {
@@ -181,19 +160,11 @@ public class StudentDto  {
         this.flagDelete = flagDelete;
     }
 
-    public PointManagement getPointManagement() {
-        return pointManagement;
+    public ClazzDto getClazzDto() {
+        return clazzDto;
     }
 
-    public void setPointManagement(PointManagement pointManagement) {
-        this.pointManagement = pointManagement;
-    }
-
-    public Clazz getClazz() {
-        return clazz;
-    }
-
-    public void setClazz(Clazz clazz) {
-        this.clazz = clazz;
+    public void setClazzDto(ClazzDto clazzDto) {
+        this.clazzDto = clazzDto;
     }
 }

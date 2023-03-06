@@ -5,6 +5,7 @@ import com.c0822g1primaryschoolbe.service.point.IPointManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -21,30 +22,13 @@ public class PointRestController {
 
     /**
      * Created by: MinhCDK
-     * Date created: 28/02/2023
-     * Function: showListPoint
-     *
-     * @Param: teacherID
-     */
-
-//    @GetMapping("/{teacherId}")
-//    public ResponseEntity<List<PointManagementDto>> showListPoint(@PathVariable Long teacherId) {
-//        List<PointManagementDto> pointManagementDtos = iPointManagementService.showListPoint(teacherId);
-//        if (pointManagementDtos.isEmpty()) {
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        }
-//        return new ResponseEntity<>(pointManagementDtos, HttpStatus.OK);
-//    }
-
-    /**
-     * Created by: MinhCDK
      * Date created: 22/03/2023
      * Function: editListPoint
      *
      * @Param: teacherID
      */
-
     @PutMapping("/editPoint")
+    @PreAuthorize("hasAuthority('ROLE_TEACHER')")
     public ResponseEntity<?> editPoint(@Validated @RequestBody EditPointDto editPointDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
@@ -62,6 +46,7 @@ public class PointRestController {
      */
 
     @GetMapping("/search")
+    @PreAuthorize("hasAuthority('ROLE_TEACHER')")
     public ResponseEntity<List<PointManagementDto>> findByStudentName(@RequestParam Long teacherId,
                                                                       @RequestParam String studentName) {
         List<PointManagementDto> pointManagementDtos = iPointManagementService.findByStudentName(teacherId, studentName);

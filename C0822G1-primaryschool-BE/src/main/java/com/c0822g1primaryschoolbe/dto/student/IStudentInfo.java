@@ -1,4 +1,4 @@
-package com.c0822g1primaryschoolbe.entity.student;
+package com.c0822g1primaryschoolbe.dto.student;
 
 public interface IStudentInfo {
     int getId();

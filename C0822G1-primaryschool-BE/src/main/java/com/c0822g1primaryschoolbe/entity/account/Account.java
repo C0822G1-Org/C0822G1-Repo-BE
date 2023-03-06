@@ -27,9 +27,9 @@ public class Account {
     @Column(columnDefinition = "varchar(45)",unique = true)
     private String email;
     private String name;
-    @OneToOne(mappedBy = "account")
-    @JsonBackReference
-    private Teacher teacher;
+//    @OneToOne(mappedBy = "account")
+//    @JsonBackReference
+//    private Teacher teacher;
     @ManyToMany(fetch = FetchType.EAGER)
     @JsonBackReference
     @JoinTable(name = "account_role", joinColumns = @JoinColumn(name = "account_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -88,13 +88,13 @@ public class Account {
         this.name = name;
     }
 
-    public Teacher getTeacher() {
-        return teacher;
-    }
-
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
+//    public Teacher getTeacher() {
+//        return teacher;
+//    }
+//
+//    public void setTeacher(Teacher teacher) {
+//        this.teacher = teacher;
+//    }
 
     public Set<Role> getRoles() {
         return roles;
