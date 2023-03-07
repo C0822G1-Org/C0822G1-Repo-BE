@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public interface IBlogRepository extends JpaRepository<Blog, Long> {
-    @Query(value = "select * from blog", nativeQuery = true)
+    @Query(value = "select * from blog order by start_date desc", nativeQuery = true)
     Page<BlogDto> allList(Pageable pageable);
 
     @Query(value = "select * from blog where id = :idBlog", nativeQuery = true)
