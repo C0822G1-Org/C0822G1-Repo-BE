@@ -21,6 +21,17 @@ import java.util.List;
 @Repository
 public interface IClazzRepository extends JpaRepository<Clazz, Long> {
     /**
+     * HoangNM
+     * @param studentId
+     * @return
+     */
+    @Query(value ="SELECT * from student join clazz on student.clazz_id = clazz.clazz_id where student_id = :studentId",
+
+            countQuery = "SELECT * from student join clazz on student.clazz_id = clazz.clazz_id where student_id = :studentId",
+            nativeQuery = true)
+    Clazz findByIdClazzStudent(@Param("studentId") Long studentId);
+
+    /**
      * Create by TuanNDN
      * @return
      */
@@ -144,9 +155,9 @@ public interface IClazzRepository extends JpaRepository<Clazz, Long> {
      * Data create: 27/02/2023
      * funcion: showListClass()
      */
-    @Query(value = "SELECT * FROM `clazz`"
+    @Query(value = "SELECT clazz.clazz_id as clazzId,clazz.clazz_name as clazzName,teacher.teacher_id as teacherId,teacher.teacher_name as teacherName FROM `clazz` join teacher on clazz.teacher_id = teacher.teacher_id"
             ,nativeQuery = true)
-    List<Clazz> showListAll();
+    List<ClazzStudentDto> showListAll();
 
 
     /**
@@ -218,4 +229,92 @@ public interface IClazzRepository extends JpaRepository<Clazz, Long> {
      */
     @Query(value = "select c.* from clazz as c", nativeQuery = true)
     List<Clazz> getAll();
+
+    /**
+     * Create by TuanNDN
+     * @return
+     */
+    @Query(value =
+            "SELECT `clazz`.clazz_id       as clazzId,\n" +
+                    "       `clazz`.clazz_name     as clazzName,\n" +
+                    "       `teacher`.teacher_id   as teacherId,\n" +
+                    "       `teacher`.teacher_name as teacherName,\n" +
+                    "       `block`.block_name     as blockName\n" +
+                    "FROM `clazz`\n" +
+                    "         left join `teacher` on `clazz`.teacher_id = `teacher`.teacher_id\n" +
+                    "         left join `block` on `clazz`.block_id = `block`.block_id\n" +
+                    "where clazz_id = :clazzId\n" +
+                    "  and clazz.flag_delete = false\n" +
+                    "order by clazz.clazz_name asc"
+            ,countQuery =
+            "SELECT `clazz`.clazz_id       as clazzId,\n" +
+                    "       `clazz`.clazz_name     as clazzName,\n" +
+                    "       `teacher`.teacher_id   as teacherId,\n" +
+                    "       `teacher`.teacher_name as teacherName,\n" +
+                    "       `block`.block_name     as blockName\n" +
+                    "FROM `clazz`\n" +
+                    "         left join `teacher` on `clazz`.teacher_id = `teacher`.teacher_id\n" +
+                    "         left join `block` on `clazz`.block_id = `block`.block_id\n" +
+                    "where clazz_id = :clazzId\n" +
+                    "  and clazz.flag_delete = false\n" +
+                    "order by clazz.clazz_name asc"
+            ,nativeQuery = true)
+    ClazzStudentDto findByIdClazzStudentDto(@Param("clazzId") Long clazzId);
+
+    @Query(value =
+            "SELECT `clazz`.clazz_id as clazzId," +
+                    " `clazz`.clazz_name as clazzName," +
+                    " `teacher`.teacher_id as teacherId," +
+                    " `teacher`.teacher_name as teacherName," +
+                    " `block`.block_name as blockName" +
+                    " FROM  `clazz`" +
+                    " left join `teacher` on `clazz`.teacher_id = `teacher`.teacher_id" +
+                    " left join `block` on `clazz`.block_id = `block`.block_id" +
+                    " where clazz.clazz_name like concat('%', :keySearch1 ,'%')" +
+                    " and clazz.flag_delete=false"+
+                    " order by clazz.clazz_name asc"
+            ,countQuery =
+            "SELECT `clazz`.clazz_id as clazzId," +
+                    " `clazz`.clazz_name as clazzName," +
+                    " `teacher`.teacher_id as teacherId," +
+                    " `teacher`.teacher_name as teacherName," +
+                    " `block`.block_name as blockName" +
+                    " FROM  `clazz`" +
+                    " left join `teacher` on `clazz`.teacher_id = `teacher`.teacher_id" +
+                    " left join `block` on `clazz`.block_id = `block`.block_id" +
+                    " where clazz.clazz_name like concat('%', :keySearch1 ,'%')" +
+                    " and clazz.flag_delete=false" +
+                    " order by clazz.clazz_name asc"
+            ,nativeQuery = true)
+    Page<ClazzStudentDto> findAllClazzStudentDto(Pageable pageable, @Param("keySearch1") String keySearch1);
+
+    /**
+     * TuanNDN
+     * @return
+     */
+    @Query(value =
+            "SELECT `clazz`.clazz_id as clazzId," +
+                    "                     `clazz`.clazz_name as clazzName," +
+                    "                     `teacher`.teacher_id as teacherId," +
+                    "                     `teacher`.teacher_name as teacherName," +
+                    "                     `block`.block_name as blockName" +
+                    "                     FROM  `clazz`" +
+                    "                     left join `teacher` on `clazz`.teacher_id = `teacher`.teacher_id" +
+                    "                     left join `block` on `clazz`.block_id = `block`.block_id" +
+                    "                     where clazz.flag_delete=false" +
+                    "                     order by clazz.clazz_name asc"
+            ,countQuery =
+            "SELECT `clazz`.clazz_id as clazzId," +
+                    "                     `clazz`.clazz_name as clazzName," +
+                    "                     `teacher`.teacher_id as teacherId," +
+                    "                     `teacher`.teacher_name as teacherName," +
+                    "                     `block`.block_name as blockName" +
+                    "                     FROM  `clazz`" +
+                    "                     left join `teacher` on `clazz`.teacher_id = `teacher`.teacher_id" +
+                    "                     left join `block` on `clazz`.block_id = `block`.block_id" +
+                    "                     where clazz.flag_delete=false" +
+                    "                     order by clazz.clazz_name asc"
+            ,nativeQuery = true)
+    List<ClazzStudentDto> findAllClazzStudentDtoNoPage();
+
 }

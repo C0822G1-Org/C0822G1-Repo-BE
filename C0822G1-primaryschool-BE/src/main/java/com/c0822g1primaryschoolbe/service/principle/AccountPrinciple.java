@@ -28,6 +28,7 @@ public class AccountPrinciple implements UserDetails {
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getAvatar() {
         return avatar;
     }
@@ -35,6 +36,7 @@ public class AccountPrinciple implements UserDetails {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
+
     public void setUsername(String username) {
         this.username = username;
     }

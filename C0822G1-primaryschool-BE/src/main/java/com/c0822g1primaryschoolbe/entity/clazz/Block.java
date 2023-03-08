@@ -16,7 +16,7 @@ public class Block {
 
     public Block() {
     }
-    /* Dung */
+
     public Block(Long blockId) {
         this.blockId = blockId;
     }

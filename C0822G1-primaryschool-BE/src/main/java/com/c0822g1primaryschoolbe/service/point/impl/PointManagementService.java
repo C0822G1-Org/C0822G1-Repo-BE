@@ -15,19 +15,6 @@ public class PointManagementService implements IPointManagementService {
 
     /**
      * Created by: MinhCDK
-     * Date created: 28/02/2023
-     * Function: showListPoint
-     *
-     * @Param: teacherID
-     */
-
-//    @Override
-//    public List<PointManagementDto> showListPoint(Long teacherId) {
-//        return iPointManagementRepository.showListPoint(teacherId);
-//    }
-
-    /**
-     * Created by: MinhCDK
      * Date created: 22/03/2023
      * Function: editListPoint
      *
@@ -50,5 +37,10 @@ public class PointManagementService implements IPointManagementService {
     @Override
     public List<PointManagementDto> findByStudentName(Long teacherId, String studentName) {
         return iPointManagementRepository.findByStudentName(teacherId, studentName);
+    }
+
+    @Override
+    public void checkBoxUpClazz(Long idPoint) {
+        iPointManagementRepository.checkBoxUpClazz(idPoint);
     }
 }

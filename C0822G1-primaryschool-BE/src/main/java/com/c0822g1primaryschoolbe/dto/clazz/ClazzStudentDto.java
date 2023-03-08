@@ -18,4 +18,6 @@ public interface ClazzStudentDto {
     Boolean getGender();
 
     String getAddress();
+
+    Integer getBlockName();
 }

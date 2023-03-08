@@ -32,7 +32,7 @@ public class TeacherController {
 
      @PostMapping("/search")
     public ResponseEntity<Page<ITeacherDto>> searchTeacher(@RequestBody TeacherDtoToSearch teacherDtoToSearch,
-                                                       @PageableDefault(value = 5) Pageable pageable){
+                                                           @PageableDefault(value = 5) Pageable pageable){
         if (teacherDtoToSearch == null || ObjectUtils.isEmpty(teacherDtoToSearch)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

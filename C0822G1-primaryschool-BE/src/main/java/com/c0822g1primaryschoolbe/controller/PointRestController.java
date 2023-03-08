@@ -28,7 +28,7 @@ public class PointRestController {
      * @Param: teacherID
      */
     @PutMapping("/editPoint")
-    @PreAuthorize("hasAuthority('ROLE_TEACHER')")
+    @PreAuthorize("hasAnyAuthority('ROLE_TEACHER','ROLE_ADMIN')")
     public ResponseEntity<?> editPoint(@Validated @RequestBody EditPointDto editPointDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
@@ -46,7 +46,7 @@ public class PointRestController {
      */
 
     @GetMapping("/search")
-    @PreAuthorize("hasAuthority('ROLE_TEACHER')")
+    @PreAuthorize("hasAnyAuthority('ROLE_TEACHER','ROLE_ADMIN')")
     public ResponseEntity<List<PointManagementDto>> findByStudentName(@RequestParam Long teacherId,
                                                                       @RequestParam String studentName) {
         List<PointManagementDto> pointManagementDtos = iPointManagementService.findByStudentName(teacherId, studentName);
@@ -54,5 +54,15 @@ public class PointRestController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(pointManagementDtos, HttpStatus.OK);
+    }
+
+    @GetMapping("/{idCheck}")
+    @PreAuthorize("hasAuthority('ROLE_TEACHER')")
+    public ResponseEntity<Long> checkBoxUpClazz(@PathVariable Long idCheck){
+        if (idCheck==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        iPointManagementService.checkBoxUpClazz(idCheck);
+        return new ResponseEntity<>(idCheck,HttpStatus.OK);
     }
 }

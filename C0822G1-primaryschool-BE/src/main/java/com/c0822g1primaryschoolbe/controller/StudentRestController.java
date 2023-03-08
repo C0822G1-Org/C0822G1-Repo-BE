@@ -229,7 +229,7 @@ public class StudentRestController {
      * @return student
      */
     @GetMapping("/info/{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_TEACHER')")
     public ResponseEntity<Student> getInfoStudent(@PathVariable Long id) {
         Student student = studentService.findById(id).orElse(null);
         if(student == null) {

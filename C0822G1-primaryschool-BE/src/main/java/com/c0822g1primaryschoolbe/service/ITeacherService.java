@@ -1,6 +1,6 @@
 package com.c0822g1primaryschoolbe.service;
+import com.c0822g1primaryschoolbe.dto.ITeacherDto;
 import com.c0822g1primaryschoolbe.dto.teacher.TeacherDtoToSearch;
-import com.c0822g1primaryschoolbe.dto.teacher.ITeacherDto;
 import com.c0822g1primaryschoolbe.dto.teacher.ITeacherDtoTuan;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
 import org.springframework.data.repository.query.Param;
@@ -44,7 +44,7 @@ public interface ITeacherService {
      * Date created: 28/02/2023
      * Function: findByTeacher
      */
-    ITeacherDto findByTeacherDto(Long teacherId);
+    com.c0822g1primaryschoolbe.dto.teacher.ITeacherDto findByTeacherDto(Long teacherId);
 
     /**
      * Created by: MinhCDK
@@ -62,5 +62,5 @@ public interface ITeacherService {
      * @param pageable
      * @return
      */
-    Page<com.c0822g1primaryschoolbe.dto.ITeacherDto> searchTeacher(TeacherDtoToSearch teacherDtoToSearch, Pageable pageable);
+    Page<ITeacherDto> searchTeacher(TeacherDtoToSearch teacherDtoToSearch, Pageable pageable);
 }

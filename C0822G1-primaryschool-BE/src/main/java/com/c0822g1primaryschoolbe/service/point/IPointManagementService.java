@@ -1,6 +1,7 @@
 package com.c0822g1primaryschoolbe.service.point;
 
 import com.c0822g1primaryschoolbe.dto.point.PointManagementDto;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -35,4 +36,6 @@ public interface IPointManagementService {
      */
 
     List<PointManagementDto> findByStudentName(Long teacherId, String studentName);
+
+    void checkBoxUpClazz( Long idPoint);
 }

@@ -88,6 +88,26 @@ public class ClazzService implements IClazzService {
         return clazzRepository.getAll();
     }
 
+    @Override
+    public Clazz findByIdClazzStudent(Long studentId) {
+        return clazzRepository.findByIdClazzStudent(studentId);
+    }
+
+    @Override
+    public ClazzStudentDto findByIdClazzStudentDto(Long clazzId) {
+        return clazzRepository.findByIdClazzStudentDto(clazzId);
+    }
+
+    @Override
+    public Page<ClazzStudentDto> findAllClazzStudentDto(Pageable pageable, String keySearch1) {
+        return clazzRepository.findAllClazzStudentDto(pageable, keySearch1);
+    }
+
+    @Override
+    public List<ClazzStudentDto> findAllClazzStudentDtoNoPage() {
+        return clazzRepository.findAllClazzStudentDtoNoPage();
+    }
+
 
     /**
      * Create by TuanNDN
@@ -142,7 +162,7 @@ public class ClazzService implements IClazzService {
      * Author: DungND
      * */
     @Override
-    public List<Clazz> showListAll() {
+    public List<ClazzStudentDto> showListAll() {
         return clazzRepository.showListAll();
     }
 

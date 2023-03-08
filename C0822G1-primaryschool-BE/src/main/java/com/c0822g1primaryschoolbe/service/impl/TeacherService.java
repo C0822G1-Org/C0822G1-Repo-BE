@@ -1,7 +1,7 @@
 package com.c0822g1primaryschoolbe.service.impl;
 
+import com.c0822g1primaryschoolbe.dto.ITeacherDto;
 import com.c0822g1primaryschoolbe.dto.teacher.TeacherDtoToSearch;
-import com.c0822g1primaryschoolbe.dto.teacher.ITeacherDto;
 import com.c0822g1primaryschoolbe.dto.teacher.ITeacherDtoTuan;
 import com.c0822g1primaryschoolbe.dto.teacher.ITeacherInfo;
 import com.c0822g1primaryschoolbe.entity.teacher.Teacher;
@@ -45,7 +45,7 @@ public class TeacherService implements ITeacherService {
     }
 
     @Override
-    public ITeacherDto findByTeacherDto(Long teacherId) {
+    public com.c0822g1primaryschoolbe.dto.teacher.ITeacherDto findByTeacherDto(Long teacherId) {
         return iTeacherRepository.findByTeacherDto(teacherId);
     }
 
@@ -72,7 +72,7 @@ public class TeacherService implements ITeacherService {
      * @return
      */
     @Override
-    public Page<com.c0822g1primaryschoolbe.dto.ITeacherDto> searchTeacher(TeacherDtoToSearch teacherDtoToSearch, Pageable pageable) {
+    public Page<ITeacherDto> searchTeacher(TeacherDtoToSearch teacherDtoToSearch, Pageable pageable) {
         return iTeacherRepository.searchTeacher(teacherDtoToSearch, pageable);
     }
 

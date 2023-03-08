@@ -45,7 +45,7 @@ public interface IClazzService {
      * Parameter: contentClass
      * Author: DungND
      */
-    List<Clazz> showListAll();
+    List<ClazzStudentDto> showListAll();
 
     /**
      * Method use: createChooseClass()
@@ -120,4 +120,20 @@ public interface IClazzService {
      * @return
      */
     List<Clazz> getAll();
+
+    /**
+     * Create: HoangMN
+     * @return
+     */
+    Clazz findByIdClazzStudent(Long studentId);
+
+    ClazzStudentDto findByIdClazzStudentDto( Long clazzId);
+    /**
+     * Create by TuanNDN
+     */
+    Page<ClazzStudentDto> findAllClazzStudentDto(Pageable pageable,String keySearch1);
+    /**
+     * Create by TuanNDN
+     */
+    List<ClazzStudentDto> findAllClazzStudentDtoNoPage();
 }

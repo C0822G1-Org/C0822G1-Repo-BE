@@ -13,7 +13,6 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-@Transactional
 public interface ITimeTableRepository extends JpaRepository<Student, Long> {
     /**
      * Created by: VanNTC
@@ -45,7 +44,7 @@ public interface ITimeTableRepository extends JpaRepository<Student, Long> {
      *
      * @Param idClazz
      */
-    @Modifying
+
     @Query(value = "select time_table.time_table_id as timetableId,\n" +
             "       c.clazz_id               as clazzId,\n" +
             "       c.clazz_name             as clazzName,\n" +
@@ -73,6 +72,7 @@ public interface ITimeTableRepository extends JpaRepository<Student, Long> {
      * Function: update timetable where id_timetable
      */
     @Modifying
-    @Query(value = "update `primary-school-management`.time_table tt set tt.subject_id = :idSubject where time_table_id=:idTimetable", countQuery = "update `primary-school-management`.time_table tt set tt.subject_id = :idSubject where time_table_id=:idTimetable", nativeQuery = true)
+    @Transactional
+    @Query(value = "update time_table tt set tt.subject_id = :idSubject where time_table_id=:idTimetable", nativeQuery = true)
     void updateTimetable(Long idTimetable, Long idSubject);
 }

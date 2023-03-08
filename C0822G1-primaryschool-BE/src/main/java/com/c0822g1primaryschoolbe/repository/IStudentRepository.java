@@ -1,5 +1,6 @@
 package com.c0822g1primaryschoolbe.repository;
 
+import com.c0822g1primaryschoolbe.dto.clazz.StudentClazzDto;
 import com.c0822g1primaryschoolbe.dto.student.IStudentDto;
 import com.c0822g1primaryschoolbe.dto.student.StudentDtoToSearch;
 import com.c0822g1primaryschoolbe.entity.student.Student;
@@ -109,7 +110,7 @@ public interface IStudentRepository extends JpaRepository<Student, Long> {
      */
     @Transactional
     @Modifying
-    @Query(value = "update student set flag_delete=false where student_id = :id", nativeQuery = true)
+    @Query(value = "update student set flag_delete=true where student_id = :id", nativeQuery = true)
     void removeStudent(@Param("id") Long id);
 
 
@@ -286,4 +287,37 @@ public interface IStudentRepository extends JpaRepository<Student, Long> {
             " and `student`.student_status = :#{#studentDtoToSearch.studyStatus} " +
             " order by `student`.student_name asc", nativeQuery = true)
     Page<IStudentDto> searchStudent(@Param("studentDtoToSearch") StudentDtoToSearch studentDtoToSearch, Pageable pageable);
+
+    /**
+     * TuanNDN
+     * @return
+     */
+    @Query(value =
+
+            "SELECT `student`.student_id as clazzId,\n" +
+                    "                           `student`.student_name as studentName,\n" +
+                    "                           `student`.date_of_birth as dateOfBirth,\n" +
+                    "                           `student`.address as address,\n" +
+                    "                           `student`.gender as gender,\n" +
+                    "                           `clazz`.clazz_name as clazzName\n" +
+                    "                    FROM  `student`\n" +
+                    "                    LEFT JOIN `clazz` ON `clazz`.clazz_id = `student`.clazz_id\n" +
+                    "                    WHERE clazz.clazz_id = :clazzId" +
+                    "                    and student.flag_delete=false\n" +
+                    "                    ORDER BY student.student_name ASC"
+            ,countQuery =
+
+            "SELECT `student`.student_id as clazzId,\n" +
+                    "                           `student`.student_name as studentName,\n" +
+                    "                           `student`.date_of_birth as dateOfBirth,\n" +
+                    "                           `student`.address as address,\n" +
+                    "                           `student`.gender as gender,\n" +
+                    "                           `clazz`.clazz_name as clazzName\n" +
+                    "                    FROM  `student`\n" +
+                    "                    LEFT JOIN `clazz` ON `clazz`.clazz_id = `student`.clazz_id\n" +
+                    "                    WHERE clazz.clazz_id = :clazzId" +
+                    "                    and student.flag_delete=false\n" +
+                    "                    ORDER BY student.student_name ASC"
+            ,nativeQuery = true)
+    List<StudentClazzDto> findAllStudentClazzDto(@Param("clazzId") Integer clazzId);
 }

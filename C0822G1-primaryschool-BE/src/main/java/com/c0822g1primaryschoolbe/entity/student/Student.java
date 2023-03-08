@@ -38,12 +38,7 @@ public class Student {
     private String address;
     private Boolean studentStatus;
     private Boolean flagDelete;
-    @JsonIgnore
-    @OneToOne(mappedBy = "student")
-//    @JsonBackReference
-    private PointManagement pointManagement;
     @ManyToOne
-
     @JsonBackReference
     @JoinColumn(name = "clazz_id", nullable = false, referencedColumnName = "clazz_id")
     private Clazz clazz;
@@ -176,11 +171,4 @@ public class Student {
         this.clazz = clazz;
     }
 
-    public PointManagement getPointManagement() {
-        return pointManagement;
-    }
-
-    public void setPointManagement(PointManagement pointManagement) {
-        this.pointManagement = pointManagement;
-    }
 }

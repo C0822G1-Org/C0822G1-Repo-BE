@@ -1,7 +1,7 @@
 package com.c0822g1primaryschoolbe.repository;
 
+import com.c0822g1primaryschoolbe.dto.ITeacherDto;
 import com.c0822g1primaryschoolbe.dto.teacher.TeacherDtoToSearch;
-import com.c0822g1primaryschoolbe.dto.teacher.ITeacherDto;
 import com.c0822g1primaryschoolbe.dto.teacher.ITeacherDtoTuan;
 import com.c0822g1primaryschoolbe.dto.teacher.ITeacherInfo;
 import com.c0822g1primaryschoolbe.dto.teacher.TeacherViewDto;
@@ -91,13 +91,12 @@ public interface ITeacherRepository extends JpaRepository<Teacher, Long> {
          */
 
         @Query(value = "select teacher_id as teacherId, teacher_name as teacherName, date_of_birth as dateOfBirth, gender as gender, d.degree_name as degreeName, teacher_type as teacherType, id_card as idCard, email as email, phone_number as phoneNumber, address as address from teacher join degree d on d.degree_id = teacher.degree_id where teacher_id =:teacherId", nativeQuery = true)
-        ITeacherDto findByTeacherDto(@Param("teacherId") Long teacherId);
+        com.c0822g1primaryschoolbe.dto.teacher.ITeacherDto findByTeacherDto(@Param("teacherId") Long teacherId);
 
         @Query(value = "select teacher.* from teacher where teacher.teacher_name like %:name% and teacher.teacher_status = :status order by teacher.teacher_name asc ", nativeQuery = true)
         Page<Teacher> findByName(@Param("name") String name,
                                  @Param("status") Boolean status,
                                  Pageable pageable);
-
 
         /**
          * create by :VinhLD
@@ -107,24 +106,8 @@ public interface ITeacherRepository extends JpaRepository<Teacher, Long> {
          * @param "name"
          * @return
          */
-        @Query(value = " select `teacher`.* from `teacher` where `teacher`.teacher_name like %:#{#teacherDtoToSearch.nameTeacher}%" +
-                " and `teacher`.teacher_status = :#{#teacherDtoToSearch.teachStatus} order by `teacher`.teacher_name asc", nativeQuery = true)
-        Page<Teacher> searchNameTeacher(@Param("teacherDtoToSearch") TeacherDtoToSearch teacherDtoToSearch, Pageable pageable);
-
-
-        /**
-         * create by : VinhLD
-         * date create : 27/02/2023
-         * function: search teacher by name and status
-         *
-         * @param teacherDtoToSearch
-         * @param pageable
-         * @return
-         */
-
-        @Query(value = " select `teacher`.teacher_id as idTeacher , `teacher`.teacher_name as nameTeacher, `teacher`.date_of_birth as dateOfBirthTeacher from `teacher` where `teacher`.teacher_name like %:#{#teacherDtoToSearch.nameTeacher}% " +
+        @Query(value = " select `teacher`.teacher_id as idTeacher , `teacher`.teacher_name as nameTeacher, `teacher`.date_of_birth as dateOfBirthTeacher,`teacher`.email as emailTeacher, `teacher`.id_card as idCardTeacher from `teacher` where `teacher`.teacher_name like %:#{#teacherDtoToSearch.nameTeacher}% " +
                 " and `teacher`.teacher_status = :#{#teacherDtoToSearch.teachStatus} order by `teacher`.teacher_name asc", nativeQuery = true)
         Page<com.c0822g1primaryschoolbe.dto.ITeacherDto> searchTeacher(@Param("teacherDtoToSearch") TeacherDtoToSearch teacherDtoToSearch, Pageable pageable);
-
 
     }

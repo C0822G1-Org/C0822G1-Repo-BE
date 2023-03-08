@@ -1,5 +1,6 @@
 package com.c0822g1primaryschoolbe.service;
 
+import com.c0822g1primaryschoolbe.dto.clazz.StudentClazzDto;
 import com.c0822g1primaryschoolbe.dto.student.IStudentDto;
 import com.c0822g1primaryschoolbe.dto.student.StudentDtoToSearch;
 import com.c0822g1primaryschoolbe.entity.student.Student;
@@ -7,6 +8,8 @@ import com.c0822g1primaryschoolbe.dto.student.IStudentInfo;
 import com.c0822g1primaryschoolbe.dto.student.StudentListViewDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
+
 import java.util.Optional;
 
 import java.util.List;
@@ -113,8 +116,12 @@ public interface IStudentService {
      * @param "name, status"
      * @return
      */
-
     Page<IStudentDto> searchStudent(StudentDtoToSearch studentDtoToSearch, Pageable pageable);
+
+    /**
+     * Create by TuanNDN
+     */
+    List<StudentClazzDto> findAllStudentClazzDto(Integer clazzId);
 }
 
 
